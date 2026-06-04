@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+const baldursGateImage = require("../../assets/images/baldursgate3.jpeg");
 const questions = [
   {
     question: "Hangi platformda oynuyorsun?",
@@ -207,10 +207,14 @@ export default function HomeScreen() {
         <Text style={styles.question}>Sana Önerilen Oyunlar:</Text>
 
         {getRecommendation().map((game) => (
-          <Text key={game} style={styles.optionText}>
-            🎮 {game}
-          </Text>
-        ))}
+  <View key={game} style={styles.gameCard}>
+    {game === "Baldur's Gate 3" && (
+      <Image source={baldursGateImage} style={styles.gameImage} />
+    )}
+
+    <Text style={styles.optionText}>🎮 {game}</Text>
+  </View>
+))}
 
         <TouchableOpacity
           style={styles.button}
@@ -308,9 +312,28 @@ const styles = StyleSheet.create({
     borderColor: "#333",
   },
   optionText: {
-    color: "white",
-    fontSize: 18,
-    textAlign: "center",
-    marginBottom: 10,
-  },
+  color: "white",
+  fontSize: 18,
+  textAlign: "center",
+  marginBottom: 10,
+},
+
+gameCard: {
+  backgroundColor: "#1f1f1f",
+  padding: 12,
+  borderRadius: 14,
+  width: "100%",
+  maxWidth: 400,
+  marginBottom: 14,
+  alignItems: "center",
+  borderWidth: 1,
+  borderColor: "#333",
+},
+
+gameImage: {
+  width: "100%",
+  height: 180,
+  borderRadius: 12,
+  marginBottom: 10,
+},
 });
