@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 const baldursGateImage = require("../../assets/images/baldursgate3.jpeg");
+const witcher3Image = require("../../assets/images/witcher3.jpeg");
 const questions = [
   {
     question: "Hangi platformda oynuyorsun?",
@@ -206,10 +207,14 @@ export default function HomeScreen() {
 
         <Text style={styles.question}>Sana Önerilen Oyunlar:</Text>
 
-        {getRecommendation().map((game) => (
+       {getRecommendation().map((game) => (
   <View key={game} style={styles.gameCard}>
     {game === "Baldur's Gate 3" && (
       <Image source={baldursGateImage} style={styles.gameImage} />
+    )}
+
+    {game === "The Witcher 3" && (
+      <Image source={witcher3Image} style={styles.gameImage} />
     )}
 
     <Text style={styles.optionText}>🎮 {game}</Text>
