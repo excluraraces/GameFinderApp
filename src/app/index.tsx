@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-const baldursGateImage = require("../../assets/images/baldursgate3.jpeg");
-const witcher3Image = require("../../assets/images/witcher3.jpeg");
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { games } from "../data/game";
+
 const questions = [
   {
     question: "Hangi platformda oynuyorsun?",
@@ -79,115 +86,37 @@ export default function HomeScreen() {
   const currentQuestion = questions[questionIndex];
 
   function getRecommendation() {
-    const scores = {
-      rpg: 0,
-      fps: 0,
-      racing: 0,
-      horror: 0,
-      strategy: 0,
-      casual: 0,
-    };
+    const scoredGames = games.map((game) => {
+      let score = 0;
 
-    answers.forEach((item) => {
-      const q = item.questionIndex;
-      const a = item.answer;
+      answers.forEach((item) => {
+        const q = item.questionIndex;
+        const a = item.answer;
 
-      if (q === 1) {
-        if (a === "RPG") scores.rpg += 5;
-        if (a === "FPS") scores.fps += 5;
-        if (a === "Yarış") scores.racing += 5;
-        if (a === "Strateji") scores.strategy += 5;
-        if (a === "Korku") scores.horror += 5;
-      }
+        if (q === 0 && game.platforms.includes(a)) score += 5;
+        if (q === 1 && game.genres.includes(a)) score += 6;
+        if (q === 2 && game.storyImportance.includes(a)) score += 4;
+        if (q === 3 && game.tempo.includes(a)) score += 4;
+        if (q === 4 && game.playStyle.includes(a)) score += 4;
+        if (q === 5 && game.worldType.includes(a)) score += 4;
+        if (q === 6 && game.difficulty.includes(a)) score += 3;
+        if (q === 7 && game.graphics.includes(a)) score += 3;
+        if (q === 8 && game.characterProgression.includes(a)) score += 4;
+        if (q === 9 && game.length.includes(a)) score += 3;
+        if (q === 10 && game.vehicleInterest.includes(a)) score += 5;
+        if (q === 11 && game.horrorInterest.includes(a)) score += 5;
+        if (q === 12 && game.strategyInterest.includes(a)) score += 5;
+        if (q === 13 && game.challengeStyle.includes(a)) score += 3;
+        if (q === 14 && game.atmosphere.includes(a)) score += 4;
+      });
 
-      if (q === 2) {
-        if (a === "Çok önemli") scores.rpg += 3;
-        if (a === "Biraz önemli") scores.rpg += 1;
-        if (a === "Önemli değil") scores.fps += 1;
-      }
-
-      if (q === 3) {
-        if (a === "Hızlı ve aksiyonlu") scores.fps += 3;
-        if (a === "Yavaş ve taktiksel") scores.strategy += 3;
-        if (a === "Rahatlatıcı") scores.casual += 3;
-        if (a === "Gerilimli") scores.horror += 3;
-      }
-
-      if (q === 4) {
-        if (a === "Tek kişilik") scores.rpg += 2;
-        if (a === "Arkadaşlarla") scores.casual += 2;
-        if (a === "Online rekabetçi") scores.fps += 4;
-      }
-
-      if (q === 5) {
-        if (a === "Açık dünya") scores.rpg += 3;
-        if (a === "Sandbox") scores.casual += 3;
-        if (a === "Lineer hikaye") scores.rpg += 2;
-      }
-
-      if (q === 6) {
-        if (a === "Kolay") scores.casual += 2;
-        if (a === "Zor") scores.strategy += 2;
-        if (a === "Çok zor") scores.horror += 1;
-      }
-
-      if (q === 8) {
-        if (a === "Evet çok isterim") scores.rpg += 3;
-        if (a === "Biraz olsun") scores.rpg += 1;
-      }
-
-      if (q === 10) {
-        if (a === "Evet") scores.racing += 5;
-        if (a === "Biraz") scores.racing += 2;
-      }
-
-      if (q === 11) {
-        if (a === "Çok severim") scores.horror += 5;
-        if (a === "Bazen oynarım") scores.horror += 2;
-      }
-
-      if (q === 12) {
-        if (a === "Evet") scores.strategy += 5;
-        if (a === "Biraz") scores.strategy += 2;
-      }
-
-      if (q === 13) {
-        if (a === "Rahatlatmalı") scores.casual += 4;
-        if (a === "Zorlamalı") scores.strategy += 2;
-        if (a === "İkisi dengeli olmalı") scores.rpg += 2;
-      }
-
-      if (q === 14) {
-        if (a === "Fantastik") scores.rpg += 4;
-        if (a === "Bilim kurgu") scores.fps += 2;
-        if (a === "Gerçekçi") scores.racing += 2;
-        if (a === "Karanlık") scores.horror += 3;
-      }
+      return {
+        ...game,
+        score,
+      };
     });
 
-    const bestCategory = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-
-    if (bestCategory === "rpg") {
-      return ["Baldur's Gate 3", "The Witcher 3", "Skyrim"];
-    }
-
-    if (bestCategory === "fps") {
-      return ["Valorant", "Call of Duty", "Apex Legends"];
-    }
-
-    if (bestCategory === "racing") {
-      return ["Forza Horizon 5", "Need for Speed Heat", "BeamNG.drive"];
-    }
-
-    if (bestCategory === "horror") {
-      return ["Resident Evil 4", "Outlast", "Amnesia"];
-    }
-
-    if (bestCategory === "strategy") {
-      return ["Age of Empires 4", "Civilization VI", "Total War"];
-    }
-
-    return ["Minecraft", "Stardew Valley", "Among Us"];
+    return scoredGames.sort((a, b) => b.score - a.score).slice(0, 3);
   }
 
   function answerQuestion(option: string) {
@@ -202,24 +131,22 @@ export default function HomeScreen() {
 
   if (finished) {
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.resultContainer}>
         <Text style={styles.title}>Sonuç Hazır!</Text>
 
         <Text style={styles.question}>Sana Önerilen Oyunlar:</Text>
 
-       {getRecommendation().map((game) => (
-  <View key={game} style={styles.gameCard}>
-    {game === "Baldur's Gate 3" && (
-      <Image source={baldursGateImage} style={styles.gameImage} />
-    )}
+        {getRecommendation().map((game) => (
+          <View key={game.id} style={styles.gameCard}>
+            {game.image && (
+              <Image source={game.image} style={styles.gameImage} />
+            )}
 
-    {game === "The Witcher 3" && (
-      <Image source={witcher3Image} style={styles.gameImage} />
-    )}
+            <Text style={styles.gameTitle}>🎮 {game.title}</Text>
 
-    <Text style={styles.optionText}>🎮 {game}</Text>
-  </View>
-))}
+            <Text style={styles.gameStory}>{game.story}</Text>
+          </View>
+        ))}
 
         <TouchableOpacity
           style={styles.button}
@@ -232,7 +159,7 @@ export default function HomeScreen() {
         >
           <Text style={styles.buttonText}>Tekrar Başla</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     );
   }
 
@@ -277,6 +204,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
   },
+
+  resultContainer: {
+    flexGrow: 1,
+    backgroundColor: "#121212",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    paddingTop: 50,
+    paddingBottom: 50,
+  },
+
   title: {
     fontSize: 32,
     color: "white",
@@ -284,10 +222,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 40,
   },
+
   counter: {
     color: "#aaa",
     marginBottom: 20,
   },
+
   question: {
     fontSize: 26,
     color: "white",
@@ -295,17 +235,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 30,
   },
+
   button: {
     backgroundColor: "#4CAF50",
     paddingVertical: 15,
     paddingHorizontal: 40,
     borderRadius: 12,
+    marginTop: 10,
   },
+
   buttonText: {
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
   },
+
   optionButton: {
     backgroundColor: "#1f1f1f",
     padding: 15,
@@ -316,29 +260,45 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#333",
   },
+
   optionText: {
-  color: "white",
-  fontSize: 18,
-  textAlign: "center",
-  marginBottom: 10,
-},
+    color: "white",
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 10,
+  },
 
-gameCard: {
-  backgroundColor: "#1f1f1f",
-  padding: 12,
-  borderRadius: 14,
-  width: "100%",
-  maxWidth: 400,
-  marginBottom: 14,
-  alignItems: "center",
-  borderWidth: 1,
-  borderColor: "#333",
-},
+  gameCard: {
+    backgroundColor: "#1f1f1f",
+    padding: 12,
+    borderRadius: 14,
+    width: "100%",
+    maxWidth: 420,
+    marginBottom: 16,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#333",
+  },
 
-gameImage: {
-  width: "100%",
-  height: 180,
-  borderRadius: 12,
-  marginBottom: 10,
-},
+  gameImage: {
+    width: "100%",
+    height: 180,
+    borderRadius: 12,
+    marginBottom: 10,
+  },
+
+  gameTitle: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+
+  gameStory: {
+    color: "#cfcfcf",
+    fontSize: 14,
+    lineHeight: 20,
+    textAlign: "center",
+  },
 });
