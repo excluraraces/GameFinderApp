@@ -8,13 +8,18 @@ import {
   View,
 } from "react-native";
 
-import { games } from "../data/game";
+import { games, type Game } from "../data/game";
 import { questions, type QuestionOption } from "../data/questions";
 
 type Answer = {
   questionIndex: number;
   label: string;
   value: string;
+};
+
+type ScoredGame = Game & {
+  score: number;
+  reasons: string[];
 };
 
 const MAX_SCORE = 62;
@@ -27,39 +32,118 @@ export default function HomeScreen() {
 
   const currentQuestion = questions[questionIndex];
 
+  function getSelectedPlatform() {
+    const platformAnswer = answers.find((item) => item.questionIndex === 0);
+    return platformAnswer?.value;
+  }
+
+  function isPlatformCompatible(game: Game) {
+    const selectedPlatform = getSelectedPlatform();
+
+    if (!selectedPlatform || selectedPlatform === "Fark etmez") {
+      return true;
+    }
+
+    return game.platforms.includes(selectedPlatform);
+  }
+
   function getRecommendation() {
-    const scoredGames = games.map((game) => {
-      let score = 0;
+    const scoredGames: ScoredGame[] = games
+      .filter((game) => isPlatformCompatible(game))
+      .map((game) => {
+        let score = 0;
+        const reasons: string[] = [];
 
-      answers.forEach((item) => {
-        const q = item.questionIndex;
-        const a = item.value;
+        answers.forEach((item) => {
+          const q = item.questionIndex;
+          const a = item.value;
 
-        if (q === 0 && game.platforms.includes(a)) score += 5;
-        if (q === 1 && game.genres.includes(a)) score += 6;
-        if (q === 2 && game.storyImportance.includes(a)) score += 4;
-        if (q === 3 && game.tempo.includes(a)) score += 4;
+          if (q === 0 && game.platforms.includes(a)) {
+            score += 5;
+            reasons.push(`${a} platformunda oynanabiliyor`);
+          }
 
-        if (q === 4 && game.playStyle.includes(a)) score += 4;
-        if (q === 4 && a === "Fark etmez") score += 2;
+          if (q === 1 && game.genres.includes(a)) {
+            score += 6;
+            reasons.push(`${a} türü tercihinle uyumlu`);
+          }
 
-        if (q === 5 && game.worldType.includes(a)) score += 4;
-        if (q === 6 && game.difficulty.includes(a)) score += 3;
-        if (q === 7 && game.graphics.includes(a)) score += 3;
-        if (q === 8 && game.characterProgression.includes(a)) score += 4;
-        if (q === 9 && game.length.includes(a)) score += 3;
-        if (q === 10 && game.vehicleInterest.includes(a)) score += 5;
-        if (q === 11 && game.horrorInterest.includes(a)) score += 5;
-        if (q === 12 && game.strategyInterest.includes(a)) score += 5;
-        if (q === 13 && game.challengeStyle.includes(a)) score += 3;
-        if (q === 14 && game.atmosphere.includes(a)) score += 4;
+          if (q === 2 && game.storyImportance.includes(a)) {
+            score += 4;
+            reasons.push("Hikaye beklentine uygun");
+          }
+
+          if (q === 3 && game.tempo.includes(a)) {
+            score += 4;
+            reasons.push("Tempo tercihinle eşleşiyor");
+          }
+
+          if (q === 4 && game.playStyle.includes(a)) {
+            score += 4;
+            reasons.push("Oynama tarzına uygun");
+          }
+
+          if (q === 4 && a === "Fark etmez") {
+            score += 2;
+          }
+
+          if (q === 5 && game.worldType.includes(a)) {
+            score += 4;
+            reasons.push("Dünya yapısı seçimine uyuyor");
+          }
+
+          if (q === 6 && game.difficulty.includes(a)) {
+            score += 3;
+            reasons.push("Zorluk tercihinle uyumlu");
+          }
+
+          if (q === 7 && game.graphics.includes(a)) {
+            score += 3;
+            reasons.push("Görsel tarz seçimine uygun");
+          }
+
+          if (q === 8 && game.characterProgression.includes(a)) {
+            score += 4;
+            reasons.push("Karakter gelişimi beklentine uygun");
+          }
+
+          if (q === 9 && game.length.includes(a)) {
+            score += 3;
+            reasons.push("Oyun süresi tercihinle uyumlu");
+          }
+
+          if (q === 10 && game.vehicleInterest.includes(a)) {
+            score += 5;
+            reasons.push("Araç ilgine uygun");
+          }
+
+          if (q === 11 && game.horrorInterest.includes(a)) {
+            score += 5;
+            reasons.push("Korku tercihinle uyumlu");
+          }
+
+          if (q === 12 && game.strategyInterest.includes(a)) {
+            score += 5;
+            reasons.push("Strateji ilgine uygun");
+          }
+
+          if (q === 13 && game.challengeStyle.includes(a)) {
+            score += 3;
+            reasons.push("Meydan okuma tarzına uygun");
+          }
+
+          if (q === 14 && game.atmosphere.includes(a)) {
+            score += 4;
+            reasons.push("Atmosfer seçiminle uyumlu");
+          }
+        });
+
+        return {
+          ...game,
+          score,
+          reasons,
+        };
       });
-
-      return {
-        ...game,
-        score,
-      };
-    });
 
     return scoredGames
       .filter((game) => game.score > 0)
@@ -88,6 +172,20 @@ export default function HomeScreen() {
     }
   }
 
+  function goBack() {
+    if (questionIndex === 0) {
+      setStarted(false);
+      setAnswers([]);
+      return;
+    }
+
+    setAnswers((prevAnswers) =>
+      prevAnswers.filter((item) => item.questionIndex !== questionIndex - 1)
+    );
+
+    setQuestionIndex((prevIndex) => prevIndex - 1);
+  }
+
   function restartApp() {
     setStarted(false);
     setQuestionIndex(0);
@@ -105,6 +203,8 @@ export default function HomeScreen() {
           önerelim.
         </Text>
 
+        <Text style={styles.infoText}>15 soru • 1 dakika • 10 oyun önerisi</Text>
+
         <TouchableOpacity style={styles.button} onPress={() => setStarted(true)}>
           <Text style={styles.buttonText}>Teste Başla</Text>
         </TouchableOpacity>
@@ -114,6 +214,7 @@ export default function HomeScreen() {
 
   if (finished) {
     const recommendedGames = getRecommendation();
+    const selectedPlatform = getSelectedPlatform();
 
     return (
       <ScrollView contentContainerStyle={styles.resultContainer}>
@@ -121,8 +222,26 @@ export default function HomeScreen() {
 
         <Text style={styles.resultSubtitle}>Sana Önerilen Oyunlar</Text>
 
+        {selectedPlatform && selectedPlatform !== "Fark etmez" && (
+          <Text style={styles.platformFilterText}>
+            Platform filtresi: {selectedPlatform}
+          </Text>
+        )}
+
+        {recommendedGames.length === 0 && (
+          <View style={styles.emptyBox}>
+            <Text style={styles.emptyTitle}>Uygun oyun bulunamadı</Text>
+
+            <Text style={styles.emptyText}>
+              Seçtiğin platform ve cevaplara tam uyan oyun bulamadık. Oyun
+              havuzuna daha fazla oyun ekledikçe bu sonuçlar güçlenecek.
+            </Text>
+          </View>
+        )}
+
         {recommendedGames.map((game, index) => {
           const matchPercent = getMatchPercent(game.score);
+          const visibleReasons = game.reasons.slice(0, 3);
 
           return (
             <View key={game.id} style={styles.gameCard}>
@@ -153,11 +272,11 @@ export default function HomeScreen() {
                   </Text>
                 ))}
 
-                {game.worldType[0] && (
+                {game.worldType?.[0] && (
                   <Text style={styles.tag}>{game.worldType[0]}</Text>
                 )}
 
-                {game.atmosphere[0] && (
+                {game.atmosphere?.[0] && (
                   <Text style={styles.tag}>{game.atmosphere[0]}</Text>
                 )}
               </View>
@@ -166,7 +285,21 @@ export default function HomeScreen() {
                 {game.platforms.join(" • ")}
               </Text>
 
-              <Text style={styles.gameStory}>{game.story}</Text>
+              <Text style={styles.gameStory}>
+                {game.story || "Bu oyun cevaplarına göre önerildi."}
+              </Text>
+
+              {visibleReasons.length > 0 && (
+                <View style={styles.reasonBox}>
+                  <Text style={styles.reasonTitle}>Neden önerildi?</Text>
+
+                  {visibleReasons.map((reason) => (
+                    <Text key={reason} style={styles.reasonText}>
+                      • {reason}
+                    </Text>
+                  ))}
+                </View>
+              )}
 
               <Text style={styles.scoreText}>Uyum puanı: {game.score}</Text>
             </View>
@@ -197,6 +330,12 @@ export default function HomeScreen() {
           <Text style={styles.optionText}>{option.label}</Text>
         </TouchableOpacity>
       ))}
+
+      <TouchableOpacity style={styles.backButton} onPress={goBack}>
+        <Text style={styles.backButtonText}>
+          {questionIndex === 0 ? "Ana ekrana dön" : "Önceki soru"}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -236,10 +375,26 @@ const styles = StyleSheet.create({
     maxWidth: 360,
   },
 
+  infoText: {
+    color: "#9ae6b4",
+    fontSize: 14,
+    fontWeight: "600",
+    textAlign: "center",
+    marginBottom: 24,
+  },
+
   resultSubtitle: {
     fontSize: 24,
     color: "white",
     fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+
+  platformFilterText: {
+    color: "#9ae6b4",
+    fontSize: 14,
+    fontWeight: "600",
     textAlign: "center",
     marginBottom: 24,
   },
@@ -288,6 +443,44 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: "center",
     lineHeight: 23,
+  },
+
+  backButton: {
+    marginTop: 14,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+  },
+
+  backButtonText: {
+    color: "#aaa",
+    fontSize: 15,
+    fontWeight: "600",
+  },
+
+  emptyBox: {
+    backgroundColor: "#1f1f1f",
+    padding: 18,
+    borderRadius: 16,
+    width: "100%",
+    maxWidth: 430,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: "#333",
+  },
+
+  emptyTitle: {
+    color: "white",
+    fontSize: 19,
+    fontWeight: "bold",
+    marginBottom: 8,
+    textAlign: "center",
+  },
+
+  emptyText: {
+    color: "#cfcfcf",
+    fontSize: 14,
+    lineHeight: 21,
+    textAlign: "center",
   },
 
   gameCard: {
@@ -393,6 +586,28 @@ const styles = StyleSheet.create({
   gameStory: {
     color: "#cfcfcf",
     fontSize: 14,
+    lineHeight: 20,
+  },
+
+  reasonBox: {
+    backgroundColor: "#181818",
+    borderRadius: 12,
+    padding: 12,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: "#2b2b2b",
+  },
+
+  reasonTitle: {
+    color: "white",
+    fontSize: 14,
+    fontWeight: "bold",
+    marginBottom: 6,
+  },
+
+  reasonText: {
+    color: "#cfcfcf",
+    fontSize: 13,
     lineHeight: 20,
   },
 
