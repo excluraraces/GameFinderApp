@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Image,
   ScrollView,
@@ -25,12 +25,20 @@ type ScoredGame = Game & {
 const MAX_SCORE = 62;
 
 export default function HomeScreen() {
+  const [showSplash, setShowSplash] = useState(true);
   const [started, setStarted] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [finished, setFinished] = useState(false);
 
   const currentQuestion = questions[questionIndex];
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowSplash(false);
+  }, 2500);
+
+  return () => clearTimeout(timer);
+}, []);
 
   function getSelectedPlatform() {
     const platformAnswer = answers.find((item) => item.questionIndex === 0);
@@ -192,7 +200,27 @@ export default function HomeScreen() {
     setAnswers([]);
     setFinished(false);
   }
+  if (showSplash) {
+  return (
+    <View style={styles.splashContainer}>
+      <View style={styles.splashBadge}>
+        <Text style={styles.splashBadgeText}>Exclura Studio</Text>
+      </View>
 
+      <Text style={styles.splashTitle}>Oyununu Bul</Text>
+
+      <Text style={styles.splashSubtitle}>
+        Oyun zevkine en uygun önerileri hazırlıyoruz.
+      </Text>
+
+      <View style={styles.loadingDotsContainer}>
+        <View style={styles.loadingDot} />
+        <View style={styles.loadingDot} />
+        <View style={styles.loadingDot} />
+      </View>
+    </View>
+  );
+}
   if (!started) {
     return (
       <View style={styles.container}>
@@ -341,6 +369,61 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  splashContainer: {
+  flex: 1,
+  backgroundColor: "#121212",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: 24,
+},
+
+splashBadge: {
+  backgroundColor: "#1f1f1f",
+  borderWidth: 1,
+  borderColor: "#333",
+  paddingVertical: 8,
+  paddingHorizontal: 16,
+  borderRadius: 999,
+  marginBottom: 24,
+},
+
+splashBadgeText: {
+  color: "#9ae6b4",
+  fontSize: 14,
+  fontWeight: "700",
+  letterSpacing: 0.5,
+},
+
+splashTitle: {
+  color: "white",
+  fontSize: 34,
+  fontWeight: "bold",
+  textAlign: "center",
+  marginBottom: 12,
+},
+
+splashSubtitle: {
+  color: "#cfcfcf",
+  fontSize: 16,
+  textAlign: "center",
+  lineHeight: 24,
+  maxWidth: 300,
+  marginBottom: 30,
+},
+
+loadingDotsContainer: {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 10,
+},
+
+loadingDot: {
+  width: 10,
+  height: 10,
+  borderRadius: 999,
+  backgroundColor: "#4CAF50",
+},
   container: {
     flex: 1,
     backgroundColor: "#121212",
