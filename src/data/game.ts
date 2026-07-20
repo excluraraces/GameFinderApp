@@ -1,6 +1,36 @@
 const baldursGateImage = require("../../assets/images/baldursgate3.jpeg");
 const witcher3Image = require("../../assets/images/witcher3.jpeg");
-
+const skyrimImage = require("../../assets/images/skyrim.jpeg");
+const residentevil4Image = require("../../assets/images/residentevil4.jpeg");
+const forzahorizon5Image = require("../../assets/images/forzahorizon5.jpeg");
+const valorantImage = require("../../assets/images/valorant.jpeg");
+const reddeadredemption2Image = require("../../assets/images/reddeadredemption2.jpeg");
+const cyberpunk2077Image = require("../../assets/images/cyberpunk2077.jpeg");
+const eldenringImage = require("../../assets/images/eldenring.jpeg");
+const godofwar2018Image = require("../../assets/images/godofwar2018.jpeg");
+const thelastofuspart1Image = require("../../assets/images/thelastofuspart1.jpeg");
+const hogwartslegacyImage = require("../../assets/images/hogwartslegacy.jpeg");
+const ghostoftsushimaImage = require("../../assets/images/ghostoftsushima.jpeg");
+const grandtheftautovImage = require("../../assets/images/grandtheftautov.jpeg");
+const needforspeedheatImage = require("../../assets/images/needforspeedheat.jpeg");
+const BeamNGdriveImage = require("../../assets/images/BeamNGdrive.jpeg");
+const carmechanicsimulator2021Image = require("../../assets/images/carmechanicsimulator2021.jpeg");
+const callofdutymodernwarfareImage = require("../../assets/images/callofdutymodernwarfare.jpeg");
+const apexlegendsImage = require("../../assets/images/apexlegends.jpeg");
+const OutlastImage = require("../../assets/images/Outlast.jpeg");
+const amnesiaImage = require("../../assets/images/amnesia.jpeg");
+const phasmophobiaImage = require("../../assets/images/phasmophobia.jpeg");
+const ageofempires4Image = require("../../assets/images/ageofempires4.jpeg");
+const civilization6Image = require("../../assets/images/civilization6.jpeg");
+const codmobileImage = require("../../assets/images/codmobile.jpeg");
+const genshinimpactImage = require("../../assets/images/genshinimpact.jpeg");
+const hadesImage = require("../../assets/images/hades.jpeg");
+const pubgmobileImage = require("../../assets/images/pubgmobile.jpeg");
+const totalwarwarhammer3Image = require("../../assets/images/totalwarwarhammer3.jpeg");
+const stardewvalleyImage = require("../../assets/images/stardewvalley.jpeg");
+const minecraftImage = require("../../assets/images/minecraft.jpeg");
+const clashroyaleImage = require("../../assets/images/clashroyale.jpeg");
+const brawlstarsImage = require("../../assets/images/brawlstars.jpeg");
 export type Game = {
   id: number;
   title: string;
@@ -93,7 +123,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: skyrimImage,
     story:
       "Ejderhaların geri döndüğü Skyrim diyarında kendi karakterini geliştirerek keşfe çıkar, savaşır ve efsanevi bir kahramana dönüşürsün.",
   },
@@ -117,6 +147,7 @@ export const games: Game[] = [
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
 
+    image: residentevil4Image,
     story:
       "Resident Evil 4, gerilim, aksiyon ve hayatta kalma öğelerini birleştiren karanlık atmosferli bir korku oyunudur. Leon ile tehlikeli bir köyde hayatta kalmaya çalışırsın.",
   },
@@ -139,7 +170,7 @@ export const games: Game[] = [
     strategyInterest: ["Hayır"],
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: forzahorizon5Image,
     story:
       "Forza Horizon 5, geniş açık dünyasında özgürce yarışabileceğin, araç toplayıp geliştirebileceğin eğlenceli ve görsel olarak güçlü bir yarış oyunudur.",
   },
@@ -163,6 +194,7 @@ export const games: Game[] = [
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Bilim kurgu"],
 
+    image: valorantImage,
     story:
       "Valorant, takım oyunu ve refleksleri öne çıkaran rekabetçi bir FPS oyunudur. Ajan yetenekleri ve taktiksel oynanış sayesinde her maç farklı ilerler.",
   },
@@ -185,7 +217,7 @@ export const games: Game[] = [
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: reddeadredemption2Image,
     story:
       "Vahşi batının son dönemlerinde geçen Red Dead Redemption 2, Arthur Morgan'ın çete hayatı, sadakat, ihanet ve hayatta kalma mücadelesini anlatır.",
   },
@@ -209,6 +241,7 @@ export const games: Game[] = [
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
 
+    image: cyberpunk2077Image,
     story:
       "Night City adlı devasa şehirde geçen Cyberpunk 2077, teknoloji, suç, güç ve kimlik temalarını işleyen karanlık bir açık dünya RPG deneyimi sunar.",
   },
@@ -232,12 +265,13 @@ export const games: Game[] = [
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Fantastik", "Karanlık"],
 
+    image: eldenringImage,
     story:
       "Elden Ring, acımasız düşmanlar, büyük boss savaşları ve gizemli bir açık dünya sunar. Zorlayıcı mücadeleleri seven oyuncular için güçlü bir seçimdir.",
   },
   {
     id: 10,
-    title: "God of War",
+    title: "God of War 2018",
 
     platforms: ["PC", "PlayStation"],
     genres: ["Aksiyon"],
@@ -254,6 +288,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Karanlık"],
+    image: godofwar2018Image,
 
     story:
       "Kratos ve oğlu Atreus'un mitolojik dünyada geçen yolculuğu, güçlü dövüş sistemiyle duygusal bir baba-oğul hikayesini birleştirir.",
@@ -277,7 +312,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: thelastofuspart1Image,
     story:
       "Salgın sonrası yıkılmış bir dünyada Joel ve Ellie'nin hayatta kalma yolculuğunu anlatır. Hikaye ve karakter bağı ön plandadır.",
   },
@@ -300,7 +335,7 @@ export const games: Game[] = [
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: hogwartslegacyImage,
     story:
       "Hogwarts öğrencisi olarak büyüler öğrenir, okulun sırlarını keşfeder ve fantastik yaratıklarla dolu bir dünyada kendi macerana çıkarsın.",
   },
@@ -346,6 +381,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
+    image: ghostoftsushimaImage,
 
     story:
       "Moğol istilasına karşı savaşan Jin Sakai'nin hikayesini anlatır. Samuray onuru ile hayatta kalma arasında güçlü bir çatışma sunar.",
@@ -369,7 +405,7 @@ export const games: Game[] = [
     strategyInterest: ["Hayır"],
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+image: grandtheftautovImage,
     story:
       "Los Santos şehrinde üç farklı karakterin suç, para ve kaos dolu hikayesini oynarsın. Açık dünya özgürlüğü ve araç kullanımı oldukça ön plandadır.",
   },
@@ -392,6 +428,7 @@ export const games: Game[] = [
     strategyInterest: ["Hayır"],
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
+    image: needforspeedheatImage,
 
     story:
       "Gündüz yasal yarışlara, gece ise sokak yarışlarına katıldığın Need for Speed Heat; araç modifiye etmeyi ve hızlı yarışları sevenler için uygundur.",
@@ -415,7 +452,7 @@ export const games: Game[] = [
     strategyInterest: ["Hayır"],
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: BeamNGdriveImage,
     story:
       "BeamNG.drive, gerçekçi araç fiziği ve çarpışma sistemiyle öne çıkan bir sürüş simülasyonudur. Deneme, kaza testi ve serbest sürüş sevenlere hitap eder.",
   },
@@ -438,7 +475,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz", "Hayır"],
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: carmechanicsimulator2021Image,
     story:
       "Araçları söküp tamir ettiğin, parça değiştirdiğin ve garajını geliştirdiğin sakin tempolu bir simülasyon oyunudur.",
   },
@@ -461,7 +498,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: callofdutymodernwarfareImage,
     story:
       "Modern savaş atmosferinde geçen Call of Duty, hızlı çatışmalar, sinematik görevler ve rekabetçi çok oyunculu modlarla aksiyon odaklı bir deneyim sunar.",
   },
@@ -507,7 +544,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz", "Evet"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu"],
-
+    image: apexlegendsImage,
     story:
       "Apex Legends, hızlı hareket sistemi, karakter yetenekleri ve takım odaklı oynanışıyla battle royale türünde rekabetçi bir FPS deneyimi sunar.",
   },
@@ -530,7 +567,7 @@ export const games: Game[] = [
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: OutlastImage,
     story:
       "Bir akıl hastanesinde geçen Outlast, savaşmak yerine kaçmaya ve saklanmaya dayalı yoğun gerilimli bir korku oyunudur.",
   },
@@ -553,7 +590,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Karanlık"],
-
+    image: amnesiaImage,
     story:
       "Karanlık bir şatoda hafızasını kaybetmiş şekilde uyanırsın. Amnesia, atmosferi ve çaresizlik hissiyle psikolojik korkuya odaklanır.",
   },
@@ -576,7 +613,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: phasmophobiaImage,
     story:
       "Arkadaşlarınla birlikte hayalet avına çıktığın Phasmophobia, ekipman kullanımı, ipucu toplama ve gerilimli anlarıyla öne çıkar.",
   },
@@ -599,7 +636,7 @@ export const games: Game[] = [
     strategyInterest: ["Evet"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: ageofempires4Image,
     story:
       "Age of Empires IV, kaynak toplama, ordu kurma ve medeniyet yönetimi üzerine kurulu gerçek zamanlı bir strateji oyunudur.",
   },
@@ -622,7 +659,7 @@ export const games: Game[] = [
     strategyInterest: ["Evet"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: civilization6Image,
     story:
       "Kendi medeniyetini kurup bilim, kültür, diplomasi veya savaş yoluyla dünyaya hükmetmeye çalıştığın derin bir sıra tabanlı strateji oyunudur.",
   },
@@ -645,7 +682,7 @@ export const games: Game[] = [
     strategyInterest: ["Evet"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Fantastik", "Karanlık"],
-
+    image: totalwarwarhammer3Image,
     story:
       "Fantastik orduları yönettiğin Total War: Warhammer III, büyük harita stratejisiyle devasa gerçek zamanlı savaşları birleştirir.",
   },
@@ -668,7 +705,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz", "Hayır"],
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: minecraftImage,
     story:
       "Minecraft, bloklarla kendi dünyanı kurabildiğin, keşif, üretim ve hayatta kalma öğelerini birleştiren sınırsız oynanabilirliğe sahip bir sandbox oyunudur.",
   },
@@ -691,7 +728,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz", "Hayır"],
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: stardewvalleyImage,
     story:
       "Kendi çiftliğini kurduğun, kasaba halkıyla ilişkiler geliştirdiğin ve sakin tempoda ilerleyen huzurlu bir yaşam simülasyonudur.",
   },
@@ -714,6 +751,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Karanlık"],
+    image: hadesImage,
 
     story:
       "Yeraltı dünyasından kaçmaya çalışan Zagreus'u yönettiğin Hades, hızlı aksiyon, tekrar oynanabilirlik ve karakter gelişimini çok başarılı şekilde birleştirir.",
@@ -737,7 +775,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: genshinimpactImage,
     story:
       "Genshin Impact, geniş açık dünyası, anime tarzı görselleri, karakter toplama sistemi ve elemental savaş mekanikleriyle mobilde de güçlü bir RPG deneyimi sunar.",
   },
@@ -760,7 +798,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz", "Evet"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: pubgmobileImage,
     story:
       "PUBG Mobile, geniş haritada hayatta kalmaya çalıştığın, silah kullanımı, taktik ve refleksleri birleştiren rekabetçi bir battle royale oyunudur.",
   },
@@ -783,7 +821,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: codmobileImage,
     story:
       "Call of Duty Mobile, hızlı maçlar, klasik çok oyunculu modlar ve battle royale seçenekleriyle mobilde aksiyon odaklı FPS deneyimi sunar.",
   },
@@ -806,7 +844,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Cartoon"],
-
+    image: brawlstarsImage,
     story:
       "Brawl Stars, kısa süren maçları, farklı karakterleri ve hızlı rekabetçi yapısıyla mobilde eğlenceli ve kolay girilebilir bir aksiyon oyunudur.",
   },
@@ -829,7 +867,7 @@ export const games: Game[] = [
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: clashroyaleImage,
     story:
       "Clash Royale, kart toplama, kule savunma ve gerçek zamanlı stratejiyi birleştiren kısa ama taktiksel maçlara sahip mobil bir rekabet oyunudur.",
   },
@@ -1062,5 +1100,695 @@ export const games: Game[] = [
 
     story:
       "eFootball Mobile, takım kurma, oyuncu geliştirme ve çevrimiçi maçlarla futbol seven oyunculara mobilde uzun süre oynanabilir bir spor deneyimi sunar.",
+  },
+    {
+    id: 46,
+    title: "Mass Effect Legendary Edition",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["RPG", "Aksiyon"],
+    storyImportance: ["Çok önemli"],
+    tempo: ["Gerilimli", "Hızlı ve aksiyonlu"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Bölüm bölüm ilerleyen", "Lineer hikaye"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Evet çok isterim", "Biraz olsun"],
+    length: ["Çok uzun"],
+    vehicleInterest: ["Biraz"],
+    horrorInterest: ["Bazen oynarım", "Sevmem"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Bilim kurgu", "Karanlık"],
+
+    story:
+      "Komutan Shepard olarak galaksiyi büyük bir tehditten korumaya çalışırsın. Seçimlerin, ilişkilerin ve verdiğin kararlar üç oyun boyunca hikayeyi şekillendirir.",
+  },
+  {
+    id: 47,
+    title: "Fallout 4",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["RPG", "Aksiyon"],
+    storyImportance: ["Biraz önemli", "Çok önemli"],
+    tempo: ["Hızlı ve aksiyonlu", "Rahatlatıcı"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Açık dünya", "Sandbox"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Evet çok isterim", "Biraz olsun"],
+    length: ["Çok uzun", "Sonsuz oynanabilir"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Bazen oynarım", "Sevmem"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Bilim kurgu", "Karanlık"],
+
+    story:
+      "Nükleer savaş sonrası Boston bölgesinde kayıp oğlunu ararken keşif yapar, farklı gruplarla karşılaşır ve kendi yerleşimlerini kurarsın.",
+  },
+  {
+    id: 48,
+    title: "Persona 5 Royal",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["RPG", "Strateji"],
+    storyImportance: ["Çok önemli"],
+    tempo: ["Yavaş ve taktiksel", "Rahatlatıcı"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Bölüm bölüm ilerleyen", "Lineer hikaye"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Anime"],
+    characterProgression: ["Evet çok isterim"],
+    length: ["Çok uzun"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Sevmem", "Bazen oynarım"],
+    strategyInterest: ["Evet", "Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Fantastik", "Karanlık"],
+
+    story:
+      "Gündüzleri öğrenci hayatını sürdürürken geceleri insanların yozlaşmış kalplerine giren Phantom Thieves grubunun bir üyesi olursun.",
+  },
+  {
+    id: 49,
+    title: "Kingdom Come: Deliverance II",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["RPG", "Aksiyon"],
+    storyImportance: ["Çok önemli"],
+    tempo: ["Yavaş ve taktiksel", "Gerilimli"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Açık dünya"],
+    difficulty: ["Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Evet çok isterim"],
+    length: ["Çok uzun"],
+    vehicleInterest: ["Biraz"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Orta Çağ Bohemya'sında Henry olarak savaş, siyaset ve intikamla dolu gerçekçi bir maceraya atılırsın. Dövüş ve gelişim sistemleri sabır ister.",
+  },
+  {
+    id: 50,
+    title: "Disco Elysium",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["RPG"],
+    storyImportance: ["Çok önemli"],
+    tempo: ["Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Açık dünya", "Lineer hikaye"],
+    difficulty: ["Orta", "Zor"],
+    graphics: ["Cartoon"],
+    characterProgression: ["Evet çok isterim", "Biraz olsun"],
+    length: ["Orta uzunlukta", "Çok uzun"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Bazen oynarım", "Sevmem"],
+    strategyInterest: ["Evet", "Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Karanlık", "Gerçekçi"],
+
+    story:
+      "Hafızasını kaybetmiş bir dedektif olarak cinayet soruşturmasını çözmeye çalışırsın. Diyaloglar, kişilik özellikleri ve seçimler oynanışın merkezindedir.",
+  },
+  {
+    id: 51,
+    title: "Marvel's Spider-Man Remastered",
+
+    platforms: ["PC", "PlayStation"],
+    genres: ["Aksiyon"],
+    storyImportance: ["Çok önemli", "Biraz önemli"],
+    tempo: ["Hızlı ve aksiyonlu", "Rahatlatıcı"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Açık dünya"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun", "Evet çok isterim"],
+    length: ["Orta uzunlukta", "Çok uzun"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Hayır", "Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Peter Parker olarak New York sokaklarında ağ atarak dolaşır, suçla savaşır ve kahramanlık hayatınla kişisel hayatın arasında denge kurmaya çalışırsın.",
+  },
+  {
+    id: 52,
+    title: "Uncharted 4: A Thief's End",
+
+    platforms: ["PC", "PlayStation"],
+    genres: ["Aksiyon"],
+    storyImportance: ["Çok önemli"],
+    tempo: ["Hızlı ve aksiyonlu", "Gerilimli"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Lineer hikaye", "Bölüm bölüm ilerleyen"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Gerek yok", "Biraz olsun"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Biraz"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Hayır", "Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Nathan Drake, kayıp korsan hazinesinin peşinde kardeşi Sam ile dünyayı dolaşır. Sinematik anlatım, keşif ve aksiyon ön plandadır.",
+  },
+  {
+    id: 53,
+    title: "Control",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Aksiyon"],
+    storyImportance: ["Çok önemli", "Biraz önemli"],
+    tempo: ["Hızlı ve aksiyonlu", "Gerilimli"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Bölüm bölüm ilerleyen", "Açık dünya"],
+    difficulty: ["Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun", "Evet çok isterim"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Bazen oynarım", "Çok severim"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
+    atmosphere: ["Bilim kurgu", "Karanlık"],
+
+    story:
+      "Jesse Faden olarak doğaüstü olayların yaşandığı Federal Kontrol Bürosu'nu araştırır, telekinetik güçler kazanır ve gizemli bir tehditle savaşırsın.",
+  },
+  {
+    id: 54,
+    title: "Devil May Cry 5",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Aksiyon"],
+    storyImportance: ["Biraz önemli"],
+    tempo: ["Hızlı ve aksiyonlu"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Bölüm bölüm ilerleyen", "Lineer hikaye"],
+    difficulty: ["Orta", "Zor", "Çok zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Bazen oynarım", "Sevmem"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["Zorlamalı"],
+    atmosphere: ["Fantastik", "Karanlık"],
+
+    story:
+      "Dante, Nero ve V ile şeytani yaratıklara karşı savaşırsın. Hızlı kombolar ve stil puanı üzerine kurulu yoğun bir aksiyon deneyimidir.",
+  },
+  {
+    id: 55,
+    title: "Middle-earth: Shadow of War",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Aksiyon", "RPG"],
+    storyImportance: ["Biraz önemli", "Çok önemli"],
+    tempo: ["Hızlı ve aksiyonlu"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Açık dünya"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Evet çok isterim", "Biraz olsun"],
+    length: ["Çok uzun", "Sonsuz oynanabilir"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Bazen oynarım", "Sevmem"],
+    strategyInterest: ["Evet", "Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
+    atmosphere: ["Fantastik", "Karanlık"],
+
+    story:
+      "Talion olarak Mordor'da ork ordularıyla savaşıp kendi ordunu kurarsın. Nemesis sistemi sayesinde düşmanlar seni hatırlar ve kişisel rakiplere dönüşür.",
+  },
+  {
+    id: 56,
+    title: "Tom Clancy's Rainbow Six Siege",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["FPS", "Strateji"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Gerilimli", "Yavaş ve taktiksel"],
+    playStyle: ["Online rekabetçi", "Arkadaşlarla"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Zor", "Çok zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun", "Gerek yok"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Evet"],
+    challengeStyle: ["Zorlamalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Saldıran ve savunan ekiplerin özel operatörlerle mücadele ettiği, harita bilgisi, iletişim ve taktik isteyen rekabetçi bir FPS oyunudur.",
+  },
+  {
+    id: 57,
+    title: "Overwatch 2",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["FPS", "Aksiyon"],
+    storyImportance: ["Önemli değil", "Biraz önemli"],
+    tempo: ["Hızlı ve aksiyonlu"],
+    playStyle: ["Online rekabetçi", "Arkadaşlarla"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Cartoon"],
+    characterProgression: ["Biraz olsun", "Gerek yok"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Evet", "Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
+    atmosphere: ["Bilim kurgu", "Cartoon"],
+
+    story:
+      "Farklı yeteneklere sahip kahramanlardan birini seçerek takım savaşlarına katılırsın. Rol dağılımı ve ekip uyumu maçların sonucunu belirler.",
+  },
+  {
+    id: 58,
+    title: "Fortnite",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobil"],
+    genres: ["FPS", "Aksiyon"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Hızlı ve aksiyonlu"],
+    playStyle: ["Online rekabetçi", "Arkadaşlarla"],
+    worldType: ["Açık dünya", "Sandbox"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Cartoon"],
+    characterProgression: ["Biraz olsun", "Gerek yok"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Biraz", "Evet"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz", "Evet"],
+    challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
+    atmosphere: ["Cartoon"],
+
+    story:
+      "Geniş bir haritada hayatta kalan son oyuncu veya takım olmaya çalışırsın. Battle royale, inşa sistemi ve farklı oyun modları bir aradadır.",
+  },
+  {
+    id: 59,
+    title: "DOOM Eternal",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["FPS", "Aksiyon"],
+    storyImportance: ["Biraz önemli", "Önemli değil"],
+    tempo: ["Hızlı ve aksiyonlu"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Bölüm bölüm ilerleyen", "Lineer hikaye"],
+    difficulty: ["Orta", "Zor", "Çok zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Bazen oynarım", "Çok severim"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["Zorlamalı"],
+    atmosphere: ["Bilim kurgu", "Karanlık"],
+
+    story:
+      "Doom Slayer olarak dünyayı istila eden iblis ordularına karşı savaşırsın. Sürekli hareket, kaynak yönetimi ve agresif çatışma oynanışın temelidir.",
+  },
+  {
+    id: 60,
+    title: "Battlefield 1",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["FPS", "Aksiyon"],
+    storyImportance: ["Biraz önemli", "Önemli değil"],
+    tempo: ["Hızlı ve aksiyonlu", "Gerilimli"],
+    playStyle: ["Tek kişilik", "Online rekabetçi", "Arkadaşlarla"],
+    worldType: ["Bölüm bölüm ilerleyen", "Lineer hikaye"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun", "Gerek yok"],
+    length: ["Sonsuz oynanabilir", "Orta uzunlukta"],
+    vehicleInterest: ["Evet", "Biraz"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz", "Evet"],
+    challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
+    atmosphere: ["Gerçekçi", "Karanlık"],
+
+    story:
+      "Birinci Dünya Savaşı'nın farklı cephelerinde geçen hikayeler ve büyük ölçekli çevrimiçi savaşlarla yoğun bir savaş atmosferi sunar.",
+  },
+  {
+    id: 61,
+    title: "Dead Space",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Korku", "Aksiyon"],
+    storyImportance: ["Çok önemli", "Biraz önemli"],
+    tempo: ["Gerilimli", "Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Lineer hikaye", "Bölüm bölüm ilerleyen"],
+    difficulty: ["Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Çok severim", "Bazen oynarım"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
+    atmosphere: ["Bilim kurgu", "Karanlık"],
+
+    story:
+      "Mühendis Isaac Clarke olarak sessizliğe gömülmüş bir uzay gemisini araştırır ve Necromorph adı verilen korkunç yaratıklara karşı hayatta kalmaya çalışırsın.",
+  },
+  {
+    id: 62,
+    title: "Alien: Isolation",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["Korku"],
+    storyImportance: ["Çok önemli", "Biraz önemli"],
+    tempo: ["Gerilimli", "Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Lineer hikaye"],
+    difficulty: ["Orta", "Zor", "Çok zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Gerek yok", "Biraz olsun"],
+    length: ["Orta uzunlukta", "Çok uzun"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Çok severim"],
+    strategyInterest: ["Biraz", "Evet"],
+    challengeStyle: ["Zorlamalı"],
+    atmosphere: ["Bilim kurgu", "Karanlık"],
+
+    story:
+      "Amanda Ripley olarak bir uzay istasyonunda seni sürekli takip eden ölümcül bir yaratığa karşı saklanarak ve dikkatli hareket ederek hayatta kalırsın.",
+  },
+  {
+    id: 63,
+    title: "Little Nightmares II",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["Korku", "Bulmaca"],
+    storyImportance: ["Çok önemli", "Biraz önemli"],
+    tempo: ["Gerilimli", "Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Lineer hikaye", "Bölüm bölüm ilerleyen"],
+    difficulty: ["Kolay", "Orta"],
+    graphics: ["Cartoon"],
+    characterProgression: ["Gerek yok"],
+    length: ["Kısa", "Orta uzunlukta"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Çok severim", "Bazen oynarım"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Karanlık", "Fantastik"],
+
+    story:
+      "Mono ve Six ile bozulmuş, dev yaratıklarla dolu bir dünyadan kaçmaya çalışırsın. Atmosferik korku ve çevre bulmacaları ön plandadır.",
+  },
+  {
+    id: 64,
+    title: "SOMA",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Korku"],
+    storyImportance: ["Çok önemli"],
+    tempo: ["Gerilimli", "Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Lineer hikaye"],
+    difficulty: ["Kolay", "Orta"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Gerek yok"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Çok severim", "Bazen oynarım"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Bilim kurgu", "Karanlık"],
+
+    story:
+      "Okyanusun derinliklerindeki bir araştırma tesisinde insanlık, bilinç ve kimlik üzerine karanlık sorularla karşılaşırsın.",
+  },
+  {
+    id: 65,
+    title: "Silent Hill 2",
+
+    platforms: ["PC", "PlayStation"],
+    genres: ["Korku"],
+    storyImportance: ["Çok önemli"],
+    tempo: ["Gerilimli", "Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Lineer hikaye", "Bölüm bölüm ilerleyen"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Gerek yok"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Çok severim"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
+    atmosphere: ["Karanlık", "Gerçekçi"],
+
+    story:
+      "James Sunderland, ölen eşinden aldığı gizemli mektup üzerine sislerle kaplı Silent Hill kasabasına gider ve geçmişiyle yüzleşir.",
+  },
+  {
+    id: 66,
+    title: "Crusader Kings III",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Strateji", "RPG"],
+    storyImportance: ["Biraz önemli", "Önemli değil"],
+    tempo: ["Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik", "Online rekabetçi", "Arkadaşlarla"],
+    worldType: ["Sandbox", "Açık dünya"],
+    difficulty: ["Orta", "Zor", "Çok zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Evet çok isterim", "Biraz olsun"],
+    length: ["Sonsuz oynanabilir", "Çok uzun"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Evet"],
+    challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Orta Çağ'da bir hanedanı yönetir; evlilikler, savaşlar, entrikalar ve miras yoluyla ailenin gücünü yüzyıllar boyunca artırmaya çalışırsın.",
+  },
+  {
+    id: 67,
+    title: "Cities: Skylines",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["Strateji", "Simülasyon"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Yavaş ve taktiksel", "Rahatlatıcı"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Sandbox"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun", "Evet çok isterim"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Biraz"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Evet"],
+    challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Kendi şehrini kurar; yolları, toplu taşımayı, vergileri ve kamu hizmetlerini yöneterek küçük bir kasabayı büyük bir metropole dönüştürürsün.",
+  },
+  {
+    id: 68,
+    title: "Football Manager",
+
+    platforms: ["PC", "Xbox", "Mobil", "Nintendo Switch"],
+    genres: ["Spor", "Simülasyon", "Strateji"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik", "Online rekabetçi"],
+    worldType: ["Sandbox"],
+    difficulty: ["Orta", "Zor", "Çok zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Evet çok isterim"],
+    length: ["Sonsuz oynanabilir", "Çok uzun"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Evet"],
+    challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Bir futbol kulübünün teknik direktörü olarak transferleri, taktikleri, antrenmanları ve oyuncu gelişimini yöneterek başarıya ulaşmaya çalışırsın.",
+  },
+  {
+    id: 69,
+    title: "XCOM 2",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["Strateji"],
+    storyImportance: ["Biraz önemli", "Çok önemli"],
+    tempo: ["Yavaş ve taktiksel", "Gerilimli"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Orta", "Zor", "Çok zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Evet çok isterim", "Biraz olsun"],
+    length: ["Çok uzun", "Sonsuz oynanabilir"],
+    vehicleInterest: ["Biraz"],
+    horrorInterest: ["Bazen oynarım", "Sevmem"],
+    strategyInterest: ["Evet"],
+    challengeStyle: ["Zorlamalı"],
+    atmosphere: ["Bilim kurgu", "Karanlık"],
+
+    story:
+      "Dünyayı ele geçiren uzaylılara karşı direniş hareketini yönetir, askerlerini geliştirir ve sıra tabanlı taktik savaşlara girersin.",
+  },
+  {
+    id: 70,
+    title: "RimWorld",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Strateji", "Simülasyon"],
+    storyImportance: ["Önemli değil", "Biraz önemli"],
+    tempo: ["Yavaş ve taktiksel", "Rahatlatıcı"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Sandbox"],
+    difficulty: ["Orta", "Zor", "Çok zor"],
+    graphics: ["Cartoon"],
+    characterProgression: ["Evet çok isterim", "Biraz olsun"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Hayır", "Biraz"],
+    horrorInterest: ["Bazen oynarım", "Sevmem"],
+    strategyInterest: ["Evet"],
+    challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
+    atmosphere: ["Bilim kurgu"],
+
+    story:
+      "Uzak bir gezegende mahsur kalan kolonistlerin barınma, sağlık, yiyecek ve güvenlik ihtiyaçlarını yöneterek hayatta kalmalarını sağlarsın.",
+  },
+  {
+    id: 71,
+    title: "Euro Truck Simulator 2",
+
+    platforms: ["PC"],
+    genres: ["Simülasyon"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Rahatlatıcı", "Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik", "Arkadaşlarla"],
+    worldType: ["Açık dünya", "Sandbox"],
+    difficulty: ["Kolay", "Orta"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun", "Evet çok isterim"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Evet"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz", "Hayır"],
+    challengeStyle: ["Rahatlatmalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Avrupa yollarında kamyon kullanır, yük teslimatları yapar, yeni araçlar satın alır ve kendi taşımacılık şirketini büyütürsün.",
+  },
+  {
+    id: 72,
+    title: "The Sims 4",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Simülasyon", "Sandbox"],
+    storyImportance: ["Önemli değil", "Biraz önemli"],
+    tempo: ["Rahatlatıcı"],
+    playStyle: ["Tek kişilik"],
+    worldType: ["Sandbox"],
+    difficulty: ["Kolay"],
+    graphics: ["Cartoon"],
+    characterProgression: ["Evet çok isterim", "Biraz olsun"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz", "Hayır"],
+    challengeStyle: ["Rahatlatmalı"],
+    atmosphere: ["Cartoon"],
+
+    story:
+      "Kendi karakterlerini ve evlerini oluşturur; onların kariyerlerini, ilişkilerini ve günlük yaşamlarını istediğin şekilde yönetirsin.",
+  },
+  {
+    id: 73,
+    title: "PowerWash Simulator",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["Simülasyon"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Rahatlatıcı"],
+    playStyle: ["Tek kişilik", "Arkadaşlarla"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Kolay"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun", "Gerek yok"],
+    length: ["Çok uzun", "Sonsuz oynanabilir"],
+    vehicleInterest: ["Biraz"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Hayır"],
+    challengeStyle: ["Rahatlatmalı"],
+    atmosphere: ["Gerçekçi"],
+
+    story:
+      "Kirlenmiş evleri, araçları ve farklı alanları basınçlı suyla temizleyerek sakin ve tatmin edici görevleri tamamladığın bir simülasyon oyunudur.",
+  },
+  {
+    id: 74,
+    title: "It Takes Two",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["Aksiyon", "Bulmaca"],
+    storyImportance: ["Çok önemli", "Biraz önemli"],
+    tempo: ["Hızlı ve aksiyonlu", "Rahatlatıcı"],
+    playStyle: ["Arkadaşlarla"],
+    worldType: ["Lineer hikaye", "Bölüm bölüm ilerleyen"],
+    difficulty: ["Kolay", "Orta"],
+    graphics: ["Cartoon"],
+    characterProgression: ["Gerek yok", "Biraz olsun"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Biraz"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    atmosphere: ["Fantastik", "Cartoon"],
+
+    story:
+      "Büyü sonucu oyuncak bebeğe dönüşen Cody ve May'i iki kişi kontrol eder. Her bölümde iş birliği gerektiren farklı mekanikler ve bulmacalar bulunur.",
+  },
+  {
+    id: 75,
+    title: "Portal 2",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Bulmaca"],
+    storyImportance: ["Biraz önemli", "Çok önemli"],
+    tempo: ["Yavaş ve taktiksel", "Rahatlatıcı"],
+    playStyle: ["Tek kişilik", "Arkadaşlarla"],
+    worldType: ["Bölüm bölüm ilerleyen", "Lineer hikaye"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Gerek yok"],
+    length: ["Orta uzunlukta"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Evet", "Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Bilim kurgu"],
+
+    story:
+      "Portal silahını kullanarak fizik tabanlı test odalarını çözersin. Tek kişilik hikayenin yanında tamamen farklı bir ortak oyun bölümü de bulunur.",
   },
 ];

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Image,
+  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
@@ -200,30 +201,95 @@ export default function HomeScreen() {
     setAnswers([]);
     setFinished(false);
   }
-  if (showSplash) {
-  return (
-    <View style={styles.splashContainer}>
-      <View style={styles.splashBadge}>
-        <Text style={styles.splashBadgeText}>Exclura Studio</Text>
-      </View>
+  function getPlayerProfile() {
+  const values = answers.map((a) => a.value);
 
-      <Text style={styles.splashTitle}>Oyununu Bul</Text>
+  if (
+    values.includes("RPG") ||
+    values.includes("Çok önemli") ||
+    values.includes("Açık dünya")
+  ) {
+    return [
+      "🎭 Hikaye Sevdalısı",
+      "🗺️ Açık Dünya Kaşifi",
+      "⚔️ RPG Ustası",
+    ];
+  }
 
-      <Text style={styles.splashSubtitle}>
-        Oyun zevkine en uygun önerileri hazırlıyoruz.
-      </Text>
+  if (
+    values.includes("FPS") ||
+    values.includes("Online rekabetçi")
+  ) {
+    return [
+      "🎯 Rekabetçi Oyuncu",
+      "🔫 FPS Tutkunu",
+      "🏆 Kazanmayı Sever",
+    ];
+  }
 
-      <View style={styles.loadingDotsContainer}>
-        <View style={styles.loadingDot} />
-        <View style={styles.loadingDot} />
-        <View style={styles.loadingDot} />
-      </View>
-    </View>
-  );
+  if (
+    values.includes("Strateji") ||
+    values.includes("Yavaş ve taktiksel")
+  ) {
+    return [
+      "♟️ Taktik Ustası",
+      "🧠 Stratejist",
+      "📋 Planlamayı Sever",
+    ];
+  }
+
+  if (
+    values.includes("Korku") ||
+    values.includes("Çok severim")
+  ) {
+    return [
+      "👻 Korkusuz Oyuncu",
+      "🌑 Gerilim Avcısı",
+      "🎬 Atmosfer Tutkunu",
+    ];
+  }
+
+  return [
+    "🎮 Çok Yönlü Oyuncu",
+    "✨ Yeni Deneyimlere Açık",
+    "🚀 Oyun Kaşifi",
+  ];
 }
+  if (showSplash) {
+    return (
+      <ImageBackground
+        source={require("../../assets/images/game-background.png")}
+        resizeMode="cover"
+        style={styles.splashContainer}
+      >
+        <View style={styles.splashOverlay}>
+          <View style={styles.splashBadge}>
+            <Text style={styles.splashBadgeText}>Exclura Studio</Text>
+          </View>
+
+          <Text style={styles.splashTitle}>Oyununu Bul</Text>
+
+          <Text style={styles.splashSubtitle}>
+            Oyun zevkine en uygun önerileri hazırlıyoruz.
+          </Text>
+
+          <View style={styles.loadingDotsContainer}>
+            <View style={styles.loadingDot} />
+            <View style={styles.loadingDot} />
+            <View style={styles.loadingDot} />
+          </View>
+        </View>
+      </ImageBackground>
+    );
+  }
+
   if (!started) {
     return (
-      <View style={styles.container}>
+      <ImageBackground
+        source={require("../../assets/images/game-background.png")}
+        resizeMode="cover"
+        style={styles.container}
+      >
         <Text style={styles.title}>Bugün Ne Oynasam?</Text>
 
         <Text style={styles.subtitle}>
@@ -231,24 +297,49 @@ export default function HomeScreen() {
           önerelim.
         </Text>
 
-        <Text style={styles.infoText}>15 soru • 1 dakika • 10 oyun önerisi</Text>
+        <Text style={styles.infoText}>
+          15 soru • 1 dakika • 10 oyun önerisi
+        </Text>
 
-        <TouchableOpacity style={styles.button} onPress={() => setStarted(true)}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setStarted(true)}
+        >
           <Text style={styles.buttonText}>Teste Başla</Text>
         </TouchableOpacity>
-      </View>
+      </ImageBackground>
     );
   }
 
   if (finished) {
     const recommendedGames = getRecommendation();
     const selectedPlatform = getSelectedPlatform();
+    const playerProfile = getPlayerProfile();
 
     return (
+  <ImageBackground
+    source={require("../../assets/images/game-background.png")}
+    resizeMode="cover"
+    style={styles.resultBackground}
+  >
       <ScrollView contentContainerStyle={styles.resultContainer}>
-        <Text style={styles.title}>Sonuç Hazır!</Text>
+  <Text style={styles.title}>Sonuç Hazır!</Text>
 
-        <Text style={styles.resultSubtitle}>Sana Önerilen Oyunlar</Text>
+  <View style={styles.profileCard}>
+    <Text style={styles.profileTitle}>
+      OYUNCU PROFİLİN
+    </Text>
+
+    {playerProfile.map((item) => (
+      <Text key={item} style={styles.profileText}>
+        {item}
+      </Text>
+    ))}
+  </View>
+
+  <Text style={styles.resultSubtitle}>
+    Sana Önerilen Oyunlar
+  </Text>
 
         {selectedPlatform && selectedPlatform !== "Fark etmez" && (
           <Text style={styles.platformFilterText}>
@@ -329,7 +420,7 @@ export default function HomeScreen() {
                 </View>
               )}
 
-              <Text style={styles.scoreText}>Uyum puanı: {game.score}</Text>
+
             </View>
           );
         })}
@@ -338,11 +429,16 @@ export default function HomeScreen() {
           <Text style={styles.buttonText}>Tekrar Başla</Text>
         </TouchableOpacity>
       </ScrollView>
+    </ImageBackground>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={require("../../assets/images/game-background.png")}
+      resizeMode="cover"
+      style={styles.container}
+    >
       <Text style={styles.counter}>
         Soru {questionIndex + 1} / {questions.length}
       </Text>
@@ -364,18 +460,30 @@ export default function HomeScreen() {
           {questionIndex === 0 ? "Ana ekrana dön" : "Önceki soru"}
         </Text>
       </TouchableOpacity>
-    </View>
+    </ImageBackground>
   );
+
 }
 
 const styles = StyleSheet.create({
+  resultBackground: {
+    flex: 1,
+    width: "100%",
+  },
+
   splashContainer: {
-  flex: 1,
-  backgroundColor: "#121212",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: 24,
-},
+    flex: 1,
+    width: "100%",
+  },
+
+  splashOverlay: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
+    backgroundColor: "rgba(3, 8, 20, 0.42)",
+  },
 
 splashBadge: {
   backgroundColor: "#1f1f1f",
@@ -434,7 +542,6 @@ loadingDot: {
 
   resultContainer: {
     flexGrow: 1,
-    backgroundColor: "#121212",
     alignItems: "center",
     padding: 20,
     paddingTop: 50,
@@ -497,12 +604,22 @@ loadingDot: {
   },
 
   button: {
-    backgroundColor: "#4CAF50",
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 12,
-    marginTop: 10,
+  backgroundColor: "#22C55E",
+  paddingVertical: 16,
+  paddingHorizontal: 44,
+  borderRadius: 16,
+  marginTop: 10,
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.24)",
+  shadowColor: "#22C55E",
+  shadowOpacity: 0.35,
+  shadowRadius: 14,
+  shadowOffset: {
+    width: 0,
+    height: 6,
   },
+  elevation: 8,
+},
 
   buttonText: {
     color: "white",
@@ -511,22 +628,32 @@ loadingDot: {
   },
 
   optionButton: {
-    backgroundColor: "#1f1f1f",
-    padding: 15,
-    borderRadius: 12,
-    width: "100%",
-    maxWidth: 400,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: "#333",
+  backgroundColor: "rgba(10, 18, 35, 0.88)",
+  paddingVertical: 16,
+  paddingHorizontal: 18,
+  borderRadius: 16,
+  width: "100%",
+  maxWidth: 400,
+  marginBottom: 12,
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.12)",
+  shadowColor: "#000",
+  shadowOpacity: 0.2,
+  shadowRadius: 10,
+  shadowOffset: {
+    width: 0,
+    height: 4,
+  },
+  elevation: 4,
   },
 
   optionText: {
-    color: "white",
-    fontSize: 17,
-    textAlign: "center",
-    lineHeight: 23,
-  },
+  color: "white",
+  fontSize: 17,
+  fontWeight: "600",
+  textAlign: "center",
+  lineHeight: 23,
+},
 
   backButton: {
     marginTop: 14,
@@ -567,14 +694,22 @@ loadingDot: {
   },
 
   gameCard: {
-    backgroundColor: "#1f1f1f",
-    padding: 14,
-    borderRadius: 16,
-    width: "100%",
-    maxWidth: 430,
-    marginBottom: 18,
-    borderWidth: 1,
-    borderColor: "#333",
+  backgroundColor: "rgba(10, 18, 35, 0.92)",
+  padding: 16,
+  borderRadius: 22,
+  width: "100%",
+  maxWidth: 430,
+  marginBottom: 20,
+  borderWidth: 1,
+  borderColor: "rgba(255, 255, 255, 0.12)",
+  shadowColor: "#000",
+  shadowOpacity: 0.35,
+  shadowRadius: 18,
+  shadowOffset: {
+    width: 0,
+    height: 8,
+  },
+  elevation: 8,
   },
 
   gameImage: {
@@ -602,12 +737,14 @@ loadingDot: {
   },
 
   rankBadge: {
-    width: 28,
-    height: 28,
-    borderRadius: 999,
-    backgroundColor: "#333",
-    justifyContent: "center",
-    alignItems: "center",
+  width: 32,
+  height: 32,
+  borderRadius: 999,
+  backgroundColor: "rgba(255,255,255,0.10)",
+  justifyContent: "center",
+  alignItems: "center",
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.14)",
   },
 
   rankText: {
@@ -624,10 +761,12 @@ loadingDot: {
   },
 
   matchBadge: {
-    backgroundColor: "#4CAF50",
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    borderRadius: 999,
+  backgroundColor: "#22C55E",
+  paddingVertical: 7,
+  paddingHorizontal: 12,
+  borderRadius: 999,
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.22)",
   },
 
   matchBadgeText: {
@@ -651,13 +790,15 @@ loadingDot: {
   },
 
   tag: {
-    color: "#e5e5e5",
-    backgroundColor: "#2a2a2a",
-    paddingVertical: 5,
-    paddingHorizontal: 9,
-    borderRadius: 999,
-    fontSize: 12,
-    fontWeight: "600",
+  color: "#E5E7EB",
+  backgroundColor: "rgba(255,255,255,0.08)",
+  paddingVertical: 6,
+  paddingHorizontal: 10,
+  borderRadius: 999,
+  fontSize: 12,
+  fontWeight: "600",
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.08)",
   },
 
   platformText: {
@@ -673,13 +814,13 @@ loadingDot: {
   },
 
   reasonBox: {
-    backgroundColor: "#181818",
-    borderRadius: 12,
-    padding: 12,
-    marginTop: 12,
-    borderWidth: 1,
-    borderColor: "#2b2b2b",
-  },
+  backgroundColor: "rgba(255,255,255,0.05)",
+  borderRadius: 14,
+  padding: 13,
+  marginTop: 14,
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.08)",
+},
 
   reasonTitle: {
     color: "white",
@@ -695,9 +836,35 @@ loadingDot: {
   },
 
   scoreText: {
-    color: "#4CAF50",
-    fontSize: 13,
-    fontWeight: "bold",
-    marginTop: 12,
-  },
+  color: "#34D399",
+  fontSize: 13,
+  fontWeight: "bold",
+  marginTop: 14,
+},
+profileCard: {
+  width: "100%",
+  maxWidth: 430,
+  backgroundColor: "rgba(10,18,35,0.92)",
+  borderRadius: 20,
+  padding: 18,
+  marginBottom: 20,
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.12)",
+},
+
+profileTitle: {
+  color: "#34D399",
+  fontSize: 16,
+  fontWeight: "bold",
+  marginBottom: 12,
+  textAlign: "center",
+},
+
+profileText: {
+  color: "white",
+  fontSize: 15,
+  marginBottom: 8,
+  textAlign: "center",
+  fontWeight: "600",
+},
 });
