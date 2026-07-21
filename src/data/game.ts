@@ -31,6 +31,16 @@ const stardewvalleyImage = require("../../assets/images/stardewvalley.jpeg");
 const minecraftImage = require("../../assets/images/minecraft.jpeg");
 const clashroyaleImage = require("../../assets/images/clashroyale.jpeg");
 const brawlstarsImage = require("../../assets/images/brawlstars.jpeg");
+const cs2Image = require("../../assets/images/cs2.jpeg");
+const battlefield1Image = require("../../assets/images/battlefield1.jpeg");
+const battlefield5Image = require("../../assets/images/battlefield5.jpeg");
+const rainbowsixsiegeImage = require("../../assets/images/rainbowsixsiege.jpeg");
+const escapefromtarkovImage = require("../../assets/images/escapefromtarkov.jpeg");
+const helldiver2Image = require("../../assets/images/helldiver2.jpeg");
+const rocketleagueImage = require("../../assets/images/rocketleague.jpeg");
+const warthunderImage = require("../../assets/images/warthunder.jpeg");
+const worldoftanksImage = require("../../assets/images/worldoftanks.jpeg");
+const overwatch2Image = require("../../assets/images/overwatch2.jpeg");
 export type Game = {
   id: number;
   title: string;
@@ -521,7 +531,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: cs2Image,
     story:
       "Counter-Strike 2, refleks, takım oyunu, ekonomi yönetimi ve harita bilgisi isteyen rekabetçi bir FPS oyunudur.",
   },
@@ -1350,7 +1360,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: rainbowsixsiegeImage,
     story:
       "Saldıran ve savunan ekiplerin özel operatörlerle mücadele ettiği, harita bilgisi, iletişim ve taktik isteyen rekabetçi bir FPS oyunudur.",
   },
@@ -1373,7 +1383,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Bilim kurgu", "Cartoon"],
-
+    image: overwatch2Image,
     story:
       "Farklı yeteneklere sahip kahramanlardan birini seçerek takım savaşlarına katılırsın. Rol dağılımı ve ekip uyumu maçların sonucunu belirler.",
   },
@@ -1442,7 +1452,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz", "Evet"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: battlefield1Image,
     story:
       "Birinci Dünya Savaşı'nın farklı cephelerinde geçen hikayeler ve büyük ölçekli çevrimiçi savaşlarla yoğun bir savaş atmosferi sunar.",
   },
@@ -1791,4 +1801,147 @@ image: grandtheftautovImage,
     story:
       "Portal silahını kullanarak fizik tabanlı test odalarını çözersin. Tek kişilik hikayenin yanında tamamen farklı bir ortak oyun bölümü de bulunur.",
   },
+  {
+    id: 76,
+    title: "Battlefield 5",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["FPS", "Aksiyon"],
+    storyImportance: ["Biraz önemli", "Önemli değil"],
+    tempo: ["Hızlı ve aksiyonlu", "Gerilimli"],
+    playStyle: ["Tek kişilik", "Online rekabetçi", "Arkadaşlarla"],
+    worldType: ["Bölüm bölüm ilerleyen", "Lineer hikaye"],
+    difficulty: ["Kolay", "Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun", "Gerek yok"],
+    length: ["Sonsuz oynanabilir", "Orta uzunlukta"],
+    vehicleInterest: ["Evet", "Biraz"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz", "Evet"],
+    challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
+    atmosphere: ["Gerçekçi", "Karanlık"],
+    image: battlefield5Image,
+    story:
+      "İkinci Dünya Savaşı'nın farklı cephelerinde savaşarak takım çalışması, aksiyon ve büyük ölçekli çatışmaların tadını çıkarabileceğin sürükleyici bir FPS deneyimi",
+  },
+  {
+    id: 77,
+    title: "Escape from Tarkov",
+
+    platforms: ["PC"],
+    genres: ["FPS", "Hayatta Kalma"],
+    storyImportance: ["Biraz önemli"],
+    tempo: ["Gerilimli", "Yavaş ve taktiksel"],
+    playStyle: ["Tek kişilik", "Arkadaşlarla"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Zor", "Çok zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Evet çok isterim"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Bazen oynarım"],
+    strategyInterest: ["Evet"],
+    challengeStyle: ["Zorlamalı"],
+    atmosphere: ["Gerçekçi", "Karanlık"],
+    image: escapefromtarkovImage,
+    story:
+      "Tarkov şehrinden kaçmaya çalışan paralı askerlerden biri olarak ganimet toplar, hayatta kalır ve her baskında her şeyini kaybetme riskiyle karşı karşıya kalırsın.",
+},
+
+{
+    id: 78,
+    title: "War Thunder",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Simülasyon", "Aksiyon"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Hızlı ve aksiyonlu"],
+    playStyle: ["Tek kişilik", "Online rekabetçi"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Evet"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Gerçekçi"],
+    image: warthunderImage,
+    story:
+      "Tanklar, uçaklar ve savaş gemileriyle farklı savaş alanlarında mücadele ederek gerçekçi ve büyük ölçekli savaş deneyimi yaşarsın.",
+},
+
+{
+    id: 79,
+    title: "World of Tanks",
+
+    platforms: ["PC", "PlayStation", "Xbox"],
+    genres: ["Aksiyon", "Strateji"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Yavaş ve taktiksel"],
+    playStyle: ["Online rekabetçi"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Orta"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Evet"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Evet"],
+    challengeStyle: ["İkisi dengeli olmalı"],
+    atmosphere: ["Gerçekçi"],
+    image: worldoftanksImage,
+
+    story:
+      "Tarihin en ikonik tanklarını kontrol ederek takım arkadaşlarınla birlikte taktiksel ve rekabetçi savaşlara katılırsın.",
+},
+
+{
+    id: 80,
+    title: "Helldivers 2",
+
+    platforms: ["PC", "PlayStation"],
+    genres: ["Aksiyon", "FPS"],
+    storyImportance: ["Biraz önemli"],
+    tempo: ["Hızlı ve aksiyonlu"],
+    playStyle: ["Arkadaşlarla", "Tek kişilik"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Biraz olsun"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Hayır"],
+    horrorInterest: ["Bazen oynarım"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["Zorlamalı"],
+    atmosphere: ["Bilim kurgu"],
+    image: helldiver2Image,
+    story:
+      "Süper Dünya adına galaksiyi tehdit eden yaratıklara karşı savaşır, arkadaşlarınla birlikte kaotik ve eğlenceli görevler tamamlarsın.",
+},
+
+{
+    id: 81,
+    title: "Rocket League",
+
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    genres: ["Spor", "Yarış"],
+    storyImportance: ["Önemli değil"],
+    tempo: ["Hızlı ve aksiyonlu"],
+    playStyle: ["Arkadaşlarla", "Online rekabetçi"],
+    worldType: ["Bölüm bölüm ilerleyen"],
+    difficulty: ["Orta", "Zor"],
+    graphics: ["Gerçekçi"],
+    characterProgression: ["Gerek yok"],
+    length: ["Sonsuz oynanabilir"],
+    vehicleInterest: ["Evet"],
+    horrorInterest: ["Sevmem"],
+    strategyInterest: ["Biraz"],
+    challengeStyle: ["Zorlamalı"],
+    atmosphere: ["Gerçekçi"],
+    image: rocketleagueImage,
+    story:
+      "Roket destekli araçlarla futbol oynayarak reflekslerini, takım çalışmanı ve rekabetçi ruhunu ortaya koyarsın.",
+},
 ];
