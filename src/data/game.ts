@@ -41,6 +41,26 @@ const rocketleagueImage = require("../../assets/images/rocketleague.jpeg");
 const warthunderImage = require("../../assets/images/warthunder.jpeg");
 const worldoftanksImage = require("../../assets/images/worldoftanks.jpeg");
 const overwatch2Image = require("../../assets/images/overwatch2.jpeg");
+const odysesImage = require("../../assets/images/odyses.jpeg");
+const spidermanremasteredImage = require("../../assets/images/spidermanremastered.jpeg");
+const uncharted4Image = require("../../assets/images/uncharted4.jpeg");
+const controlImage = require("../../assets/images/control.jpeg");
+const fallout4Image = require("../../assets/images/fallout4.jpeg");
+const devilmaycry5Image = require("../../assets/images/devilmaycry5.jpeg");
+const alienisolationImage = require("../../assets/images/alienisolation.jpeg");
+const citiesskylineImage = require("../../assets/images/citiesskyline.jpeg");
+const crusaderkings3Image = require("../../assets/images/crusaderkings3.jpeg");
+const deadspaceImage = require("../../assets/images/deadspace.jpeg");
+const doometernalImage = require("../../assets/images/doometernal.jpeg");
+const ets2Image = require("../../assets/images/ets2.jpeg");
+const fm2024Image = require("../../assets/images/fm2024.jpeg");
+const fortniteImage = require("../../assets/images/fortnite.jpeg");
+const littlenightmares2Image = require("../../assets/images/littlenightmares2.jpeg");
+const rimworldImage = require("../../assets/images/rimworld.jpeg");
+const silenthill2Image = require("../../assets/images/silenthill2.jpeg");
+const sims4Image = require("../../assets/images/sims4.jpeg");
+const somaImage = require("../../assets/images/soma.jpeg");
+const xcom2Image = require("../../assets/images/xcom2.jpeg");
 export type Game = {
   id: number;
   title: string;
@@ -368,7 +388,7 @@ export const games: Game[] = [
     strategyInterest: ["Biraz", "Hayır"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: odysesImage,
     story:
       "Antik Yunan dünyasında geçen Assassin's Creed Odyssey, keşif, savaş, seçimler ve büyük bir aile hikayesi etrafında ilerler.",
   },
@@ -1153,7 +1173,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
-
+    image: fallout4Image,
     story:
       "Nükleer savaş sonrası Boston bölgesinde kayıp oğlunu ararken keşif yapar, farklı gruplarla karşılaşır ve kendi yerleşimlerini kurarsın.",
   },
@@ -1245,7 +1265,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: spidermanremasteredImage,
     story:
       "Peter Parker olarak New York sokaklarında ağ atarak dolaşır, suçla savaşır ve kahramanlık hayatınla kişisel hayatın arasında denge kurmaya çalışırsın.",
   },
@@ -1268,7 +1288,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: uncharted4Image,
     story:
       "Nathan Drake, kayıp korsan hazinesinin peşinde kardeşi Sam ile dünyayı dolaşır. Sinematik anlatım, keşif ve aksiyon ön plandadır.",
   },
@@ -1291,7 +1311,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
-
+    image: controlImage,
     story:
       "Jesse Faden olarak doğaüstü olayların yaşandığı Federal Kontrol Bürosu'nu araştırır, telekinetik güçler kazanır ve gizemli bir tehditle savaşırsın.",
   },
@@ -1314,7 +1334,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Fantastik", "Karanlık"],
-
+    image: devilmaycry5Image,
     story:
       "Dante, Nero ve V ile şeytani yaratıklara karşı savaşırsın. Hızlı kombolar ve stil puanı üzerine kurulu yoğun bir aksiyon deneyimidir.",
   },
@@ -1406,6 +1426,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz", "Evet"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Cartoon"],
+    image: fortniteImage,
 
     story:
       "Geniş bir haritada hayatta kalan son oyuncu veya takım olmaya çalışırsın. Battle royale, inşa sistemi ve farklı oyun modları bir aradadır.",
@@ -1429,6 +1450,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
+    image: doometernalImage,
 
     story:
       "Doom Slayer olarak dünyayı istila eden iblis ordularına karşı savaşırsın. Sürekli hareket, kaynak yönetimi ve agresif çatışma oynanışın temelidir.",
@@ -1475,6 +1497,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
+    image: deadspaceImage,
 
     story:
       "Mühendis Isaac Clarke olarak sessizliğe gömülmüş bir uzay gemisini araştırır ve Necromorph adı verilen korkunç yaratıklara karşı hayatta kalmaya çalışırsın.",
@@ -1498,6 +1521,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz", "Evet"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
+    image: alienisolationImage,
 
     story:
       "Amanda Ripley olarak bir uzay istasyonunda seni sürekli takip eden ölümcül bir yaratığa karşı saklanarak ve dikkatli hareket ederek hayatta kalırsın.",
@@ -1521,6 +1545,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Fantastik"],
+    image: littlenightmares2Image,
 
     story:
       "Mono ve Six ile bozulmuş, dev yaratıklarla dolu bir dünyadan kaçmaya çalışırsın. Atmosferik korku ve çevre bulmacaları ön plandadır.",
@@ -1544,6 +1569,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
+    image: somaImage,
 
     story:
       "Okyanusun derinliklerindeki bir araştırma tesisinde insanlık, bilinç ve kimlik üzerine karanlık sorularla karşılaşırsın.",
@@ -1567,6 +1593,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
+    image: silenthill2Image,
 
     story:
       "James Sunderland, ölen eşinden aldığı gizemli mektup üzerine sislerle kaplı Silent Hill kasabasına gider ve geçmişiyle yüzleşir.",
@@ -1590,6 +1617,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
+    image: crusaderkings3Image,
 
     story:
       "Orta Çağ'da bir hanedanı yönetir; evlilikler, savaşlar, entrikalar ve miras yoluyla ailenin gücünü yüzyıllar boyunca artırmaya çalışırsın.",
@@ -1613,6 +1641,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet"],
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
+    image: citiesskylineImage,
 
     story:
       "Kendi şehrini kurar; yolları, toplu taşımayı, vergileri ve kamu hizmetlerini yöneterek küçük bir kasabayı büyük bir metropole dönüştürürsün.",
@@ -1636,6 +1665,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
+    image: fm2024Image,
 
     story:
       "Bir futbol kulübünün teknik direktörü olarak transferleri, taktikleri, antrenmanları ve oyuncu gelişimini yöneterek başarıya ulaşmaya çalışırsın.",
@@ -1659,6 +1689,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
+    image: xcom2Image,
 
     story:
       "Dünyayı ele geçiren uzaylılara karşı direniş hareketini yönetir, askerlerini geliştirir ve sıra tabanlı taktik savaşlara girersin.",
@@ -1682,6 +1713,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu"],
+    image: rimworldImage,
 
     story:
       "Uzak bir gezegende mahsur kalan kolonistlerin barınma, sağlık, yiyecek ve güvenlik ihtiyaçlarını yöneterek hayatta kalmalarını sağlarsın.",
@@ -1705,6 +1737,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz", "Hayır"],
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
+    image: ets2Image,
 
     story:
       "Avrupa yollarında kamyon kullanır, yük teslimatları yapar, yeni araçlar satın alır ve kendi taşımacılık şirketini büyütürsün.",
@@ -1728,6 +1761,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz", "Hayır"],
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Cartoon"],
+    image: sims4Image,
 
     story:
       "Kendi karakterlerini ve evlerini oluşturur; onların kariyerlerini, ilişkilerini ve günlük yaşamlarını istediğin şekilde yönetirsin.",
