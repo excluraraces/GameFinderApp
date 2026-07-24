@@ -47,7 +47,6 @@ const uncharted4Image = require("../../assets/images/uncharted4.jpeg");
 const controlImage = require("../../assets/images/control.jpeg");
 const fallout4Image = require("../../assets/images/fallout4.jpeg");
 const devilmaycry5Image = require("../../assets/images/devilmaycry5.jpeg");
-<<<<<<< HEAD
 const alienisolationImage = require("../../assets/images/alienisolation.jpeg");
 const citiesskylineImage = require("../../assets/images/citiesskyline.jpeg");
 const crusaderkings3Image = require("../../assets/images/crusaderkings3.jpeg");
@@ -62,22 +61,6 @@ const silenthill2Image = require("../../assets/images/silenthill2.jpeg");
 const sims4Image = require("../../assets/images/sims4.jpeg");
 const somaImage = require("../../assets/images/soma.jpeg");
 const xcom2Image = require("../../assets/images/xcom2.jpeg");
-=======
-const fortniteImage = require("../../assets/images/fortnite.jpeg");
-const doometernalImage = require("../../assets/images/doometernal.jpeg");
-const alienisolationImage = require("../../assets/images/alienisolation.jpeg");
-const deadspaceImage = require("../../assets/images/deadspace.jpeg");
-const littlenightmares2Image = require("../../assets/images/littlenightmares2.jpeg");
-const somaImage = require("../../assets/images/soma.jpeg");
-const silenthill2Image = require("../../assets/images/silenthill2.jpeg");
-const xcom2Image = require("../../assets/images/xcom2.jpeg");
-const sims4Image = require("../../assets/images/sims4.jpeg");
-const rimworldImage = require("../../assets/images/rimworld.jpeg");
-const fm2024Image = require("../../assets/images/fm2024.jpeg");
-const ets2Image = require("../../assets/images/ets2.jpeg");
-const crusaderkings3Image = require("../../assets/images/crusaderkings3.jpeg");
-const citiesskylineImage = require("../../assets/images/citiesskyline.jpeg");
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
 export type Game = {
   id: number;
   title: string;
@@ -1444,10 +1427,7 @@ image: grandtheftautovImage,
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Cartoon"],
     image: fortniteImage,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Geniş bir haritada hayatta kalan son oyuncu veya takım olmaya çalışırsın. Battle royale, inşa sistemi ve farklı oyun modları bir aradadır.",
   },
@@ -1471,10 +1451,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
     image: doometernalImage,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Doom Slayer olarak dünyayı istila eden iblis ordularına karşı savaşırsın. Sürekli hareket, kaynak yönetimi ve agresif çatışma oynanışın temelidir.",
   },
@@ -1521,10 +1498,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
     image: deadspaceImage,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Mühendis Isaac Clarke olarak sessizliğe gömülmüş bir uzay gemisini araştırır ve Necromorph adı verilen korkunç yaratıklara karşı hayatta kalmaya çalışırsın.",
   },
@@ -1548,10 +1522,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
     image: alienisolationImage,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Amanda Ripley olarak bir uzay istasyonunda seni sürekli takip eden ölümcül bir yaratığa karşı saklanarak ve dikkatli hareket ederek hayatta kalırsın.",
   },
@@ -1575,10 +1546,7 @@ image: grandtheftautovImage,
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Fantastik"],
     image: littlenightmares2Image,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Mono ve Six ile bozulmuş, dev yaratıklarla dolu bir dünyadan kaçmaya çalışırsın. Atmosferik korku ve çevre bulmacaları ön plandadır.",
   },
@@ -1602,10 +1570,7 @@ image: grandtheftautovImage,
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
     image: somaImage,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Okyanusun derinliklerindeki bir araştırma tesisinde insanlık, bilinç ve kimlik üzerine karanlık sorularla karşılaşırsın.",
   },
@@ -1629,10 +1594,7 @@ image: grandtheftautovImage,
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
     image: silenthill2Image,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "James Sunderland, ölen eşinden aldığı gizemli mektup üzerine sislerle kaplı Silent Hill kasabasına gider ve geçmişiyle yüzleşir.",
   },
@@ -1656,10 +1618,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
     image: crusaderkings3Image,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Orta Çağ'da bir hanedanı yönetir; evlilikler, savaşlar, entrikalar ve miras yoluyla ailenin gücünü yüzyıllar boyunca artırmaya çalışırsın.",
   },
@@ -1683,16 +1642,13 @@ image: grandtheftautovImage,
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
     image: citiesskylineImage,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Kendi şehrini kurar; yolları, toplu taşımayı, vergileri ve kamu hizmetlerini yöneterek küçük bir kasabayı büyük bir metropole dönüştürürsün.",
   },
   {
     id: 68,
-    title: "Football Manager 2024",
+    title: "Football Manager",
 
     platforms: ["PC", "Xbox", "Mobil", "Nintendo Switch"],
     genres: ["Spor", "Simülasyon", "Strateji"],
@@ -1710,10 +1666,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
     image: fm2024Image,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Bir futbol kulübünün teknik direktörü olarak transferleri, taktikleri, antrenmanları ve oyuncu gelişimini yöneterek başarıya ulaşmaya çalışırsın.",
   },
@@ -1737,10 +1690,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
     image: xcom2Image,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Dünyayı ele geçiren uzaylılara karşı direniş hareketini yönetir, askerlerini geliştirir ve sıra tabanlı taktik savaşlara girersin.",
   },
@@ -1764,10 +1714,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu"],
     image: rimworldImage,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Uzak bir gezegende mahsur kalan kolonistlerin barınma, sağlık, yiyecek ve güvenlik ihtiyaçlarını yöneterek hayatta kalmalarını sağlarsın.",
   },
@@ -1791,10 +1738,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
     image: ets2Image,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Avrupa yollarında kamyon kullanır, yük teslimatları yapar, yeni araçlar satın alır ve kendi taşımacılık şirketini büyütürsün.",
   },
@@ -1818,10 +1762,7 @@ image: grandtheftautovImage,
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Cartoon"],
     image: sims4Image,
-<<<<<<< HEAD
 
-=======
->>>>>>> ee34bcc (53 oyun görseli eklendi ve yeni oyunlar güncellendi)
     story:
       "Kendi karakterlerini ve evlerini oluşturur; onların kariyerlerini, ilişkilerini ve günlük yaşamlarını istediğin şekilde yönetirsin.",
   },
