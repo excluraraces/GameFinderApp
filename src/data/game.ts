@@ -61,6 +61,24 @@ const silenthill2Image = require("../../assets/images/silenthill2.jpeg");
 const sims4Image = require("../../assets/images/sims4.jpeg");
 const somaImage = require("../../assets/images/soma.jpeg");
 const xcom2Image = require("../../assets/images/xcom2.jpeg");
+const amongusImage = require("../../assets/images/amongus.jpeg");
+const asphalt9legendsImage = require("../../assets/images/asphalt9legends.jpeg");
+const carxstreetImage = require("../../assets/images/carxstreet.jpeg");
+const deadcellsImage = require("../../assets/images/deadcells.jpeg");
+const discoelysiumImage = require("../../assets/images/discoelysium.jpeg");
+const efootballmobileImage = require("../../assets/images/efootballmobile.jpeg");
+const masseffectImage = require("../../assets/images/masseffect.jpeg");
+const middleearthImage = require("../../assets/images/middleearth.jpeg");
+const mlbbImage = require("../../assets/images/mlbb.jpeg");
+const monumentvalleyImage = require("../../assets/images/monumentvalley.jpeg");
+const personaroyal5Image = require("../../assets/images/personaroyal5.jpeg");
+const potal2Image = require("../../assets/images/potal2.jpeg");
+const pokemonuniteImage = require("../../assets/images/pokemonunite.jpeg");
+const powerwashImage = require("../../assets/images/powerwash.jpeg");
+const robloxImage = require("../../assets/images/roblox.jpeg");
+const terrariaImage = require("../../assets/images/terraria.jpeg");
+const ittakestwoImage = require("../../assets/images/ittakestwo.jpeg");
+const kingdomcome2Image = require("../../assets/images/kingdomcome2.jpeg");
 export type Game = {
   id: number;
   title: string;
@@ -920,7 +938,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu", "Cartoon"],
-
+    image: amongusImage,
     story:
       "Among Us, ekip içinde görev yaparken aranızdaki sahtekarı bulmaya çalıştığın sosyal çıkarım ve kandırma odaklı eğlenceli bir oyundur.",
   },
@@ -943,7 +961,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı"],
     atmosphere: ["Karanlık", "Fantastik"],
-
+    image: deadcellsImage,
     story:
       "Dead Cells, hızlı dövüş sistemi, zorlu bölümleri ve tekrar oynanabilir yapısıyla refleks ve gelişim hissini seven oyunculara hitap eder.",
   },
@@ -966,7 +984,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: terrariaImage,
     story:
       "Terraria, kazı, keşif, eşya üretimi, boss savaşları ve karakter gelişimini bir araya getiren iki boyutlu geniş bir sandbox macerasıdır.",
   },
@@ -989,7 +1007,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz", "Hayır"],
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Cartoon"],
-
+    image: robloxImage,
     story:
       "Roblox, farklı oyuncuların yaptığı binlerce oyun ve deneyime ulaşabildiğin, arkadaşlarla oynamaya çok uygun geniş bir platformdur.",
   },
@@ -1012,7 +1030,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır"],
     challengeStyle: ["Rahatlatmalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: asphalt9legendsImage,
     story:
       "Asphalt 9, lisanslı araçlar, yüksek hız, arcade sürüş ve gösterişli yarışlarla mobilde hızlı aksiyon arayan oyunculara uygundur.",
   },
@@ -1035,7 +1053,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: carxstreetImage,
     story:
       "CarX Street, açık dünyada sokak yarışları, araç geliştirme ve sürüş hissine odaklanan mobilde güçlü bir yarış deneyimi sunar.",
   },
@@ -1058,7 +1076,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: pokemonuniteImage,
     story:
       "Pokemon Unite, takım halinde oynanan, karakter yetenekleri ve harita kontrolüne dayalı hızlı tempolu bir mobil MOBA deneyimi sunar.",
   },
@@ -1081,7 +1099,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: monumentvalleyImage,
     story:
       "Monument Valley, optik illüzyonlara dayalı bulmacaları, sakin atmosferi ve sanatsal bölüm tasarımlarıyla kısa ama huzurlu bir mobil deneyim sunar.",
   },
@@ -1104,7 +1122,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: mlbbImage,
     story:
       "Mobile Legends, takım savaşları, koridor kontrolü ve kahraman yetenekleri üzerine kurulu hızlı tempolu rekabetçi bir mobil MOBA oyunudur.",
   },
@@ -1127,7 +1145,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: efootballmobileImage,
     story:
       "eFootball Mobile, takım kurma, oyuncu geliştirme ve çevrimiçi maçlarla futbol seven oyunculara mobilde uzun süre oynanabilir bir spor deneyimi sunar.",
   },
@@ -1150,7 +1168,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu", "Karanlık"],
-
+    image: masseffectImage,
     story:
       "Komutan Shepard olarak galaksiyi büyük bir tehditten korumaya çalışırsın. Seçimlerin, ilişkilerin ve verdiğin kararlar üç oyun boyunca hikayeyi şekillendirir.",
   },
@@ -1196,7 +1214,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Karanlık"],
-
+    image: personaroyal5Image,
     story:
       "Gündüzleri öğrenci hayatını sürdürürken geceleri insanların yozlaşmış kalplerine giren Phantom Thieves grubunun bir üyesi olursun.",
   },
@@ -1219,7 +1237,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: kingdomcome2Image,
     story:
       "Orta Çağ Bohemya'sında Henry olarak savaş, siyaset ve intikamla dolu gerçekçi bir maceraya atılırsın. Dövüş ve gelişim sistemleri sabır ister.",
   },
@@ -1242,7 +1260,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: discoelysiumImage,
     story:
       "Hafızasını kaybetmiş bir dedektif olarak cinayet soruşturmasını çözmeye çalışırsın. Diyaloglar, kişilik özellikleri ve seçimler oynanışın merkezindedir.",
   },
@@ -1357,7 +1375,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Zorlamalı"],
     atmosphere: ["Fantastik", "Karanlık"],
-
+    image: middleearthImage,
     story:
       "Talion olarak Mordor'da ork ordularıyla savaşıp kendi ordunu kurarsın. Nemesis sistemi sayesinde düşmanlar seni hatırlar ve kişisel rakiplere dönüşür.",
   },
@@ -1785,7 +1803,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır"],
     challengeStyle: ["Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: powerwashImage,
     story:
       "Kirlenmiş evleri, araçları ve farklı alanları basınçlı suyla temizleyerek sakin ve tatmin edici görevleri tamamladığın bir simülasyon oyunudur.",
   },
@@ -1808,7 +1826,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: ittakestwoImage,
     story:
       "Büyü sonucu oyuncak bebeğe dönüşen Cody ve May'i iki kişi kontrol eder. Her bölümde iş birliği gerektiren farklı mekanikler ve bulmacalar bulunur.",
   },
@@ -1831,7 +1849,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu"],
-
+    image: potal2Image,
     story:
       "Portal silahını kullanarak fizik tabanlı test odalarını çözersin. Tek kişilik hikayenin yanında tamamen farklı bir ortak oyun bölümü de bulunur.",
   },
