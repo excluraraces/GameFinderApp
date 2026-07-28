@@ -23,7 +23,7 @@ type ScoredGame = Game & {
   reasons: string[];
 };
 
-const MAX_SCORE = 62;
+const MAX_SCORE = 122;
 
 export default function HomeScreen() {
   const [showSplash, setShowSplash] = useState(true);
@@ -145,6 +145,300 @@ export default function HomeScreen() {
             score += 4;
             reasons.push("Atmosfer seçiminle uyumlu");
           }
+
+          if (q === 15) {
+            const matches =
+              (a === "Stres atmak" &&
+                (game.tempo.includes("Rahatlatıcı") ||
+                  game.challengeStyle.includes("Rahatlatmalı"))) ||
+              (a === "Meydan okuma" &&
+                (game.difficulty.includes("Zor") ||
+                  game.difficulty.includes("Çok zor") ||
+                  game.challengeStyle.includes("Zorlamalı"))) ||
+              (a === "Hikâye yaşamak" &&
+                game.storyImportance.includes("Çok önemli")) ||
+              (a === "Sosyalleşmek" &&
+                (game.playStyle.includes("Arkadaşlarla") ||
+                  game.playStyle.includes("Online rekabetçi")));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Bugünkü oyun amacına uyuyor");
+            }
+          }
+
+          if (q === 16) {
+            const matches =
+              (a === "30 dakika" &&
+                (game.length.includes("Kısa") ||
+                  game.length.includes("Sonsuz oynanabilir"))) ||
+              (a === "1-2 saat" &&
+                (game.length.includes("Kısa") ||
+                  game.length.includes("Orta uzunlukta") ||
+                  game.length.includes("Sonsuz oynanabilir"))) ||
+              (a === "Tüm akşam" &&
+                (game.length.includes("Orta uzunlukta") ||
+                  game.length.includes("Çok uzun"))) ||
+              (a === "Zaman sınırsız" &&
+                (game.length.includes("Çok uzun") ||
+                  game.length.includes("Sonsuz oynanabilir")));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Ayırdığın süreye uygun");
+            }
+          }
+
+          if (q === 17) {
+            const matches =
+              (a === "Çabuk vazgeçerim" &&
+                (game.difficulty.includes("Kolay") ||
+                  game.challengeStyle.includes("Rahatlatmalı"))) ||
+              (a === "Birkaç kez denerim" &&
+                (game.difficulty.includes("Orta") ||
+                  game.challengeStyle.includes("İkisi dengeli olmalı"))) ||
+              (a === "Öğrenerek ilerlerim" &&
+                (game.difficulty.includes("Zor") ||
+                  game.strategyInterest.includes("Biraz"))) ||
+              (a === "Asla vazgeçmem" &&
+                (game.difficulty.includes("Çok zor") ||
+                  game.challengeStyle.includes("Zorlamalı")));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Sabır ve mücadele tarzına uyuyor");
+            }
+          }
+
+          if (q === 18) {
+            const matches =
+              (a === "Kaybolmayı severim" &&
+                (game.worldType.includes("Açık dünya") ||
+                  game.worldType.includes("Sandbox"))) ||
+              (a === "Dengeli keşif" &&
+                (game.worldType.includes("Açık dünya") ||
+                  game.worldType.includes("Bölüm bölüm ilerleyen"))) ||
+              (a === "Yönlendirme isterim" &&
+                (game.worldType.includes("Bölüm bölüm ilerleyen") ||
+                  game.worldType.includes("Lineer hikaye"))) ||
+              (a === "Çizgisel ilerleme" &&
+                game.worldType.includes("Lineer hikaye"));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Keşif beklentine uygun");
+            }
+          }
+
+          if (q === 19) {
+            const matches =
+              (a === "Loot vazgeçilmez" &&
+                (game.characterProgression.includes("Evet çok isterim") ||
+                  game.genres.includes("RPG"))) ||
+              (a === "Loot dengeli" &&
+                game.characterProgression.includes("Biraz olsun")) ||
+              (a === "Az loot" &&
+                (game.characterProgression.includes("Biraz olsun") ||
+                  game.characterProgression.includes("Gerek yok"))) ||
+              (a === "Loot istemem" &&
+                game.characterProgression.includes("Gerek yok"));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Eşya ve gelişim tercihine uyuyor");
+            }
+          }
+
+          if (q === 20) {
+            const matches =
+              (a === "Detaylı karakter" &&
+                (game.genres.includes("RPG") ||
+                  game.worldType.includes("Sandbox"))) ||
+              (a === "Temel karakter" &&
+                game.characterProgression.includes("Biraz olsun")) ||
+              (a === "Hazır karakter" &&
+                (game.storyImportance.includes("Çok önemli") ||
+                  game.worldType.includes("Lineer hikaye")));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Karakter tercihinle örtüşüyor");
+            }
+          }
+
+          if (q === 21) {
+            const matches =
+              (a === "Kararlar çok önemli" &&
+                game.genres.includes("RPG") &&
+                game.storyImportance.includes("Çok önemli")) ||
+              (a === "Kararlar biraz önemli" &&
+                (game.storyImportance.includes("Biraz önemli") ||
+                  game.genres.includes("RPG"))) ||
+              (a === "Sabit hikâye" &&
+                game.worldType.includes("Lineer hikaye"));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Hikâye seçimleri beklentine yakın");
+            }
+          }
+
+          if (q === 22) {
+            const matches =
+              (a === "Boss severim" &&
+                (game.difficulty.includes("Zor") ||
+                  game.difficulty.includes("Çok zor")) &&
+                (game.genres.includes("Aksiyon") ||
+                  game.genres.includes("RPG"))) ||
+              (a === "Boss dengeli" &&
+                game.challengeStyle.includes("İkisi dengeli olmalı")) ||
+              (a === "Boss az olsun" &&
+                (game.difficulty.includes("Kolay") ||
+                  game.difficulty.includes("Orta"))) ||
+              (a === "Boss istemem" &&
+                (game.challengeStyle.includes("Rahatlatmalı") ||
+                  game.genres.includes("Simülasyon")));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Büyük mücadele beklentine uyuyor");
+            }
+          }
+
+          if (q === 23) {
+            const matches =
+              (a === "Keşif öncelikli" &&
+                (game.worldType.includes("Açık dünya") ||
+                  game.worldType.includes("Sandbox"))) ||
+              (a === "Keşif görev dengeli" &&
+                (game.worldType.includes("Açık dünya") ||
+                  game.worldType.includes("Bölüm bölüm ilerleyen"))) ||
+              (a === "Görev öncelikli" &&
+                (game.worldType.includes("Bölüm bölüm ilerleyen") ||
+                  game.worldType.includes("Lineer hikaye"))) ||
+              (a === "Rota odaklı" &&
+                game.worldType.includes("Lineer hikaye"));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Görev ve keşif alışkanlığına uyuyor");
+            }
+          }
+
+          if (q === 24) {
+            const matches =
+              (a === "Diyalog severim" &&
+                game.storyImportance.includes("Çok önemli")) ||
+              (a === "Diyalog dengeli" &&
+                game.storyImportance.includes("Biraz önemli")) ||
+              (a === "Az diyalog" &&
+                (game.storyImportance.includes("Önemli değil") ||
+                  game.tempo.includes("Hızlı ve aksiyonlu"))) ||
+              (a === "Diyalog istemem" &&
+                game.storyImportance.includes("Önemli değil"));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Anlatım ve diyalog tercihine uyuyor");
+            }
+          }
+
+          if (q === 25) {
+            const matches =
+              (a === "Bulmaca severim" &&
+                (game.genres.includes("Bulmaca") ||
+                  game.genres.includes("Strateji"))) ||
+              (a === "Bulmaca dengeli" &&
+                (game.strategyInterest.includes("Biraz") ||
+                  game.genres.includes("RPG"))) ||
+              (a === "Kolay bulmaca" &&
+                (game.difficulty.includes("Kolay") ||
+                  game.strategyInterest.includes("Biraz"))) ||
+              (a === "Bulmaca istemem" &&
+                (game.strategyInterest.includes("Hayır") ||
+                  game.tempo.includes("Hızlı ve aksiyonlu")));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Bulmaca tercihine uygun");
+            }
+          }
+
+          if (q === 26) {
+            const matches =
+              (a === "Kurmayı severim" &&
+                (game.worldType.includes("Sandbox") ||
+                  game.genres.includes("Simülasyon") ||
+                  game.genres.includes("Strateji"))) ||
+              (a === "Kurma dengeli" &&
+                (game.characterProgression.includes("Biraz olsun") ||
+                  game.worldType.includes("Açık dünya"))) ||
+              (a === "Kurma az olsun" &&
+                (game.worldType.includes("Bölüm bölüm ilerleyen") ||
+                  game.worldType.includes("Lineer hikaye"))) ||
+              (a === "Kurma istemem" &&
+                game.worldType.includes("Lineer hikaye"));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Kurma ve yönetim ilgine uyuyor");
+            }
+          }
+
+          if (q === 27) {
+            const matches =
+              (a === "Yoğun rekabet" &&
+                game.playStyle.includes("Online rekabetçi")) ||
+              (a === "Hafif rekabet" &&
+                (game.playStyle.includes("Online rekabetçi") ||
+                  game.playStyle.includes("Arkadaşlarla"))) ||
+              (a === "İş birliği" &&
+                game.playStyle.includes("Arkadaşlarla")) ||
+              (a === "Rekabet istemem" &&
+                game.playStyle.includes("Tek kişilik"));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Rekabet tercihine uygun");
+            }
+          }
+
+          if (q === 28) {
+            const matches =
+              (a === "Enerjim yüksek" &&
+                game.tempo.includes("Hızlı ve aksiyonlu")) ||
+              (a === "Enerjim dengeli" &&
+                (game.tempo.includes("Hızlı ve aksiyonlu") ||
+                  game.tempo.includes("Yavaş ve taktiksel"))) ||
+              (a === "Enerjim düşük" &&
+                game.tempo.includes("Rahatlatıcı")) ||
+              (a === "Zihnim açık" &&
+                (game.tempo.includes("Yavaş ve taktiksel") ||
+                  game.strategyInterest.includes("Evet")));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Bugünkü enerji seviyene uyuyor");
+            }
+          }
+
+          if (q === 29) {
+            const matches =
+              (a === "Kafa dağıttım" &&
+                (game.tempo.includes("Rahatlatıcı") ||
+                  game.challengeStyle.includes("Rahatlatmalı"))) ||
+              (a === "Hikâyeye kapıldım" &&
+                game.storyImportance.includes("Çok önemli")) ||
+              (a === "Mücadeleyi aştım" &&
+                game.challengeStyle.includes("Zorlamalı")) ||
+              (a === "Bir tur daha" &&
+                game.length.includes("Sonsuz oynanabilir"));
+
+            if (matches) {
+              score += 4;
+              reasons.push("Seans sonunda aradığın hissi verebilir");
+            }
+          }
         });
 
         return {
@@ -202,59 +496,172 @@ export default function HomeScreen() {
     setFinished(false);
   }
   function getPlayerProfile() {
-  const values = answers.map((a) => a.value);
+    const values = answers.map((answer) => answer.value);
 
-  if (
-    values.includes("RPG") ||
-    values.includes("Çok önemli") ||
-    values.includes("Açık dünya")
-  ) {
-    return [
-      "🎭 Hikaye Sevdalısı",
-      "🗺️ Açık Dünya Kaşifi",
-      "⚔️ RPG Ustası",
-    ];
+    const profileScores: Record<string, number> = {
+      story: 0,
+      explorer: 0,
+      challenger: 0,
+      strategist: 0,
+      competitor: 0,
+      social: 0,
+      collector: 0,
+      creator: 0,
+      relaxed: 0,
+      horror: 0,
+      speed: 0,
+    };
+
+    const addProfilePoint = (
+      profile: keyof typeof profileScores,
+      amount = 1
+    ) => {
+      profileScores[profile] += amount;
+    };
+
+    values.forEach((value) => {
+      if (
+        [
+          "RPG",
+          "Çok önemli",
+          "Hikâye yaşamak",
+          "Kararlar çok önemli",
+          "Diyalog severim",
+          "Hikâyeye kapıldım",
+        ].includes(value)
+      ) {
+        addProfilePoint("story", 2);
+      }
+
+      if (
+        [
+          "Açık dünya",
+          "Sandbox",
+          "Kaybolmayı severim",
+          "Keşif öncelikli",
+          "Keşif görev dengeli",
+        ].includes(value)
+      ) {
+        addProfilePoint("explorer", 2);
+      }
+
+      if (
+        [
+          "Zor",
+          "Çok zor",
+          "Zorlamalı",
+          "Meydan okuma",
+          "Öğrenerek ilerlerim",
+          "Asla vazgeçmem",
+          "Boss severim",
+          "Mücadeleyi aştım",
+        ].includes(value)
+      ) {
+        addProfilePoint("challenger", 2);
+      }
+
+      if (
+        [
+          "Strateji",
+          "Yavaş ve taktiksel",
+          "Evet",
+          "Zihnim açık",
+          "Bulmaca severim",
+          "Kurmayı severim",
+        ].includes(value)
+      ) {
+        addProfilePoint("strategist", 2);
+      }
+
+      if (
+        [
+          "FPS",
+          "Online rekabetçi",
+          "Yoğun rekabet",
+          "Hafif rekabet",
+        ].includes(value)
+      ) {
+        addProfilePoint("competitor", 2);
+      }
+
+      if (
+        ["Arkadaşlarla", "Sosyalleşmek", "İş birliği"].includes(value)
+      ) {
+        addProfilePoint("social", 2);
+      }
+
+      if (
+        [
+          "Evet çok isterim",
+          "Loot vazgeçilmez",
+          "Loot dengeli",
+          "Detaylı karakter",
+        ].includes(value)
+      ) {
+        addProfilePoint("collector", 2);
+      }
+
+      if (
+        ["Sandbox", "Kurmayı severim", "Kurma dengeli"].includes(value)
+      ) {
+        addProfilePoint("creator", 2);
+      }
+
+      if (
+        [
+          "Rahatlatıcı",
+          "Rahatlatmalı",
+          "Stres atmak",
+          "Enerjim düşük",
+          "Kafa dağıttım",
+        ].includes(value)
+      ) {
+        addProfilePoint("relaxed", 2);
+      }
+
+      if (
+        ["Korku", "Çok severim", "Gerilimli", "Karanlık"].includes(value)
+      ) {
+        addProfilePoint("horror", 2);
+      }
+
+      if (
+        ["Yarış", "Evet", "Hızlı ve aksiyonlu", "Enerjim yüksek"].includes(
+          value
+        )
+      ) {
+        addProfilePoint("speed", 2);
+      }
+    });
+
+    const profileLabels: Record<string, string> = {
+      story: "🎭 Hikâye Sevdalısı",
+      explorer: "🗺️ Meraklı Kaşif",
+      challenger: "⚔️ Meydan Okuma Avcısı",
+      strategist: "🧠 Taktik Ustası",
+      competitor: "🏆 Rekabetçi Oyuncu",
+      social: "🤝 Takım Oyuncusu",
+      collector: "💎 Gelişim ve Loot Tutkunu",
+      creator: "🏗️ Kurucu ve Üretici",
+      relaxed: "🌿 Sakin Oyun Arayıcısı",
+      horror: "👻 Gerilim Avcısı",
+      speed: "🏎️ Hız Tutkunu",
+    };
+
+    const topProfiles = Object.entries(profileScores)
+      .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
+      .slice(0, 3)
+      .map(([profile]) => profileLabels[profile]);
+
+    return topProfiles.length > 0
+      ? topProfiles
+      : [
+          "🎮 Çok Yönlü Oyuncu",
+          "✨ Yeni Deneyimlere Açık",
+          "🚀 Oyun Kaşifi",
+        ];
   }
 
-  if (
-    values.includes("FPS") ||
-    values.includes("Online rekabetçi")
-  ) {
-    return [
-      "🎯 Rekabetçi Oyuncu",
-      "🔫 FPS Tutkunu",
-      "🏆 Kazanmayı Sever",
-    ];
-  }
-
-  if (
-    values.includes("Strateji") ||
-    values.includes("Yavaş ve taktiksel")
-  ) {
-    return [
-      "♟️ Taktik Ustası",
-      "🧠 Stratejist",
-      "📋 Planlamayı Sever",
-    ];
-  }
-
-  if (
-    values.includes("Korku") ||
-    values.includes("Çok severim")
-  ) {
-    return [
-      "👻 Korkusuz Oyuncu",
-      "🌑 Gerilim Avcısı",
-      "🎬 Atmosfer Tutkunu",
-    ];
-  }
-
-  return [
-    "🎮 Çok Yönlü Oyuncu",
-    "✨ Yeni Deneyimlere Açık",
-    "🚀 Oyun Kaşifi",
-  ];
-}
   if (showSplash) {
     return (
       <ImageBackground
@@ -298,7 +705,7 @@ export default function HomeScreen() {
         </Text>
 
         <Text style={styles.infoText}>
-          15 soru • 1 dakika • 10 oyun önerisi
+          30 soru • 3 dakika • 10 oyun önerisi
         </Text>
 
         <TouchableOpacity

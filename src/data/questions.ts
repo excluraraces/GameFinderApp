@@ -10,176 +10,309 @@ export type Question = {
 
 export const questions: Question[] = [
   {
-    question: "Bugün hangi platformda oynamayı düşünüyorsun?",
+    question: "Bugünkü oyun seansın hangi platformda geçecek?",
     options: [
-      { label: "Bilgisayar / PC", value: "PC" },
-      { label: "PlayStation", value: "PlayStation" },
-      { label: "Xbox", value: "Xbox" },
-      { label: "Nintendo Switch", value: "Nintendo Switch" },
-      { label: "Mobil cihaz", value: "Mobil" },
+      { label: "Bilgisayarın başına geçiyorum", value: "PC" },
+      { label: "PlayStation kolu hazır", value: "PlayStation" },
+      { label: "Xbox'ta oynayacağım", value: "Xbox" },
+      { label: "Nintendo Switch yanımda", value: "Nintendo Switch" },
+      { label: "Telefon veya tabletteyim", value: "Mobil" },
     ],
   },
   {
-    question: "Bugün nasıl bir oyun deneyimi arıyorsun?",
+    question: "Bugün seni en çok hangi oyun deneyimi cezbediyor?",
     options: [
-      { label: "Derin hikayeli bir macera", value: "RPG" },
-      { label: "Refleks ve nişan alma odaklı aksiyon", value: "FPS" },
-      { label: "Hız, araçlar ve yarış hissi", value: "Yarış" },
-      { label: "Planlama ve taktik kurma", value: "Strateji" },
-      { label: "Gerilim ve hayatta kalma", value: "Korku" },
+      { label: "Güçlü bir hikâyenin içine dalmak", value: "RPG" },
+      { label: "Reflekslerimi ve nişanımı konuşturmak", value: "FPS" },
+      { label: "Hızın ve direksiyonun tadını çıkarmak", value: "Yarış" },
+      { label: "Plan kurup doğru hamleyi yapmak", value: "Strateji" },
+      { label: "Gerilim içinde hayatta kalmaya çalışmak", value: "Korku" },
     ],
   },
   {
-    question: "Hikaye senin için ne kadar önemli?",
+    question: "İyi bir hikâye, oyun seçiminde ne kadar söz sahibi?",
     options: [
-      { label: "Hikaye benim için oyunun ana sebebi", value: "Çok önemli" },
-      { label: "İyi olursa güzel olur ama şart değil", value: "Biraz önemli" },
-      { label: "Direkt oynanışa bakarım", value: "Önemli değil" },
+      { label: "Hikâye benim için oyunun kalbidir", value: "Çok önemli" },
+      { label: "Güçlü olursa büyük artı yazar", value: "Biraz önemli" },
+      { label: "Ben doğrudan oynanışa bakarım", value: "Önemli değil" },
     ],
   },
   {
-    question: "Oynanış temposu nasıl olsun?",
+    question: "Bugün nasıl bir oynanış temposu istiyorsun?",
     options: [
-      { label: "Hızlı, aksiyonlu ve canlı", value: "Hızlı ve aksiyonlu" },
+      { label: "Durmadan akan, canlı bir aksiyon", value: "Hızlı ve aksiyonlu" },
       {
-        label: "Daha yavaş, düşünerek ve taktiksel",
+        label: "Acele etmeden düşünüp hamle yapacağım",
         value: "Yavaş ve taktiksel",
       },
       {
-        label: "Sakin, rahatlatıcı ve kafa dağıtmalık",
+        label: "Sakin, huzurlu ve kafa dağıtmalık",
         value: "Rahatlatıcı",
       },
-      { label: "Gergin, baskılı ve atmosferik", value: "Gerilimli" },
+      { label: "Beni sürekli diken üstünde tutacak", value: "Gerilimli" },
     ],
   },
   {
-    question: "Nasıl oynamayı tercih edersin?",
+    question: "Bu maceraya nasıl atılmak istersin?",
     options: [
       { label: "Tek başıma, kendi tempomda", value: "Tek kişilik" },
-      { label: "Arkadaşlarımla birlikte", value: "Arkadaşlarla" },
-      { label: "Rekabetçi online maçlar", value: "Online rekabetçi" },
-      { label: "Fark etmez, oyun iyi olsun yeter", value: "Fark etmez" },
+      { label: "Arkadaşlarımla aynı tarafta", value: "Arkadaşlarla" },
+      { label: "Rakiplere karşı çevrimiçi mücadelede", value: "Online rekabetçi" },
+      { label: "Fark etmez; oyun iyi olsun yeter", value: "Fark etmez" },
     ],
   },
   {
-    question: "Oyun dünyası nasıl hissettirsin?",
+    question: "İçine gireceğin oyun dünyası nasıl kurulmuş olsun?",
     options: [
-      { label: "Özgürce gezebileceğim açık dünya", value: "Açık dünya" },
+      { label: "İstediğim yere gidebildiğim açık dünya", value: "Açık dünya" },
       {
-        label: "Bölüm bölüm ilerleyen net yapı",
+        label: "Bölüm bölüm ilerleyen, düzenli bir yapı",
         value: "Bölüm bölüm ilerleyen",
       },
-      { label: "Sinematik ve çizgisel hikaye", value: "Lineer hikaye" },
+      { label: "Sinematik ve çizgisel bir yolculuk", value: "Lineer hikaye" },
       {
-        label: "Kendi hedefimi kuracağım sandbox yapı",
+        label: "Kendi hedeflerimi koyduğum özgür bir alan",
         value: "Sandbox",
       },
     ],
   },
   {
-    question: "Zorluk seviyesi nasıl olsun?",
+    question: "Bugün oyun sana nasıl davransın?",
     options: [
-      { label: "Kolay olsun, yormasın", value: "Kolay" },
-      { label: "Dengeli olsun", value: "Orta" },
-      { label: "Zorlasın ama adil olsun", value: "Zor" },
-      { label: "Ciddi meydan okuma istiyorum", value: "Çok zor" },
+      { label: "Fazla yormasın, rahat ilerlesin", value: "Kolay" },
+      { label: "Dengeli ve adil bir mücadele sunsun", value: "Orta" },
+      { label: "Ter döktürsün ama karşılığını versin", value: "Zor" },
+      { label: "Merhamet göstermesin; hazırım", value: "Çok zor" },
     ],
   },
   {
-    question: "Görsel tarz olarak hangisi sana daha yakın?",
+    question: "Hangi görsel dünya seni daha hızlı içine çeker?",
     options: [
-      { label: "Gerçekçi ve sinematik görseller", value: "Gerçekçi" },
-      { label: "Renkli / stilize cartoon tarzı", value: "Cartoon" },
-      { label: "Pixel art / retro görünüm", value: "Pixel art" },
-      { label: "Anime tarzı görsel dil", value: "Anime tarzı" },
+      { label: "Gerçekçi ve sinematik bir görünüm", value: "Gerçekçi" },
+      { label: "Renkli ve stilize bir sanat dili", value: "Cartoon" },
+      { label: "Piksel piksel işlenmiş retro tarz", value: "Pixel" },
+      { label: "Anime estetiği ve canlı karakterler", value: "Anime" },
     ],
   },
   {
-    question: "Oyunda gelişim hissi ister misin?",
+    question: "Oyunda güçlendiğini hissetmek senin için ne kadar önemli?",
     options: [
       {
-        label: "Evet, karakterimi veya ekipmanımı geliştirmeliyim",
+        label: "Karakterimi ve ekipmanımı sürekli geliştirmeliyim",
         value: "Evet çok isterim",
       },
-      { label: "Biraz gelişim olsa yeter", value: "Biraz olsun" },
+      { label: "Bir miktar gelişim hissi yeterli", value: "Biraz olsun" },
       {
-        label: "Gelişim şart değil, direkt oynanış önemli",
+        label: "Gelişim şart değil; oynanış güçlü olsun",
         value: "Gerek yok",
       },
     ],
   },
   {
-    question: "Bugün ne kadar uzunlukta bir oyun arıyorsun?",
+    question: "Nasıl bir oyun ömrü arıyorsun?",
     options: [
-      { label: "Kısa sürede tatmin etsin", value: "Kısa" },
+      { label: "Kısa sürede tamamlanıp tatmin etsin", value: "Kısa" },
       {
-        label: "Orta uzunlukta, fazla yormayan bir şey",
+        label: "Kararında bir uzunluğu olsun",
         value: "Orta uzunlukta",
       },
       {
-        label: "Uzun süre içine gömüleceğim bir oyun",
+        label: "Uzun süre dünyasında yaşayabileyim",
         value: "Çok uzun",
       },
       {
-        label: "Sürekli oynanabilir, bitmeyen yapı",
+        label: "Dönüp dönüp oynayabileceğim kadar sınırsız olsun",
         value: "Sonsuz oynanabilir",
       },
     ],
   },
   {
-    question: "Araç kullanma, yarış veya sürüş hissi ilgini çeker mi?",
+    question: "Direksiyon başına geçmek bugün kulağa nasıl geliyor?",
     options: [
-      { label: "Evet, özellikle araç ve hız istiyorum", value: "Evet" },
-      { label: "Olursa güzel olur ama şart değil", value: "Biraz" },
-      { label: "Hayır, araç odaklı oyun istemiyorum", value: "Hayır" },
+      { label: "Tam olarak araç ve hız arıyorum", value: "Evet" },
+      { label: "Olursa keyif verir ama şart değil", value: "Biraz" },
+      { label: "Bugün araç odaklı bir oyun istemiyorum", value: "Hayır" },
     ],
   },
   {
-    question: "Korku ve gerilim konusunda tercihin ne?",
+    question: "Karanlık koridorlara girmeye ne kadar hazırsın?",
     options: [
-      { label: "Korku oyunlarını özellikle severim", value: "Çok severim" },
-      { label: "Bazen gerilim iyi gider", value: "Bazen oynarım" },
-      { label: "Korku istemiyorum", value: "Sevmem" },
+      { label: "Korku ve gerilimi özellikle arıyorum", value: "Çok severim" },
+      { label: "Dozunda gerilim iyi gider", value: "Bazen oynarım" },
+      { label: "Bugün korkuyla hiç uğraşmayayım", value: "Sevmem" },
     ],
   },
   {
-    question: "Strateji ve planlama senin için ne kadar önemli?",
+    question: "Plan kurmak ve hamle hesaplamak seni ne kadar çeker?",
     options: [
-      { label: "Planlama ve taktik kurmayı severim", value: "Evet" },
-      { label: "Biraz taktik olsun ama boğmasın", value: "Biraz" },
-      { label: "Stratejiyle uğraşmak istemiyorum", value: "Hayır" },
+      { label: "Taktik düşünmeden oyun eksik kalır", value: "Evet" },
+      { label: "Biraz strateji olsun ama beni boğmasın", value: "Biraz" },
+      { label: "Bugün kafamı planlarla yormak istemiyorum", value: "Hayır" },
     ],
   },
   {
-    question: "Oyun seni daha çok nasıl hissettirsin?",
+    question: "Oyunu kapattığında nasıl hissetmek istersin?",
     options: [
-      { label: "Rahatlatmalı ve kafa dağıtmalı", value: "Rahatlatmalı" },
+      { label: "Rahatlamış ve kafamı dağıtmış", value: "Rahatlatmalı" },
       {
-        label: "Zorlamalı ve mücadele hissi vermeli",
+        label: "Zorlu bir mücadeleyi aşmış",
         value: "Zorlamalı",
       },
       {
-        label: "Hem keyifli hem de dengeli zorlayıcı olmalı",
+        label: "Hem eğlenmiş hem de güzelce sınanmış",
         value: "İkisi dengeli olmalı",
       },
     ],
   },
   {
-    question: "Hangi atmosfer sana daha yakın?",
+    question: "Bugün hangi atmosferin içinde kaybolmak istersin?",
     options: [
       {
-        label: "Fantastik evrenler ve mitolojik dünyalar",
+        label: "Fantastik evrenler ve mitolojik diyarlar",
         value: "Fantastik",
       },
       {
-        label: "Bilim kurgu ve teknolojik dünyalar",
+        label: "Bilim kurgu ve ileri teknoloji dünyaları",
         value: "Bilim kurgu",
       },
-      { label: "Gerçekçi ve modern atmosfer", value: "Gerçekçi" },
+      { label: "Gerçekçi ve modern bir dünya", value: "Gerçekçi" },
       {
-        label: "Karanlık, kasvetli ve sert atmosfer",
+        label: "Karanlık, kasvetli ve sert bir atmosfer",
         value: "Karanlık",
       },
+    ],
+  },
+  {
+    question: "Bugün oyunu açmandaki asıl sebep ne?",
+    options: [
+      { label: "Günün stresini üzerimden atmak", value: "Stres atmak" },
+      { label: "Kendime sağlam bir meydan okuma bulmak", value: "Meydan okuma" },
+      { label: "Unutulmaz bir hikâye yaşamak", value: "Hikâye yaşamak" },
+      { label: "Arkadaşlarla eğlenceli vakit geçirmek", value: "Sosyalleşmek" },
+    ],
+  },
+  {
+    question: "Bu seans için ayırabileceğin gerçekçi süre ne kadar?",
+    options: [
+      { label: "En fazla yarım saatim var", value: "30 dakika" },
+      { label: "Bir iki saat rahat oynarım", value: "1-2 saat" },
+      { label: "Bütün akşam bende", value: "Tüm akşam" },
+      { label: "Bugün zaman sınırım yok", value: "Zaman sınırsız" },
+    ],
+  },
+  {
+    question: "Aynı yerde birkaç kez kaybedersen ne yaparsın?",
+    options: [
+      { label: "Sinirim bozulmadan başka oyuna geçerim", value: "Çabuk vazgeçerim" },
+      { label: "Birkaç kez daha dener, sonra karar veririm", value: "Birkaç kez denerim" },
+      { label: "Hatalarımı çözüp öğrenerek devam ederim", value: "Öğrenerek ilerlerim" },
+      { label: "Gerekirse elli kez denerim", value: "Asla vazgeçmem" },
+    ],
+  },
+  {
+    question: "Haritanın seni yönlendirmemesi nasıl hissettirir?",
+    options: [
+      { label: "Harika; kaybolmak keşfin bir parçasıdır", value: "Kaybolmayı severim" },
+      { label: "Biraz özgürlük güzel ama ipucu da isterim", value: "Dengeli keşif" },
+      { label: "Nereye gideceğim belli olsun", value: "Yönlendirme isterim" },
+      { label: "Dümdüz ilerlemek bugün daha iyi", value: "Çizgisel ilerleme" },
+    ],
+  },
+  {
+    question: "Sandıklar, nadir eşyalar ve ekipman yağmuru hakkında ne düşünüyorsun?",
+    options: [
+      { label: "Yeni eşya bulmak oyunun en güzel kısmıdır", value: "Loot vazgeçilmez" },
+      { label: "Kararında olursa gelişimi güzelleştirir", value: "Loot dengeli" },
+      { label: "Fazla eşya yönetimi beni yoruyor", value: "Az loot" },
+      { label: "Hiç uğraşmadan oyuna devam etmek isterim", value: "Loot istemem" },
+    ],
+  },
+  {
+    question: "Kendi karakterini oluşturmak sana ne kadar keyif verir?",
+    options: [
+      { label: "Yüzünden yeteneğine kadar saatlerce uğraşırım", value: "Detaylı karakter" },
+      { label: "Birkaç önemli seçimi kendim yapmak isterim", value: "Temel karakter" },
+      { label: "Hazır ve güçlü bir ana karakter tercih ederim", value: "Hazır karakter" },
+    ],
+  },
+  {
+    question: "Verdiğin kararların hikâyeyi değiştirmesi ne kadar önemli?",
+    options: [
+      { label: "Seçimlerim dünyayı ve sonu değiştirmeli", value: "Kararlar çok önemli" },
+      { label: "Birkaç anlamlı sonuç görmem yeter", value: "Kararlar biraz önemli" },
+      { label: "İyi yazılmış tek bir hikâye de yeterli", value: "Sabit hikâye" },
+    ],
+  },
+  {
+    question: "Büyük boss savaşları sende nasıl bir etki bırakır?",
+    options: [
+      { label: "Oyunun zirvesi boss savaşlarıdır", value: "Boss severim" },
+      { label: "Kararında ve unutulmaz birkaç tane olsun", value: "Boss dengeli" },
+      { label: "Uzun boss mücadeleleri beni çabuk yoruyor", value: "Boss az olsun" },
+      { label: "Boss yerine akıcı ilerleyişi tercih ederim", value: "Boss istemem" },
+    ],
+  },
+  {
+    question: "Önünde ana görev ve uzak bir soru işareti var; hangisine gidersin?",
+    options: [
+      { label: "Soru işaretine; orada ne olduğunu bilmeliyim", value: "Keşif öncelikli" },
+      { label: "Yoluma göre ikisini dengelerim", value: "Keşif görev dengeli" },
+      { label: "Önce ana görevi bitiririm", value: "Görev öncelikli" },
+      { label: "Bana net bir rota verilsin, onu izlerim", value: "Rota odaklı" },
+    ],
+  },
+  {
+    question: "Oyun uzun diyaloglarla önüne geldiğinde ne yaparsın?",
+    options: [
+      { label: "Her cümleyi dinler, karakterleri tanırım", value: "Diyalog severim" },
+      { label: "Önemli sahneleri takip ederim", value: "Diyalog dengeli" },
+      { label: "Kısa konuşmalar yeter; oynanışa dönelim", value: "Az diyalog" },
+      { label: "Geçme tuşu nerede?", value: "Diyalog istemem" },
+    ],
+  },
+  {
+    question: "Bulmacalar oyunun akışına karıştığında tepkin ne olur?",
+    options: [
+      { label: "Çözene kadar başından kalkmam", value: "Bulmaca severim" },
+      { label: "Kararında olursa dünyayı zenginleştirir", value: "Bulmaca dengeli" },
+      { label: "Basit olsun ve tempoyu kesmesin", value: "Kolay bulmaca" },
+      { label: "Bulmaca yerine doğrudan aksiyon isterim", value: "Bulmaca istemem" },
+    ],
+  },
+  {
+    question: "Bir şeyler kurmak, yönetmek veya büyütmek sana nasıl geliyor?",
+    options: [
+      { label: "Kendi düzenimi kurmak oyunun asıl keyfidir", value: "Kurmayı severim" },
+      { label: "Yan sistem olarak bulunması hoşuma gider", value: "Kurma dengeli" },
+      { label: "Hazır sistemde ilerlemeyi tercih ederim", value: "Kurma az olsun" },
+      { label: "Yönetim ekranları bugün benden uzak dursun", value: "Kurma istemem" },
+    ],
+  },
+  {
+    question: "Rekabetin dozu bugün ne kadar yüksek olsun?",
+    options: [
+      { label: "Sıralama, galibiyet ve ciddi rekabet istiyorum", value: "Yoğun rekabet" },
+      { label: "Tatlı bir rekabet oyunu canlı tutar", value: "Hafif rekabet" },
+      { label: "Birlikte oynayalım ama birbirimizi yormayalım", value: "İş birliği" },
+      { label: "Bugün tamamen kendi dünyamda kalacağım", value: "Rekabet istemem" },
+    ],
+  },
+  {
+    question: "Şu anki enerjini en iyi hangisi anlatıyor?",
+    options: [
+      { label: "Yerimde duramıyorum; tempo istiyorum", value: "Enerjim yüksek" },
+      { label: "Dengeli bir şey için hazırım", value: "Enerjim dengeli" },
+      { label: "Yorgunum; oyun beni taşısın", value: "Enerjim düşük" },
+      { label: "Kafam açık; uzun uzun düşünebilirim", value: "Zihnim açık" },
+    ],
+  },
+  {
+    question: "Bu seansın sonunda hangi cümleyi kurmak istersin?",
+    options: [
+      { label: "Ne güzel kafa dağıttım", value: "Kafa dağıttım" },
+      { label: "Bu hikâyeyi uzun süre unutamam", value: "Hikâyeye kapıldım" },
+      { label: "Sonunda o mücadeleyi aştım", value: "Mücadeleyi aştım" },
+      { label: "Bir tur daha oynamadan bırakamam", value: "Bir tur daha" },
     ],
   },
 ];
