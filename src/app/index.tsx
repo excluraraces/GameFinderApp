@@ -8,9 +8,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { gamesByLanguage, questionsByLanguage, translations } from "../data";
+import type { Game } from "../data/game";
+import type { QuestionOption } from "../data/questions";
 
-import { games, type Game } from "../data/game";
-import { questions, type QuestionOption } from "../data/questions";
+type Language = "tr" | "en";
 
 type Answer = {
   questionIndex: number;
@@ -27,12 +29,24 @@ const MAX_SCORE = 122;
 
 export default function HomeScreen() {
   const [showSplash, setShowSplash] = useState(true);
+  const [language, setLanguage] = useState<Language | null>(null);
   const [started, setStarted] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [finished, setFinished] = useState(false);
+  const t = language
+  ? translations[language]
+  : translations.tr;
 
-  const currentQuestion = questions[questionIndex];
+  const activeQuestions = language
+    ? questionsByLanguage[language]
+    : questionsByLanguage.tr;
+
+  const activeGames = language
+    ? gamesByLanguage[language]
+    : gamesByLanguage.tr;
+
+  const currentQuestion = activeQuestions[questionIndex];
   useEffect(() => {
   const timer = setTimeout(() => {
     setShowSplash(false);
@@ -57,7 +71,7 @@ export default function HomeScreen() {
   }
 
   function getRecommendation() {
-    const scoredGames: ScoredGame[] = games
+    const scoredGames: ScoredGame[] = activeGames
       .filter((game) => isPlatformCompatible(game))
       .map((game) => {
         let score = 0;
@@ -468,7 +482,7 @@ export default function HomeScreen() {
       },
     ]);
 
-    if (questionIndex < questions.length - 1) {
+    if (questionIndex < activeQuestions.length - 1) {
       setQuestionIndex(questionIndex + 1);
     } else {
       setFinished(true);
@@ -690,6 +704,51 @@ export default function HomeScreen() {
     );
   }
 
+  if (language === null) {
+    return (
+      <ImageBackground
+        source={require("../../assets/images/game-background.png")}
+        resizeMode="cover"
+        style={styles.container}
+      >
+        <View style={styles.languageOverlay}>
+          <Text style={styles.languageTitle}>Dilini Seç</Text>
+          <Text style={styles.languageSubtitle}>Choose Your Language</Text>
+
+          <View style={styles.languageButtonContainer}>
+            <TouchableOpacity
+              style={styles.languageButton}
+              activeOpacity={0.82}
+              onPress={() => setLanguage("tr")}
+            >
+              <View style={styles.flagPlaceholder}>
+                <Text style={styles.flagPlaceholderText}>TR</Text>
+              </View>
+
+              <Text style={styles.languageButtonText}>Türkçe</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.languageButton}
+              activeOpacity={0.82}
+              onPress={() => setLanguage("en")}
+            >
+              <View style={styles.flagPlaceholder}>
+                <Text style={styles.flagPlaceholderText}>EN</Text>
+              </View>
+
+              <Text style={styles.languageButtonText}>English</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.languageHint}>
+            Bayrak görselleri bu alanlara eklenecek.
+          </Text>
+        </View>
+      </ImageBackground>
+    );
+  }
+
   if (!started) {
     return (
       <ImageBackground
@@ -712,7 +771,18 @@ export default function HomeScreen() {
           style={styles.button}
           onPress={() => setStarted(true)}
         >
-          <Text style={styles.buttonText}>Teste Başla</Text>
+          <Text style={styles.buttonText}>
+            {language === "tr" ? "Teste Başla" : "Start Quiz"}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.changeLanguageButton}
+          onPress={() => setLanguage(null)}
+        >
+          <Text style={styles.changeLanguageText}>
+            {language === "tr" ? "Dili Değiştir" : "Change Language"}
+          </Text>
         </TouchableOpacity>
       </ImageBackground>
     );
@@ -847,7 +917,8 @@ export default function HomeScreen() {
       style={styles.container}
     >
       <Text style={styles.counter}>
-        Soru {questionIndex + 1} / {questions.length}
+        {language === "tr" ? "Soru" : "Question"} {questionIndex + 1} /{" "}
+        {activeQuestions.length}
       </Text>
 
       <Text style={styles.question}>{currentQuestion.question}</Text>
@@ -873,6 +944,102 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  languageOverlay: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 24,
+    backgroundColor: "rgba(3, 8, 20, 0.52)",
+  },
+
+  languageTitle: {
+    color: "white",
+    fontSize: 34,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 6,
+  },
+
+  languageSubtitle: {
+    color: "#cfcfcf",
+    fontSize: 17,
+    textAlign: "center",
+    marginBottom: 34,
+  },
+
+  languageButtonContainer: {
+    width: "100%",
+    maxWidth: 380,
+    gap: 14,
+  },
+
+  languageButton: {
+    width: "100%",
+    minHeight: 68,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(10, 18, 35, 0.92)",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.15)",
+    shadowColor: "#000",
+    shadowOpacity: 0.28,
+    shadowRadius: 12,
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    elevation: 6,
+  },
+
+  flagPlaceholder: {
+    width: 46,
+    height: 32,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 16,
+    borderRadius: 6,
+    backgroundColor: "rgba(255,255,255,0.10)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.16)",
+    overflow: "hidden",
+  },
+
+  flagPlaceholderText: {
+    color: "#9ae6b4",
+    fontSize: 12,
+    fontWeight: "800",
+    letterSpacing: 0.8,
+  },
+
+  languageButtonText: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "700",
+  },
+
+  languageHint: {
+    color: "#8f98a8",
+    fontSize: 12,
+    textAlign: "center",
+    marginTop: 18,
+  },
+
+  changeLanguageButton: {
+    marginTop: 18,
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+  },
+
+  changeLanguageText: {
+    color: "#cfcfcf",
+    fontSize: 14,
+    fontWeight: "600",
+  },
+
   resultBackground: {
     flex: 1,
     width: "100%",
