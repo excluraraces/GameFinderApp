@@ -35,8 +35,8 @@ export default function HomeScreen() {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [finished, setFinished] = useState(false);
   const t = language
-  ? translations[language]
-  : translations.tr;
+    ? translations[language]
+    : translations.tr;
 
   const activeQuestions = language
     ? questionsByLanguage[language]
@@ -83,27 +83,27 @@ export default function HomeScreen() {
 
           if (q === 0 && game.platforms.includes(a)) {
             score += 5;
-            reasons.push(`${a} platformunda oynanabiliyor`);
+            reasons.push(t.reasons.platform(a));
           }
 
           if (q === 1 && game.genres.includes(a)) {
             score += 6;
-            reasons.push(`${a} türü tercihinle uyumlu`);
+            reasons.push(t.reasons.genre(a));
           }
 
           if (q === 2 && game.storyImportance.includes(a)) {
             score += 4;
-            reasons.push("Hikaye beklentine uygun");
+            reasons.push(t.reasons.story);
           }
 
           if (q === 3 && game.tempo.includes(a)) {
             score += 4;
-            reasons.push("Tempo tercihinle eşleşiyor");
+            reasons.push(t.reasons.tempo);
           }
 
           if (q === 4 && game.playStyle.includes(a)) {
             score += 4;
-            reasons.push("Oynama tarzına uygun");
+            reasons.push(t.reasons.playStyle);
           }
 
           if (q === 4 && a === "Fark etmez") {
@@ -112,52 +112,52 @@ export default function HomeScreen() {
 
           if (q === 5 && game.worldType.includes(a)) {
             score += 4;
-            reasons.push("Dünya yapısı seçimine uyuyor");
+            reasons.push(t.reasons.worldType);
           }
 
           if (q === 6 && game.difficulty.includes(a)) {
             score += 3;
-            reasons.push("Zorluk tercihinle uyumlu");
+            reasons.push(t.reasons.difficulty);
           }
 
           if (q === 7 && game.graphics.includes(a)) {
             score += 3;
-            reasons.push("Görsel tarz seçimine uygun");
+            reasons.push(t.reasons.graphics);
           }
 
           if (q === 8 && game.characterProgression.includes(a)) {
             score += 4;
-            reasons.push("Karakter gelişimi beklentine uygun");
+            reasons.push(t.reasons.progression);
           }
 
           if (q === 9 && game.length.includes(a)) {
             score += 3;
-            reasons.push("Oyun süresi tercihinle uyumlu");
+            reasons.push(t.reasons.length);
           }
 
           if (q === 10 && game.vehicleInterest.includes(a)) {
             score += 5;
-            reasons.push("Araç ilgine uygun");
+            reasons.push(t.reasons.vehicle);
           }
 
           if (q === 11 && game.horrorInterest.includes(a)) {
             score += 5;
-            reasons.push("Korku tercihinle uyumlu");
+            reasons.push(t.reasons.horror);
           }
 
           if (q === 12 && game.strategyInterest.includes(a)) {
             score += 5;
-            reasons.push("Strateji ilgine uygun");
+            reasons.push(t.reasons.strategy);
           }
 
           if (q === 13 && game.challengeStyle.includes(a)) {
             score += 3;
-            reasons.push("Meydan okuma tarzına uygun");
+            reasons.push(t.reasons.challenge);
           }
 
           if (q === 14 && game.atmosphere.includes(a)) {
             score += 4;
-            reasons.push("Atmosfer seçiminle uyumlu");
+            reasons.push(t.reasons.atmosphere);
           }
 
           if (q === 15) {
@@ -177,7 +177,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Bugünkü oyun amacına uyuyor");
+              reasons.push(t.reasons.purpose);
             }
           }
 
@@ -199,7 +199,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Ayırdığın süreye uygun");
+              reasons.push(t.reasons.sessionTime);
             }
           }
 
@@ -220,7 +220,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Sabır ve mücadele tarzına uyuyor");
+              reasons.push(t.reasons.persistence);
             }
           }
 
@@ -240,7 +240,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Keşif beklentine uygun");
+              reasons.push(t.reasons.exploration);
             }
           }
 
@@ -259,7 +259,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Eşya ve gelişim tercihine uyuyor");
+              reasons.push(t.reasons.loot);
             }
           }
 
@@ -276,7 +276,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Karakter tercihinle örtüşüyor");
+              reasons.push(t.reasons.character);
             }
           }
 
@@ -293,7 +293,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Hikâye seçimleri beklentine yakın");
+              reasons.push(t.reasons.storyChoices);
             }
           }
 
@@ -315,7 +315,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Büyük mücadele beklentine uyuyor");
+              reasons.push(t.reasons.bosses);
             }
           }
 
@@ -335,7 +335,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Görev ve keşif alışkanlığına uyuyor");
+              reasons.push(t.reasons.questStyle);
             }
           }
 
@@ -353,7 +353,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Anlatım ve diyalog tercihine uyuyor");
+              reasons.push(t.reasons.dialogue);
             }
           }
 
@@ -374,7 +374,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Bulmaca tercihine uygun");
+              reasons.push(t.reasons.puzzle);
             }
           }
 
@@ -395,7 +395,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Kurma ve yönetim ilgine uyuyor");
+              reasons.push(t.reasons.building);
             }
           }
 
@@ -413,7 +413,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Rekabet tercihine uygun");
+              reasons.push(t.reasons.competition);
             }
           }
 
@@ -432,7 +432,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Bugünkü enerji seviyene uyuyor");
+              reasons.push(t.reasons.energy);
             }
           }
 
@@ -450,7 +450,7 @@ export default function HomeScreen() {
 
             if (matches) {
               score += 4;
-              reasons.push("Seans sonunda aradığın hissi verebilir");
+              reasons.push(t.reasons.sessionFeeling);
             }
           }
         });
@@ -649,17 +649,17 @@ export default function HomeScreen() {
     });
 
     const profileLabels: Record<string, string> = {
-      story: "🎭 Hikâye Sevdalısı",
-      explorer: "🗺️ Meraklı Kaşif",
-      challenger: "⚔️ Meydan Okuma Avcısı",
-      strategist: "🧠 Taktik Ustası",
-      competitor: "🏆 Rekabetçi Oyuncu",
-      social: "🤝 Takım Oyuncusu",
-      collector: "💎 Gelişim ve Loot Tutkunu",
-      creator: "🏗️ Kurucu ve Üretici",
-      relaxed: "🌿 Sakin Oyun Arayıcısı",
-      horror: "👻 Gerilim Avcısı",
-      speed: "🏎️ Hız Tutkunu",
+      story: t.profiles.story,
+      explorer: t.profiles.explorer,
+      challenger: t.profiles.challenger,
+      strategist: t.profiles.strategist,
+      competitor: t.profiles.competitor,
+      social: t.profiles.social,
+      collector: t.profiles.collector,
+      creator: t.profiles.creator,
+      relaxed: t.profiles.relaxed,
+      horror: t.profiles.horror,
+      speed: t.profiles.speed,
     };
 
     const topProfiles = Object.entries(profileScores)
@@ -670,9 +670,9 @@ export default function HomeScreen() {
     return topProfiles.length > 0
       ? topProfiles
       : [
-          "🎮 Çok Yönlü Oyuncu",
-          "✨ Yeni Deneyimlere Açık",
-          "🚀 Oyun Kaşifi",
+          t.profiles.versatile,
+          t.profiles.openToNewExperiences,
+          t.profiles.gameExplorer,
         ];
   }
 
@@ -756,12 +756,9 @@ export default function HomeScreen() {
         resizeMode="cover"
         style={styles.container}
       >
-        <Text style={styles.title}>Bugün Ne Oynasam?</Text>
+        <Text style={styles.title}>{t.appTitle}</Text>
 
-        <Text style={styles.subtitle}>
-          Oyun zevkine göre birkaç soruya cevap ver, sana en uygun oyunları
-          önerelim.
-        </Text>
+        <Text style={styles.subtitle}>{t.appSubtitle}</Text>
 
         <Text style={styles.infoText}>
           30 soru • 3 dakika • 10 oyun önerisi
@@ -771,18 +768,14 @@ export default function HomeScreen() {
           style={styles.button}
           onPress={() => setStarted(true)}
         >
-          <Text style={styles.buttonText}>
-            {language === "tr" ? "Teste Başla" : "Start Quiz"}
-          </Text>
+          <Text style={styles.buttonText}>{t.start}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.changeLanguageButton}
           onPress={() => setLanguage(null)}
         >
-          <Text style={styles.changeLanguageText}>
-            {language === "tr" ? "Dili Değiştir" : "Change Language"}
-          </Text>
+          <Text style={styles.changeLanguageText}>{t.changeLanguage}</Text>
         </TouchableOpacity>
       </ImageBackground>
     );
@@ -800,12 +793,10 @@ export default function HomeScreen() {
     style={styles.resultBackground}
   >
       <ScrollView contentContainerStyle={styles.resultContainer}>
-  <Text style={styles.title}>Sonuç Hazır!</Text>
+  <Text style={styles.title}>{t.resultReady}</Text>
 
   <View style={styles.profileCard}>
-    <Text style={styles.profileTitle}>
-      OYUNCU PROFİLİN
-    </Text>
+    <Text style={styles.profileTitle}>{t.playerProfile}</Text>
 
     {playerProfile.map((item) => (
       <Text key={item} style={styles.profileText}>
@@ -814,24 +805,19 @@ export default function HomeScreen() {
     ))}
   </View>
 
-  <Text style={styles.resultSubtitle}>
-    Sana Önerilen Oyunlar
-  </Text>
+  <Text style={styles.resultSubtitle}>{t.resultTitle}</Text>
 
         {selectedPlatform && selectedPlatform !== "Fark etmez" && (
           <Text style={styles.platformFilterText}>
-            Platform filtresi: {selectedPlatform}
+            {t.platformFilter}: {selectedPlatform}
           </Text>
         )}
 
         {recommendedGames.length === 0 && (
           <View style={styles.emptyBox}>
-            <Text style={styles.emptyTitle}>Uygun oyun bulunamadı</Text>
+            <Text style={styles.emptyTitle}>{t.noResult}</Text>
 
-            <Text style={styles.emptyText}>
-              Seçtiğin platform ve cevaplara tam uyan oyun bulamadık. Oyun
-              havuzuna daha fazla oyun ekledikçe bu sonuçlar güçlenecek.
-            </Text>
+            <Text style={styles.emptyText}>{t.noResultDescription}</Text>
           </View>
         )}
 
@@ -859,7 +845,7 @@ export default function HomeScreen() {
                 </View>
               </View>
 
-              <Text style={styles.matchText}>Oyun zevkine uyumlu</Text>
+              <Text style={styles.matchText}>{t.compatibility}</Text>
 
               <View style={styles.tagContainer}>
                 {game.genres.slice(0, 2).map((genre) => (
@@ -882,12 +868,12 @@ export default function HomeScreen() {
               </Text>
 
               <Text style={styles.gameStory}>
-                {game.story || "Bu oyun cevaplarına göre önerildi."}
+                {game.story || t.defaultGameStory}
               </Text>
 
               {visibleReasons.length > 0 && (
                 <View style={styles.reasonBox}>
-                  <Text style={styles.reasonTitle}>Neden önerildi?</Text>
+                  <Text style={styles.reasonTitle}>{t.recommendationReason}</Text>
 
                   {visibleReasons.map((reason) => (
                     <Text key={reason} style={styles.reasonText}>
@@ -903,7 +889,7 @@ export default function HomeScreen() {
         })}
 
         <TouchableOpacity style={styles.button} onPress={restartApp}>
-          <Text style={styles.buttonText}>Tekrar Başla</Text>
+          <Text style={styles.buttonText}>{t.restart}</Text>
         </TouchableOpacity>
       </ScrollView>
     </ImageBackground>
@@ -917,8 +903,7 @@ export default function HomeScreen() {
       style={styles.container}
     >
       <Text style={styles.counter}>
-        {language === "tr" ? "Soru" : "Question"} {questionIndex + 1} /{" "}
-        {activeQuestions.length}
+        {t.question} {questionIndex + 1} / {activeQuestions.length}
       </Text>
 
       <Text style={styles.question}>{currentQuestion.question}</Text>
@@ -935,7 +920,7 @@ export default function HomeScreen() {
 
       <TouchableOpacity style={styles.backButton} onPress={goBack}>
         <Text style={styles.backButtonText}>
-          {questionIndex === 0 ? "Ana ekrana dön" : "Önceki soru"}
+          {questionIndex === 0 ? t.backHome : t.previousQuestion}
         </Text>
       </TouchableOpacity>
     </ImageBackground>
