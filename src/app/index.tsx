@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+  Animated,
   Image,
   ImageBackground,
   ScrollView,
@@ -8,24 +9,36 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { gamesByLanguage, questionsByLanguage, translations } from "../data";
-import type { Game } from "../data/game";
-import type { QuestionOption } from "../data/questions";
+import {
+  gamesByLanguage,
+  questionDataByLanguage,
+  translations,
+} from "../data";
+import type { Category, Game } from "../data/game";
+import type {
+  HardFilterField,
+  Question,
+  QuestionOption,
+  ScoreField,
+} from "../data/questions";
 
 type Language = "tr" | "en";
 
 type Answer = {
-  questionIndex: number;
+  questionId: string;
   label: string;
   value: string;
+  kind: "hardFilter" | "preference";
+  filterField?: HardFilterField;
+  scoreField?: ScoreField;
+  weight?: number;
+  matchValues?: string[];
 };
 
 type ScoredGame = Game & {
   score: number;
   reasons: string[];
 };
-
-const MAX_SCORE = 122;
 
 export default function HomeScreen() {
   const [showSplash, setShowSplash] = useState(true);
@@ -34,473 +47,284 @@ export default function HomeScreen() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [finished, setFinished] = useState(false);
-  const t = language
-    ? translations[language]
-    : translations.tr;
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<Language | null>(null);
 
-  const activeQuestions = language
-    ? questionsByLanguage[language]
-    : questionsByLanguage.tr;
+  const questionTranslateX = useRef(new Animated.Value(0)).current;
+
+  const t = language ? translations[language] : translations.tr;
 
   const activeGames = language
     ? gamesByLanguage[language]
     : gamesByLanguage.tr;
 
+  const questionData = language
+    ? questionDataByLanguage[language]
+    : questionDataByLanguage.tr;
+
+  const selectedCategory = answers.find(
+    (answer) => answer.questionId === "category"
+  )?.value as Category | undefined;
+
+  const activeQuestions: Question[] = selectedCategory
+    ? [
+        ...questionData.hardFilters,
+        ...questionData.categoryBooks[selectedCategory],
+        ...questionData.commonPreferences,
+      ]
+    : [...questionData.hardFilters];
+
   const currentQuestion = activeQuestions[questionIndex];
-  useEffect(() => {
-  const timer = setTimeout(() => {
-    setShowSplash(false);
-  }, 2500);
 
-  return () => clearTimeout(timer);
-}, []);
+  const maxPreferenceScore = activeQuestions
+    .filter((question) => question.kind === "preference")
+    .reduce((total, question) => total + (question.weight ?? 1), 0);
 
-  function getSelectedPlatform() {
-    const platformAnswer = answers.find((item) => item.questionIndex === 0);
-    return platformAnswer?.value;
+  function translateGameTag(value: string) {
+    const gameTags =
+      ("gameTags" in t ? t.gameTags : {}) as Record<string, string>;
+
+    return gameTags[value] ?? value;
   }
 
-  function isPlatformCompatible(game: Game) {
-    const selectedPlatform = getSelectedPlatform();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 2500);
 
-    if (!selectedPlatform || selectedPlatform === "Fark etmez") {
-      return true;
+    return () => clearTimeout(timer);
+  }, []);
+
+  function getAnswerValue(questionId: string) {
+    return answers.find((answer) => answer.questionId === questionId)?.value;
+  }
+
+  function getSelectedPlatform() {
+    return getAnswerValue("platform");
+  }
+
+  function getSelectedCategory() {
+    return getAnswerValue("category");
+  }
+
+  function getSelectedPlayMode() {
+    return getAnswerValue("playMode");
+  }
+
+  function passesHardFilters(game: Game) {
+    const platform = getSelectedPlatform();
+    const category = getSelectedCategory();
+    const playMode = getSelectedPlayMode();
+
+    if (platform && !game.platforms.includes(platform as any)) {
+      return false;
     }
 
-    return game.platforms.includes(selectedPlatform);
+    if (category && !game.categories.includes(category as Category)) {
+      return false;
+    }
+
+    if (
+      playMode &&
+      playMode !== "Fark etmez" &&
+      !game.playModes.includes(playMode as any)
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function getReasonForMatch(scoreField: ScoreField, value: string) {
+    switch (scoreField) {
+      case "storyImportance":
+        return t.reasons.story;
+      case "tempo":
+        return t.reasons.tempo;
+      case "worldType":
+        return t.reasons.worldType;
+      case "difficulty":
+        return t.reasons.difficulty;
+      case "graphics":
+        return t.reasons.graphics;
+      case "characterProgression":
+        return t.reasons.progression;
+      case "length":
+        return t.reasons.length;
+      case "challengeStyle":
+        return t.reasons.challenge;
+      case "atmosphere":
+        return t.reasons.atmosphere;
+      case "features":
+        return t.reasons.preference(translateGameTag(value));
+      default:
+        return t.reasons.preference(translateGameTag(value));
+    }
   }
 
   function getRecommendation() {
     const scoredGames: ScoredGame[] = activeGames
-      .filter((game) => isPlatformCompatible(game))
+      .filter((game) => passesHardFilters(game))
       .map((game) => {
         let score = 0;
         const reasons: string[] = [];
 
-        answers.forEach((item) => {
-          const q = item.questionIndex;
-          const a = item.value;
+        answers
+          .filter((answer) => answer.kind === "preference" && answer.scoreField)
+          .forEach((answer) => {
+            const scoreField = answer.scoreField!;
+            const gameValues = game[scoreField] as string[];
+            const wantedValues =
+              answer.matchValues && answer.matchValues.length > 0
+                ? answer.matchValues
+                : [answer.value];
 
-          if (q === 0 && game.platforms.includes(a)) {
-            score += 5;
-            reasons.push(t.reasons.platform(a));
-          }
-
-          if (q === 1 && game.genres.includes(a)) {
-            score += 6;
-            reasons.push(t.reasons.genre(a));
-          }
-
-          if (q === 2 && game.storyImportance.includes(a)) {
-            score += 4;
-            reasons.push(t.reasons.story);
-          }
-
-          if (q === 3 && game.tempo.includes(a)) {
-            score += 4;
-            reasons.push(t.reasons.tempo);
-          }
-
-          if (q === 4 && game.playStyle.includes(a)) {
-            score += 4;
-            reasons.push(t.reasons.playStyle);
-          }
-
-          if (q === 4 && a === "Fark etmez") {
-            score += 2;
-          }
-
-          if (q === 5 && game.worldType.includes(a)) {
-            score += 4;
-            reasons.push(t.reasons.worldType);
-          }
-
-          if (q === 6 && game.difficulty.includes(a)) {
-            score += 3;
-            reasons.push(t.reasons.difficulty);
-          }
-
-          if (q === 7 && game.graphics.includes(a)) {
-            score += 3;
-            reasons.push(t.reasons.graphics);
-          }
-
-          if (q === 8 && game.characterProgression.includes(a)) {
-            score += 4;
-            reasons.push(t.reasons.progression);
-          }
-
-          if (q === 9 && game.length.includes(a)) {
-            score += 3;
-            reasons.push(t.reasons.length);
-          }
-
-          if (q === 10 && game.vehicleInterest.includes(a)) {
-            score += 5;
-            reasons.push(t.reasons.vehicle);
-          }
-
-          if (q === 11 && game.horrorInterest.includes(a)) {
-            score += 5;
-            reasons.push(t.reasons.horror);
-          }
-
-          if (q === 12 && game.strategyInterest.includes(a)) {
-            score += 5;
-            reasons.push(t.reasons.strategy);
-          }
-
-          if (q === 13 && game.challengeStyle.includes(a)) {
-            score += 3;
-            reasons.push(t.reasons.challenge);
-          }
-
-          if (q === 14 && game.atmosphere.includes(a)) {
-            score += 4;
-            reasons.push(t.reasons.atmosphere);
-          }
-
-          if (q === 15) {
-            const matches =
-              (a === "Stres atmak" &&
-                (game.tempo.includes("Rahatlatıcı") ||
-                  game.challengeStyle.includes("Rahatlatmalı"))) ||
-              (a === "Meydan okuma" &&
-                (game.difficulty.includes("Zor") ||
-                  game.difficulty.includes("Çok zor") ||
-                  game.challengeStyle.includes("Zorlamalı"))) ||
-              (a === "Hikâye yaşamak" &&
-                game.storyImportance.includes("Çok önemli")) ||
-              (a === "Sosyalleşmek" &&
-                (game.playStyle.includes("Arkadaşlarla") ||
-                  game.playStyle.includes("Online rekabetçi")));
+            const matches = wantedValues.some((value) =>
+              gameValues.includes(value)
+            );
 
             if (matches) {
-              score += 4;
-              reasons.push(t.reasons.purpose);
+              score += answer.weight ?? 1;
+              reasons.push(getReasonForMatch(scoreField, answer.value));
             }
-          }
+          });
 
-          if (q === 16) {
-            const matches =
-              (a === "30 dakika" &&
-                (game.length.includes("Kısa") ||
-                  game.length.includes("Sonsuz oynanabilir"))) ||
-              (a === "1-2 saat" &&
-                (game.length.includes("Kısa") ||
-                  game.length.includes("Orta uzunlukta") ||
-                  game.length.includes("Sonsuz oynanabilir"))) ||
-              (a === "Tüm akşam" &&
-                (game.length.includes("Orta uzunlukta") ||
-                  game.length.includes("Çok uzun"))) ||
-              (a === "Zaman sınırsız" &&
-                (game.length.includes("Çok uzun") ||
-                  game.length.includes("Sonsuz oynanabilir")));
+        const category = getSelectedCategory();
+        const playMode = getSelectedPlayMode();
 
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.sessionTime);
-            }
-          }
+        if (category) {
+          reasons.push(t.reasons.category(translateGameTag(category)));
+        }
 
-          if (q === 17) {
-            const matches =
-              (a === "Çabuk vazgeçerim" &&
-                (game.difficulty.includes("Kolay") ||
-                  game.challengeStyle.includes("Rahatlatmalı"))) ||
-              (a === "Birkaç kez denerim" &&
-                (game.difficulty.includes("Orta") ||
-                  game.challengeStyle.includes("İkisi dengeli olmalı"))) ||
-              (a === "Öğrenerek ilerlerim" &&
-                (game.difficulty.includes("Zor") ||
-                  game.strategyInterest.includes("Biraz"))) ||
-              (a === "Asla vazgeçmem" &&
-                (game.difficulty.includes("Çok zor") ||
-                  game.challengeStyle.includes("Zorlamalı")));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.persistence);
-            }
-          }
-
-          if (q === 18) {
-            const matches =
-              (a === "Kaybolmayı severim" &&
-                (game.worldType.includes("Açık dünya") ||
-                  game.worldType.includes("Sandbox"))) ||
-              (a === "Dengeli keşif" &&
-                (game.worldType.includes("Açık dünya") ||
-                  game.worldType.includes("Bölüm bölüm ilerleyen"))) ||
-              (a === "Yönlendirme isterim" &&
-                (game.worldType.includes("Bölüm bölüm ilerleyen") ||
-                  game.worldType.includes("Lineer hikaye"))) ||
-              (a === "Çizgisel ilerleme" &&
-                game.worldType.includes("Lineer hikaye"));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.exploration);
-            }
-          }
-
-          if (q === 19) {
-            const matches =
-              (a === "Loot vazgeçilmez" &&
-                (game.characterProgression.includes("Evet çok isterim") ||
-                  game.genres.includes("RPG"))) ||
-              (a === "Loot dengeli" &&
-                game.characterProgression.includes("Biraz olsun")) ||
-              (a === "Az loot" &&
-                (game.characterProgression.includes("Biraz olsun") ||
-                  game.characterProgression.includes("Gerek yok"))) ||
-              (a === "Loot istemem" &&
-                game.characterProgression.includes("Gerek yok"));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.loot);
-            }
-          }
-
-          if (q === 20) {
-            const matches =
-              (a === "Detaylı karakter" &&
-                (game.genres.includes("RPG") ||
-                  game.worldType.includes("Sandbox"))) ||
-              (a === "Temel karakter" &&
-                game.characterProgression.includes("Biraz olsun")) ||
-              (a === "Hazır karakter" &&
-                (game.storyImportance.includes("Çok önemli") ||
-                  game.worldType.includes("Lineer hikaye")));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.character);
-            }
-          }
-
-          if (q === 21) {
-            const matches =
-              (a === "Kararlar çok önemli" &&
-                game.genres.includes("RPG") &&
-                game.storyImportance.includes("Çok önemli")) ||
-              (a === "Kararlar biraz önemli" &&
-                (game.storyImportance.includes("Biraz önemli") ||
-                  game.genres.includes("RPG"))) ||
-              (a === "Sabit hikâye" &&
-                game.worldType.includes("Lineer hikaye"));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.storyChoices);
-            }
-          }
-
-          if (q === 22) {
-            const matches =
-              (a === "Boss severim" &&
-                (game.difficulty.includes("Zor") ||
-                  game.difficulty.includes("Çok zor")) &&
-                (game.genres.includes("Aksiyon") ||
-                  game.genres.includes("RPG"))) ||
-              (a === "Boss dengeli" &&
-                game.challengeStyle.includes("İkisi dengeli olmalı")) ||
-              (a === "Boss az olsun" &&
-                (game.difficulty.includes("Kolay") ||
-                  game.difficulty.includes("Orta"))) ||
-              (a === "Boss istemem" &&
-                (game.challengeStyle.includes("Rahatlatmalı") ||
-                  game.genres.includes("Simülasyon")));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.bosses);
-            }
-          }
-
-          if (q === 23) {
-            const matches =
-              (a === "Keşif öncelikli" &&
-                (game.worldType.includes("Açık dünya") ||
-                  game.worldType.includes("Sandbox"))) ||
-              (a === "Keşif görev dengeli" &&
-                (game.worldType.includes("Açık dünya") ||
-                  game.worldType.includes("Bölüm bölüm ilerleyen"))) ||
-              (a === "Görev öncelikli" &&
-                (game.worldType.includes("Bölüm bölüm ilerleyen") ||
-                  game.worldType.includes("Lineer hikaye"))) ||
-              (a === "Rota odaklı" &&
-                game.worldType.includes("Lineer hikaye"));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.questStyle);
-            }
-          }
-
-          if (q === 24) {
-            const matches =
-              (a === "Diyalog severim" &&
-                game.storyImportance.includes("Çok önemli")) ||
-              (a === "Diyalog dengeli" &&
-                game.storyImportance.includes("Biraz önemli")) ||
-              (a === "Az diyalog" &&
-                (game.storyImportance.includes("Önemli değil") ||
-                  game.tempo.includes("Hızlı ve aksiyonlu"))) ||
-              (a === "Diyalog istemem" &&
-                game.storyImportance.includes("Önemli değil"));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.dialogue);
-            }
-          }
-
-          if (q === 25) {
-            const matches =
-              (a === "Bulmaca severim" &&
-                (game.genres.includes("Bulmaca") ||
-                  game.genres.includes("Strateji"))) ||
-              (a === "Bulmaca dengeli" &&
-                (game.strategyInterest.includes("Biraz") ||
-                  game.genres.includes("RPG"))) ||
-              (a === "Kolay bulmaca" &&
-                (game.difficulty.includes("Kolay") ||
-                  game.strategyInterest.includes("Biraz"))) ||
-              (a === "Bulmaca istemem" &&
-                (game.strategyInterest.includes("Hayır") ||
-                  game.tempo.includes("Hızlı ve aksiyonlu")));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.puzzle);
-            }
-          }
-
-          if (q === 26) {
-            const matches =
-              (a === "Kurmayı severim" &&
-                (game.worldType.includes("Sandbox") ||
-                  game.genres.includes("Simülasyon") ||
-                  game.genres.includes("Strateji"))) ||
-              (a === "Kurma dengeli" &&
-                (game.characterProgression.includes("Biraz olsun") ||
-                  game.worldType.includes("Açık dünya"))) ||
-              (a === "Kurma az olsun" &&
-                (game.worldType.includes("Bölüm bölüm ilerleyen") ||
-                  game.worldType.includes("Lineer hikaye"))) ||
-              (a === "Kurma istemem" &&
-                game.worldType.includes("Lineer hikaye"));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.building);
-            }
-          }
-
-          if (q === 27) {
-            const matches =
-              (a === "Yoğun rekabet" &&
-                game.playStyle.includes("Online rekabetçi")) ||
-              (a === "Hafif rekabet" &&
-                (game.playStyle.includes("Online rekabetçi") ||
-                  game.playStyle.includes("Arkadaşlarla"))) ||
-              (a === "İş birliği" &&
-                game.playStyle.includes("Arkadaşlarla")) ||
-              (a === "Rekabet istemem" &&
-                game.playStyle.includes("Tek kişilik"));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.competition);
-            }
-          }
-
-          if (q === 28) {
-            const matches =
-              (a === "Enerjim yüksek" &&
-                game.tempo.includes("Hızlı ve aksiyonlu")) ||
-              (a === "Enerjim dengeli" &&
-                (game.tempo.includes("Hızlı ve aksiyonlu") ||
-                  game.tempo.includes("Yavaş ve taktiksel"))) ||
-              (a === "Enerjim düşük" &&
-                game.tempo.includes("Rahatlatıcı")) ||
-              (a === "Zihnim açık" &&
-                (game.tempo.includes("Yavaş ve taktiksel") ||
-                  game.strategyInterest.includes("Evet")));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.energy);
-            }
-          }
-
-          if (q === 29) {
-            const matches =
-              (a === "Kafa dağıttım" &&
-                (game.tempo.includes("Rahatlatıcı") ||
-                  game.challengeStyle.includes("Rahatlatmalı"))) ||
-              (a === "Hikâyeye kapıldım" &&
-                game.storyImportance.includes("Çok önemli")) ||
-              (a === "Mücadeleyi aştım" &&
-                game.challengeStyle.includes("Zorlamalı")) ||
-              (a === "Bir tur daha" &&
-                game.length.includes("Sonsuz oynanabilir"));
-
-            if (matches) {
-              score += 4;
-              reasons.push(t.reasons.sessionFeeling);
-            }
-          }
-        });
+        if (playMode && playMode !== "Fark etmez") {
+          reasons.push(t.reasons.playMode(playMode));
+        }
 
         return {
           ...game,
           score,
-          reasons,
+          reasons: [...new Set(reasons)],
         };
       });
 
     return scoredGames
-      .filter((game) => game.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 10);
   }
 
   function getMatchPercent(score: number) {
-    return Math.min(100, Math.round((score / MAX_SCORE) * 100));
+    if (maxPreferenceScore <= 0) {
+      return 100;
+    }
+
+    return Math.min(
+      100,
+      Math.round((score / maxPreferenceScore) * 100)
+    );
+  }
+
+  function selectLanguage(languageCode: Language) {
+    if (selectedLanguage !== null) {
+      return;
+    }
+
+    setSelectedLanguage(languageCode);
+
+    setTimeout(() => {
+      setLanguage(languageCode);
+      setSelectedLanguage(null);
+    }, 450);
   }
 
   function answerQuestion(option: QuestionOption) {
-    setAnswers([
-      ...answers,
-      {
-        questionIndex,
-        label: option.label,
-        value: option.value,
-      },
-    ]);
-
-    if (questionIndex < activeQuestions.length - 1) {
-      setQuestionIndex(questionIndex + 1);
-    } else {
-      setFinished(true);
+    if (selectedOption !== null || !currentQuestion) {
+      return;
     }
+
+    setSelectedOption(option.value);
+
+    const newAnswer: Answer = {
+      questionId: currentQuestion.id,
+      label: option.label,
+      value: option.value,
+      kind: currentQuestion.kind,
+      filterField: currentQuestion.filterField,
+      scoreField: currentQuestion.scoreField,
+      weight: currentQuestion.weight,
+      matchValues: option.matchValues,
+    };
+
+    setTimeout(() => {
+      Animated.timing(questionTranslateX, {
+        toValue: -80,
+        duration: 170,
+        useNativeDriver: true,
+      }).start(() => {
+        const nextAnswers = [
+          ...answers.filter(
+            (answer) => answer.questionId !== currentQuestion.id
+          ),
+          newAnswer,
+        ];
+
+        setAnswers(nextAnswers);
+
+        const categoryAfterAnswer =
+          currentQuestion.id === "category"
+            ? (option.value as Category)
+            : (nextAnswers.find(
+                (answer) => answer.questionId === "category"
+              )?.value as Category | undefined);
+
+        const questionsAfterAnswer: Question[] = categoryAfterAnswer
+          ? [
+              ...questionData.hardFilters,
+              ...questionData.categoryBooks[categoryAfterAnswer],
+              ...questionData.commonPreferences,
+            ]
+          : [...questionData.hardFilters];
+
+        if (questionIndex < questionsAfterAnswer.length - 1) {
+          setQuestionIndex((previousIndex) => previousIndex + 1);
+          questionTranslateX.setValue(80);
+
+          Animated.timing(questionTranslateX, {
+            toValue: 0,
+            duration: 220,
+            useNativeDriver: true,
+          }).start(() => {
+            setSelectedOption(null);
+          });
+        } else {
+          setSelectedOption(null);
+          setFinished(true);
+          questionTranslateX.setValue(0);
+        }
+      });
+    }, 150);
   }
 
   function goBack() {
+    if (selectedOption !== null) {
+      return;
+    }
+
     if (questionIndex === 0) {
       setStarted(false);
       setAnswers([]);
       return;
     }
 
-    setAnswers((prevAnswers) =>
-      prevAnswers.filter((item) => item.questionIndex !== questionIndex - 1)
+    const previousQuestion = activeQuestions[questionIndex - 1];
+
+    setAnswers((previousAnswers) =>
+      previousAnswers.filter(
+        (answer) => answer.questionId !== previousQuestion?.id
+      )
     );
 
-    setQuestionIndex((prevIndex) => prevIndex - 1);
+    setQuestionIndex((previousIndex) => previousIndex - 1);
   }
 
   function restartApp() {
@@ -508,7 +332,10 @@ export default function HomeScreen() {
     setQuestionIndex(0);
     setAnswers([]);
     setFinished(false);
+    setSelectedOption(null);
+    questionTranslateX.setValue(0);
   }
+
   function getPlayerProfile() {
     const values = answers.map((answer) => answer.value);
 
@@ -526,10 +353,7 @@ export default function HomeScreen() {
       speed: 0,
     };
 
-    const addProfilePoint = (
-      profile: keyof typeof profileScores,
-      amount = 1
-    ) => {
+    const add = (profile: keyof typeof profileScores, amount = 1) => {
       profileScores[profile] += amount;
     };
 
@@ -538,25 +362,26 @@ export default function HomeScreen() {
         [
           "RPG",
           "Çok önemli",
-          "Hikâye yaşamak",
-          "Kararlar çok önemli",
-          "Diyalog severim",
-          "Hikâyeye kapıldım",
+          "Seçim odaklı hikâye",
+          "Yoğun hikâye",
+          "Yoğun diyalog",
+          "Hikâye kampanyası",
+          "Hikâye odaklı",
         ].includes(value)
       ) {
-        addProfilePoint("story", 2);
+        add("story", 2);
       }
 
       if (
         [
           "Açık dünya",
+          "Sandbox / Yaratıcılık",
           "Sandbox",
-          "Kaybolmayı severim",
-          "Keşif öncelikli",
-          "Keşif görev dengeli",
+          "Keşif",
+          "Açık dünya sürüş",
         ].includes(value)
       ) {
-        addProfilePoint("explorer", 2);
+        add("explorer", 2);
       }
 
       if (
@@ -564,87 +389,107 @@ export default function HomeScreen() {
           "Zor",
           "Çok zor",
           "Zorlamalı",
-          "Meydan okuma",
-          "Öğrenerek ilerlerim",
-          "Asla vazgeçmem",
-          "Boss severim",
-          "Mücadeleyi aştım",
+          "Yüksek risk",
+          "Boss savaşları",
+          "Ranked",
         ].includes(value)
       ) {
-        addProfilePoint("challenger", 2);
+        add("challenger", 2);
       }
 
       if (
         [
           "Strateji",
-          "Yavaş ve taktiksel",
-          "Evet",
-          "Zihnim açık",
-          "Bulmaca severim",
-          "Kurmayı severim",
+          "Taktiksel çatışma",
+          "Taktiksel savaş",
+          "Grand strategy",
+          "Diplomasi",
+          "Taktik",
         ].includes(value)
       ) {
-        addProfilePoint("strategist", 2);
+        add("strategist", 2);
       }
 
       if (
         [
-          "FPS",
+          "FPS / Nişancı",
           "Online rekabetçi",
-          "Yoğun rekabet",
-          "Hafif rekabet",
+          "PvP",
+          "Ranked",
+          "MOBA",
         ].includes(value)
       ) {
-        addProfilePoint("competitor", 2);
-      }
-
-      if (
-        ["Arkadaşlarla", "Sosyalleşmek", "İş birliği"].includes(value)
-      ) {
-        addProfilePoint("social", 2);
+        add("competitor", 2);
       }
 
       if (
         [
-          "Evet çok isterim",
-          "Loot vazgeçilmez",
-          "Loot dengeli",
-          "Detaylı karakter",
+          "Arkadaşlarla",
+          "Takım koordinasyonu",
+          "PvE co-op",
+          "Co-op bulmaca",
+          "Parti / Sosyal",
         ].includes(value)
       ) {
-        addProfilePoint("collector", 2);
+        add("social", 2);
       }
 
       if (
-        ["Sandbox", "Kurmayı severim", "Kurma dengeli"].includes(value)
+        [
+          "Loot",
+          "Karakter oluşturma",
+          "Evet çok isterim",
+          "Araç koleksiyonu",
+        ].includes(value)
       ) {
-        addProfilePoint("creator", 2);
+        add("collector", 2);
+      }
+
+      if (
+        [
+          "Yönetim / Kurma",
+          "Sandbox / Yaratıcılık",
+          "Şehir kurma",
+          "Base building",
+          "Yaratıcılık / özgürlük",
+        ].includes(value)
+      ) {
+        add("creator", 2);
       }
 
       if (
         [
           "Rahatlatıcı",
           "Rahatlatmalı",
-          "Stres atmak",
-          "Enerjim düşük",
-          "Kafa dağıttım",
+          "Rahat sürüş",
+          "Rahatlatıcı görevler",
         ].includes(value)
       ) {
-        addProfilePoint("relaxed", 2);
+        add("relaxed", 2);
       }
 
       if (
-        ["Korku", "Çok severim", "Gerilimli", "Karanlık"].includes(value)
+        [
+          "Korku",
+          "Psikolojik korku",
+          "Survival horror",
+          "Gerilim",
+          "Kaçış / saklanma",
+        ].includes(value)
       ) {
-        addProfilePoint("horror", 2);
+        add("horror", 2);
       }
 
       if (
-        ["Yarış", "Evet", "Hızlı ve aksiyonlu", "Enerjim yüksek"].includes(
-          value
-        )
+        [
+          "Yarış",
+          "Arcade sürüş",
+          "Drift",
+          "Online yarış",
+          "Hızlı ve aksiyonlu",
+        ].includes(value)
       ) {
-        addProfilePoint("speed", 2);
+        add("speed", 2);
       }
     });
 
@@ -663,6 +508,7 @@ export default function HomeScreen() {
     };
 
     const topProfiles = Object.entries(profileScores)
+      .filter(([, score]) => score > 0)
       .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
       .slice(0, 3)
       .map(([profile]) => profileLabels[profile]);
@@ -675,6 +521,8 @@ export default function HomeScreen() {
           t.profiles.gameExplorer,
         ];
   }
+
+  const isCategoryQuestion = currentQuestion?.id === "category";
 
   if (showSplash) {
     return (
@@ -717,33 +565,49 @@ export default function HomeScreen() {
 
           <View style={styles.languageButtonContainer}>
             <TouchableOpacity
-              style={styles.languageButton}
-              activeOpacity={0.82}
-              onPress={() => setLanguage("tr")}
-            >
-              <View style={styles.flagPlaceholder}>
-                <Text style={styles.flagPlaceholderText}>TR</Text>
-              </View>
+  style={[
+    styles.languageButton,
+    selectedLanguage === "tr" && styles.selectedLanguageButton,
+  ]}
+  activeOpacity={0.9}
+  disabled={selectedLanguage !== null}
+  onPress={() => selectLanguage("tr")}
+>
+  <Image
+    source={require("../../assets/images/flag-tr.png")}
+    style={styles.flagImage}
+  />
 
-              <Text style={styles.languageButtonText}>Türkçe</Text>
-            </TouchableOpacity>
+  <Text style={styles.languageButtonText}>Türkçe</Text>
+
+  {selectedLanguage === "tr" && (
+    <Text style={styles.selectedLanguageCheck}>✓</Text>
+  )}
+</TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.languageButton}
-              activeOpacity={0.82}
-              onPress={() => setLanguage("en")}
-            >
-              <View style={styles.flagPlaceholder}>
-                <Text style={styles.flagPlaceholderText}>EN</Text>
-              </View>
+  style={[
+    styles.languageButton,
+    selectedLanguage === "en" && styles.selectedLanguageButton,
+  ]}
+  activeOpacity={0.9}
+  disabled={selectedLanguage !== null}
+  onPress={() => selectLanguage("en")}
+>
+  <Image
+    source={require("../../assets/images/flag-en.png")}
+    style={styles.flagImage}
+  />
 
-              <Text style={styles.languageButtonText}>English</Text>
-            </TouchableOpacity>
+  <Text style={styles.languageButtonText}>English</Text>
+
+  {selectedLanguage === "en" && (
+    <Text style={styles.selectedLanguageCheck}>✓</Text>
+  )}
+</TouchableOpacity>
           </View>
 
-          <Text style={styles.languageHint}>
-            Bayrak görselleri bu alanlara eklenecek.
-          </Text>
+          
         </View>
       </ImageBackground>
     );
@@ -760,9 +624,7 @@ export default function HomeScreen() {
 
         <Text style={styles.subtitle}>{t.appSubtitle}</Text>
 
-        <Text style={styles.infoText}>
-          30 soru • 3 dakika • 10 oyun önerisi
-        </Text>
+        <Text style={styles.infoText}>{t.quizInfo}</Text>
 
         <TouchableOpacity
           style={styles.button}
@@ -784,6 +646,8 @@ export default function HomeScreen() {
   if (finished) {
     const recommendedGames = getRecommendation();
     const selectedPlatform = getSelectedPlatform();
+    const selectedCategory = getSelectedCategory();
+    const selectedPlayMode = getSelectedPlayMode();
     const playerProfile = getPlayerProfile();
 
     return (
@@ -807,11 +671,25 @@ export default function HomeScreen() {
 
   <Text style={styles.resultSubtitle}>{t.resultTitle}</Text>
 
-        {selectedPlatform && selectedPlatform !== "Fark etmez" && (
-          <Text style={styles.platformFilterText}>
-            {t.platformFilter}: {selectedPlatform}
-          </Text>
-        )}
+        <View style={styles.filterSummary}>
+          {selectedPlatform && (
+            <Text style={styles.platformFilterText}>
+              {t.platformFilter}: {selectedPlatform}
+            </Text>
+          )}
+
+          {selectedCategory && (
+            <Text style={styles.platformFilterText}>
+              {t.categoryFilter}: {translateGameTag(selectedCategory)}
+            </Text>
+          )}
+
+          {selectedPlayMode && (
+            <Text style={styles.platformFilterText}>
+              {t.playModeFilter}: {selectedPlayMode}
+            </Text>
+          )}
+        </View>
 
         {recommendedGames.length === 0 && (
           <View style={styles.emptyBox}>
@@ -848,18 +726,22 @@ export default function HomeScreen() {
               <Text style={styles.matchText}>{t.compatibility}</Text>
 
               <View style={styles.tagContainer}>
-                {game.genres.slice(0, 2).map((genre) => (
-                  <Text key={genre} style={styles.tag}>
-                    {genre}
+                {game.categories.slice(0, 2).map((category) => (
+                  <Text key={category} style={styles.tag}>
+                    {translateGameTag(category)}
                   </Text>
                 ))}
 
                 {game.worldType?.[0] && (
-                  <Text style={styles.tag}>{game.worldType[0]}</Text>
+                  <Text style={styles.tag}>
+                    {translateGameTag(game.worldType[0])}
+                  </Text>
                 )}
 
                 {game.atmosphere?.[0] && (
-                  <Text style={styles.tag}>{game.atmosphere[0]}</Text>
+                  <Text style={styles.tag}>
+                    {translateGameTag(game.atmosphere[0])}
+                  </Text>
                 )}
               </View>
 
@@ -902,27 +784,77 @@ export default function HomeScreen() {
       resizeMode="cover"
       style={styles.container}
     >
-      <Text style={styles.counter}>
-        {t.question} {questionIndex + 1} / {activeQuestions.length}
-      </Text>
-
-      <Text style={styles.question}>{currentQuestion.question}</Text>
-
-      {currentQuestion.options.map((option) => (
-        <TouchableOpacity
-          key={option.label}
-          style={styles.optionButton}
-          onPress={() => answerQuestion(option)}
+      <ScrollView
+        style={styles.questionScroll}
+        contentContainerStyle={[
+          styles.questionScrollContent,
+          isCategoryQuestion && styles.categoryQuestionScrollContent,
+        ]}
+        showsVerticalScrollIndicator={isCategoryQuestion}
+      >
+        <Animated.View
+          style={[
+            styles.questionSlideContainer,
+            isCategoryQuestion && styles.categoryQuestionSlideContainer,
+            {
+              transform: [{ translateX: questionTranslateX }],
+            },
+          ]}
         >
-          <Text style={styles.optionText}>{option.label}</Text>
-        </TouchableOpacity>
-      ))}
+          <Text style={styles.counter}>
+            {t.question} {questionIndex + 1} / {activeQuestions.length}
+          </Text>
 
-      <TouchableOpacity style={styles.backButton} onPress={goBack}>
-        <Text style={styles.backButtonText}>
-          {questionIndex === 0 ? t.backHome : t.previousQuestion}
-        </Text>
-      </TouchableOpacity>
+          <Text style={styles.question}>{currentQuestion?.question}</Text>
+
+          <View
+            style={[
+              styles.optionsContainer,
+              isCategoryQuestion && styles.categoryOptionsGrid,
+            ]}
+          >
+            {currentQuestion?.options.map((option) => {
+              const isSelected = selectedOption === option.value;
+
+              return (
+                <TouchableOpacity
+                  key={option.label}
+                  style={[
+                    styles.optionButton,
+                    isCategoryQuestion && styles.categoryOptionButton,
+                    isSelected && styles.selectedOptionButton,
+                  ]}
+                  onPress={() => answerQuestion(option)}
+                  activeOpacity={0.9}
+                  disabled={selectedOption !== null}
+                >
+                  <Text
+                    style={[
+                      styles.optionText,
+                      isCategoryQuestion && styles.categoryOptionText,
+                      isSelected && styles.selectedOptionText,
+                    ]}
+                  >
+                    {option.label}
+                  </Text>
+
+                  {isSelected && <Text style={styles.optionCheck}>✓</Text>}
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={goBack}
+            disabled={selectedOption !== null}
+          >
+            <Text style={styles.backButtonText}>
+              {questionIndex === 0 ? t.backHome : t.previousQuestion}
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
+      </ScrollView>
     </ImageBackground>
   );
 
@@ -937,6 +869,29 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     backgroundColor: "rgba(3, 8, 20, 0.52)",
   },
+  selectedLanguageButton: {
+  borderColor: "#22C55E",
+  borderWidth: 2,
+  backgroundColor: "rgba(34, 197, 94, 0.18)",
+  shadowColor: "#22C55E",
+  shadowOpacity: 1,
+  shadowRadius: 22,
+  shadowOffset: {
+    width: 0,
+    height: 0,
+  },
+  elevation: 16,
+  transform: [{ scale: 1.02 }],
+},
+
+selectedLanguageCheck: {
+  color: "#4ADE80",
+  fontSize: 24,
+  fontWeight: "bold",
+  marginLeft: "auto",
+  textShadowColor: "#22C55E",
+  textShadowRadius: 10,
+},
 
   languageTitle: {
     color: "white",
@@ -980,25 +935,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
 
-  flagPlaceholder: {
-    width: 46,
-    height: 32,
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 16,
-    borderRadius: 6,
-    backgroundColor: "rgba(255,255,255,0.10)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.16)",
-    overflow: "hidden",
-  },
-
-  flagPlaceholderText: {
-    color: "#9ae6b4",
-    fontSize: 12,
-    fontWeight: "800",
-    letterSpacing: 0.8,
-  },
+ 
 
   languageButtonText: {
     color: "white",
@@ -1140,12 +1077,71 @@ loadingDot: {
     marginBottom: 10,
   },
 
+  filterSummary: {
+    alignItems: "center",
+    marginBottom: 18,
+  },
+
   platformFilterText: {
     color: "#9ae6b4",
     fontSize: 14,
     fontWeight: "600",
     textAlign: "center",
     marginBottom: 24,
+  },
+
+  questionScroll: {
+    flex: 1,
+    width: "100%",
+  },
+
+  questionScrollContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 24,
+    paddingHorizontal: 20,
+  },
+
+  categoryQuestionScrollContent: {
+    justifyContent: "flex-start",
+    paddingTop: 34,
+    paddingBottom: 40,
+  },
+
+  questionSlideContainer: {
+    width: "100%",
+    alignItems: "center",
+  },
+
+  categoryQuestionSlideContainer: {
+    maxWidth: 880,
+  },
+
+  optionsContainer: {
+    width: "100%",
+    alignItems: "center",
+  },
+
+  categoryOptionsGrid: {
+    maxWidth: 880,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignItems: "stretch",
+  },
+
+  categoryOptionButton: {
+    width: "48.5%",
+    maxWidth: 420,
+    minHeight: 62,
+    justifyContent: "center",
+    marginBottom: 14,
+  },
+
+  categoryOptionText: {
+    fontSize: 16,
+    paddingHorizontal: 6,
   },
 
   counter: {
@@ -1187,6 +1183,7 @@ loadingDot: {
   },
 
   optionButton: {
+    position: "relative",
   backgroundColor: "rgba(10, 18, 35, 0.88)",
   paddingVertical: 16,
   paddingHorizontal: 18,
@@ -1425,5 +1422,40 @@ profileText: {
   marginBottom: 8,
   textAlign: "center",
   fontWeight: "600",
+},
+flagImage: {
+  width: 48,
+  height: 32,
+  marginRight: 16,
+  borderRadius: 6,
+  resizeMode: "cover",
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.18)",
+},
+selectedOptionButton: {
+  borderColor: "#3B82F6",
+  borderWidth: 2,
+  backgroundColor: "rgba(30, 64, 175, 0.32)",
+  shadowColor: "#3B82F6",
+  shadowOpacity: 0.75,
+  shadowRadius: 18,
+  shadowOffset: {
+    width: 0,
+    height: 0,
+  },
+  elevation: 12,
+  transform: [{ scale: 0.99 }],
+},
+
+selectedOptionText: {
+  color: "#DBEAFE",
+},
+
+optionCheck: {
+  position: "absolute",
+  right: 18,
+  color: "#60A5FA",
+  fontSize: 22,
+  fontWeight: "bold",
 },
 });
