@@ -79,6 +79,7 @@ const robloxImage = require("../../assets/images/roblox.jpeg");
 const terrariaImage = require("../../assets/images/terraria.jpeg");
 const ittakestwoImage = require("../../assets/images/ittakestwo.jpeg");
 const kingdomcome2Image = require("../../assets/images/kingdomcome2.jpeg");
+const leagueoflegendsImage = require("../../assets/images/leagueoflegends.jpeg");
 export type Platform =
   | "PC"
   | "PlayStation"
@@ -2140,6 +2141,7 @@ image: grandtheftautovImage,
   strategyInterest: ["Evet"],
   challengeStyle: ["Zorlamalı"],
   atmosphere: ["Fantastik"],
+  image: leagueoflegendsImage,
 
   story:
     "Farklı rollerdeki şampiyonlardan birini seçerek takımınla birlikte koridorları kontrol eder, hedefleri ele geçirir ve rakip üssünü yok etmeye çalışırsın.",
