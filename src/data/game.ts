@@ -80,6 +80,13 @@ const terrariaImage = require("../../assets/images/terraria.jpeg");
 const ittakestwoImage = require("../../assets/images/ittakestwo.jpeg");
 const kingdomcome2Image = require("../../assets/images/kingdomcome2.jpeg");
 const leagueoflegendsImage = require("../../assets/images/leagueoflegends.jpeg");
+const dota2Image = require("../../assets/images/dota2.jpeg");
+const lolwildriftImage = require("../../assets/images/lolwildrift.jpeg");
+const honorofkingsImage = require("../../assets/images/honorofkings.jpeg");
+const smite2Image = require("../../assets/images/smite2.jpeg");
+const predecessorImage = require("../../assets/images/predecessor.jpeg");
+const deadlockImage = require("../../assets/images/deadlock.jpeg");
+const heroesofstormImage = require("../../assets/images/heroesofstorm.jpeg");
 export type Platform =
   | "PC"
   | "PlayStation"
@@ -2175,6 +2182,7 @@ image: grandtheftautovImage,
   strategyInterest: ["Evet"],
   challengeStyle: ["Zorlamalı"],
   atmosphere: ["Fantastik"],
+  image: dota2Image,
 
   story:
     "Beş kişilik takımlarla oynanan Dota 2, kahraman rolleri, eşya seçimleri, harita kontrolü ve yoğun takım koordinasyonu üzerine kurulu derin bir rekabetçi MOBA deneyimidir.",
@@ -2209,6 +2217,7 @@ image: grandtheftautovImage,
   strategyInterest: ["Evet", "Biraz"],
   challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
   atmosphere: ["Fantastik"],
+  image: lolwildriftImage,
 
   story:
     "League of Legends'ın mobil uyarlaması olan Wild Rift, daha kısa maçlarla takım koordinasyonu, koridor kontrolü ve rekabetçi 5v5 MOBA oynanışı sunar.",
@@ -2243,6 +2252,7 @@ image: grandtheftautovImage,
   strategyInterest: ["Evet", "Biraz"],
   challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
   atmosphere: ["Fantastik"],
+  image: honorofkingsImage,
 
   story:
     "Honor of Kings, farklı rollerdeki kahramanlarla 5v5 takım savaşlarına katıldığın, hızlı çatışma ve harita kontrolü odaklı rekabetçi bir mobil MOBA oyunudur.",
@@ -2267,6 +2277,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
+    image: smite2Image,
 
     story: "SMITE 2, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
@@ -2290,6 +2301,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
+    image: predecessorImage,
 
     story: "Predecessor, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
@@ -2313,6 +2325,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
+    image: deadlockImage,
 
     story: "Deadlock, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
@@ -2336,6 +2349,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
+    image: heroesofstormImage,
 
     story: "Heroes of the Storm, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
