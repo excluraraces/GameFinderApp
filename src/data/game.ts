@@ -87,6 +87,41 @@ const smite2Image = require("../../assets/images/smite2.jpeg");
 const predecessorImage = require("../../assets/images/predecessor.jpeg");
 const deadlockImage = require("../../assets/images/deadlock.jpeg");
 const heroesofstormImage = require("../../assets/images/heroesofstorm.jpeg");
+const heroesevolvedImage = require("../../assets/images/heroesevolved.jpeg");
+const eternalreturnImage = require("../../assets/images/eternalreturn.jpeg");
+const battleriteImage = require("../../assets/images/battlerite.jpeg");
+const arenaofvalorImage = require("../../assets/images/arenaofvalor.jpeg");
+const onmyojiarenaImage = require("../../assets/images/onmyojiarena.jpeg");
+const legendofaceImage = require("../../assets/images/legendoface.jpeg");
+const fallguysImage = require("../../assets/images/fallguys.jpeg");
+const partyanimalsImage = require("../../assets/images/partyanimals.jpeg");
+const gangbeastImage = require("../../assets/images/gangbeast.jpeg");
+const overcooked2Image = require("../../assets/images/overcooked2.jpeg");
+const ultimatechickenhorseImage = require("../../assets/images/ultimatechickenhorse.jpeg");
+const jackboxImage = require("../../assets/images/jackbox.jpeg");
+const movingout2Image = require("../../assets/images/movingout2.jpeg");
+const pummelpartyImage = require("../../assets/images/pummelparty.jpeg");
+const humanfallflatImage = require("../../assets/images/humanfallflat.jpeg");
+const keeptalkingImage = require("../../assets/images/keeptalking.jpeg");
+const loversImage = require("../../assets/images/lovers.jpeg");
+const spaceteamImage = require("../../assets/images/spaceteam.jpeg");
+const projectzomboidImage = require("../../assets/images/projectzomboid.jpeg");
+const theforestImage = require("../../assets/images/theforest.jpeg");
+const valheimImage = require("../../assets/images/valheim.jpeg");
+const subnauticaImage = require("../../assets/images/subnautica.jpeg");
+const subnautica2Image = require("../../assets/images/subnautica2.jpeg");
+const sonsofTheforestImage = require("../../assets/images/sonsoftheforest.jpeg");
+const greenhellImage = require("../../assets/images/greenhell.jpeg");
+const dontstarveImage = require("../../assets/images/dontstarve.jpeg");
+const raftImage = require("../../assets/images/raft.jpeg");
+const longdarkImage = require("../../assets/images/longdark.jpeg");
+const daystodieImage = require("../../assets/images/daystodie.jpeg");
+const groundedImage = require("../../assets/images/grounded.jpeg");
+const nomansskyImage = require("../../assets/images/nomanssky.jpeg");
+const rustImage = require("../../assets/images/rust.jpeg");
+const corekeeperImage = require("../../assets/images/corekeeper.jpeg");
+const palworldImage = require("../../assets/images/palworld.jpeg");
+const dayzImage = require("../../assets/images/dayz.jpeg");
 export type Platform =
   | "PC"
   | "PlayStation"
@@ -2373,7 +2408,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: eternalreturnImage,
     story: "Eternal Return, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -2396,7 +2431,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: battleriteImage,
     story: "Battlerite, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -2419,7 +2454,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: arenaofvalorImage,
     story: "Arena of Valor, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -2442,7 +2477,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: onmyojiarenaImage,
     story: "Onmyoji Arena, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -2465,7 +2500,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: heroesevolvedImage,
     story: "Heroes Evolved, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -2488,7 +2523,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: legendofaceImage,
     story: "Legend of Ace, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -2511,7 +2546,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: fallguysImage,
     story: "Fall Guys, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2534,7 +2569,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: partyanimalsImage,
     story: "Party Animals, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2557,7 +2592,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: gangbeastImage,
     story: "Gang Beasts, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2580,7 +2615,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: overcooked2Image,
     story: "Overcooked! 2, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2603,7 +2638,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: humanfallflatImage,
     story: "Human: Fall Flat, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2626,7 +2661,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: pummelpartyImage,
     story: "Pummel Party, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2649,7 +2684,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: movingout2Image,
     story: "Moving Out 2, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2672,7 +2707,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: jackboxImage,
     story: "Jackbox Party Pack 11, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2695,7 +2730,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: ultimatechickenhorseImage,
     story: "Ultimate Chicken Horse, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2718,7 +2753,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: keeptalkingImage,
     story: "Keep Talking and Nobody Explodes, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2741,7 +2776,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: loversImage,
     story: "Lovers in a Dangerous Spacetime, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2764,7 +2799,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: spaceteamImage,
     story: "Spaceteam, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -2787,7 +2822,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: subnauticaImage,
     story: "Subnautica, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2810,7 +2845,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: subnautica2Image,
     story: "Subnautica 2, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2833,7 +2868,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: valheimImage,
     story: "Valheim, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2856,7 +2891,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: theforestImage,
     story: "The Forest, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2879,7 +2914,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: sonsofTheforestImage,
     story: "Sons of the Forest, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2902,7 +2937,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: projectzomboidImage,
     story: "Project Zomboid, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2925,7 +2960,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: daystodieImage,
     story: "7 Days to Die, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2948,7 +2983,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: groundedImage,
     story: "Grounded, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2971,7 +3006,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: nomansskyImage,
     story: "No Man's Sky, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -2994,7 +3029,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: dontstarveImage,
     story: "Don't Starve Together, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3017,7 +3052,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: raftImage,
     story: "Raft, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3040,7 +3075,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: greenhellImage,
     story: "Green Hell, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3063,7 +3098,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: longdarkImage,
     story: "The Long Dark, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3086,7 +3121,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: palworldImage,
     story: "Palworld, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3109,7 +3144,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: corekeeperImage,
     story: "Core Keeper, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3132,7 +3167,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: dayzImage,
     story: "DayZ, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3155,7 +3190,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: rustImage,
     story: "Rust, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
