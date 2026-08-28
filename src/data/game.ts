@@ -122,6 +122,30 @@ const rustImage = require("../../assets/images/rust.jpeg");
 const corekeeperImage = require("../../assets/images/corekeeper.jpeg");
 const palworldImage = require("../../assets/images/palworld.jpeg");
 const dayzImage = require("../../assets/images/dayz.jpeg");
+const arksurvivalImage = require("../../assets/images/arksurvival.jpeg");
+const frostpunkImage = require("../../assets/images/frostpunk.jpeg");
+const frostpunk2Image = require("../../assets/images/frostpunk2.jpeg");
+const twopointhospitalImage = require("../../assets/images/twopointhospital.jpeg");
+const twopointmuseumImage = require("../../assets/images/twopointmuseum.jpeg");
+const planetzooImage = require("../../assets/images/planetzoo.jpeg");
+const prisonarchitectImage = require("../../assets/images/prisonarchitect.jpeg");
+const againstthestormImage = require("../../assets/images/againstthestorm.jpeg");
+const anno1800Image = require("../../assets/images/anno1800.jpeg");
+const europauniversalis4Image = require("../../assets/images/europauniversalis4.jpeg");
+const factorioImage = require("../../assets/images/factorio.jpeg");
+const heartsofironImage = require("../../assets/images/heartsofiron.jpeg");
+const stellarisImage = require("../../assets/images/stellaris.jpeg");
+const satisfactoryImage = require("../../assets/images/satisfactory.jpeg");
+const tropica6Image = require("../../assets/images/tropica6.jpeg");
+const oxygennotincludedImage = require("../../assets/images/oxygennotincluded.jpeg");
+const companyofheroes3Image = require("../../assets/images/companyofheroes3.jpeg");
+const manorlordsImage = require("../../assets/images/manorlords.jpeg");
+const cocoonImage = require("../../assets/images/cocoon.jpeg");
+const babaisyouImage = require("../../assets/images/babaisyou.jpeg");
+const northgardImage = require("../../assets/images/northgard.jpeg");
+const thetalosprincipleImage = require("../../assets/images/thetalosprinciple.jpeg");
+const thewitnessImage = require("../../assets/images/thewitness.jpeg");
+const portalImage = require("../../assets/images/portal.jpeg");
 export type Platform =
   | "PC"
   | "PlayStation"
@@ -3213,7 +3237,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: arksurvivalImage,
     story: "ARK: Survival Ascended, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3236,7 +3260,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: frostpunkImage,
     story: "Frostpunk, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3259,7 +3283,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: frostpunk2Image,
     story: "Frostpunk 2, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3282,7 +3306,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: planetzooImage,
     story: "Planet Zoo, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3305,7 +3329,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: twopointhospitalImage,
     story: "Two Point Hospital, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3328,7 +3352,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: twopointmuseumImage,
     story: "Two Point Museum, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3351,7 +3375,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+   image: prisonarchitectImage,
     story: "Prison Architect, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3374,7 +3398,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: factorioImage,
     story: "Factorio, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3397,7 +3421,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: satisfactoryImage,
     story: "Satisfactory, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3420,7 +3444,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: anno1800Image,
     story: "Anno 1800, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3443,7 +3467,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: stellarisImage,
     story: "Stellaris, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3466,7 +3490,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: heartsofironImage,
     story: "Hearts of Iron IV, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3489,7 +3513,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: europauniversalis4Image,
     story: "Europa Universalis IV, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3512,7 +3536,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: tropica6Image,
     story: "Tropico 6, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3535,7 +3559,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi", "Karanlık"],
-
+    image: oxygennotincludedImage,
     story: "Oxygen Not Included, kaynak toplama, keşif, üretim ve hayatta kalma kararlarını merkeze alan; tek başına veya desteklediği modlarda arkadaşlarla oynanabilen bir deneyimdir.",
   },
   {
@@ -3558,7 +3582,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: againstthestormImage,
     story: "Against the Storm, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3581,7 +3605,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: manorlordsImage,
     story: "Manor Lords, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3604,7 +3628,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: northgardImage,
     story: "Northgard, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -3627,7 +3651,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-
+    image: companyofheroes3Image,
     story: "Company of Heroes 3, kategorisinin temel mekaniklerini güçlü bir oynanış yapısıyla birleştiren ve farklı oyuncu tercihlerine hitap eden bir deneyim sunar.",
   },
   {
@@ -3650,7 +3674,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: portalImage,
     story: "Portal, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3673,7 +3697,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: thewitnessImage,
     story: "The Witness, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3696,7 +3720,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: thetalosprincipleImage,
     story: "The Talos Principle 2, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3719,7 +3743,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: babaisyouImage,
     story: "Baba Is You, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3742,7 +3766,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: cocoonImage,
     story: "Cocoon, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
