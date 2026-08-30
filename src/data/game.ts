@@ -146,6 +146,25 @@ const northgardImage = require("../../assets/images/northgard.jpeg");
 const thetalosprincipleImage = require("../../assets/images/thetalosprinciple.jpeg");
 const thewitnessImage = require("../../assets/images/thewitness.jpeg");
 const portalImage = require("../../assets/images/portal.jpeg");
+const thecaseImage = require("../../assets/images/thecase.jpeg");
+const insideImage = require("../../assets/images/inside.jpeg");
+const limboImage = require("../../assets/images/limbo.jpeg");
+const viewfinderImage = require("../../assets/images/viewfinder.jpeg");
+const superliminalImage = require("../../assets/images/superliminal.jpeg");
+const theroomImage = require("../../assets/images/theroom.jpeg");
+const gorogoaImage = require("../../assets/images/gorogoa.jpeg");
+const a156Image = require("../../assets/images/a156.jpeg");
+const a157Image = require("../../assets/images/a157.jpeg");
+const a158Image = require("../../assets/images/a158.jpeg");
+const a159Image = require("../../assets/images/a159.jpeg");
+const a160Image = require("../../assets/images/a160.jpeg");
+const a161Image = require("../../assets/images/a161.jpeg");
+const a162Image = require("../../assets/images/a162.jpeg");
+const a163Image = require("../../assets/images/a163.jpeg");
+const a164Image = require("../../assets/images/a164.jpeg");
+const a165Image = require("../../assets/images/a165.jpeg");
+const a166Image = require("../../assets/images/a166.jpeg");
+const a167Image = require("../../assets/images/a167.jpeg");
 export type Platform =
   | "PC"
   | "PlayStation"
@@ -3789,7 +3808,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: insideImage,
     story: "INSIDE, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3812,7 +3831,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: limboImage,
     story: "LIMBO, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3835,7 +3854,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: viewfinderImage,
     story: "Viewfinder, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3858,7 +3877,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: superliminalImage,
     story: "Superliminal, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3881,7 +3900,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: theroomImage,
     story: "The Room, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3904,7 +3923,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: gorogoaImage,
     story: "Gorogoa, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3927,7 +3946,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+   image: thecaseImage,
     story: "The Case of the Golden Idol, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3950,7 +3969,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: a156Image,
     story: "Chants of Sennaar, gözlem, mantık ve çevreyi kullanma üzerine kurulu bulmacalarıyla düşünerek ilerlemeyi seven oyunculara hitap eder.",
   },
   {
@@ -3973,7 +3992,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: a157Image,
     story: "Resident Evil 2, karanlık atmosferi, gerilimli anları ve hayatta kalma baskısıyla korku türünü seven oyunculara güçlü bir deneyim sunar.",
   },
   {
@@ -3996,7 +4015,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: a158Image,
     story: "Resident Evil 7: Biohazard, karanlık atmosferi, gerilimli anları ve hayatta kalma baskısıyla korku türünü seven oyunculara güçlü bir deneyim sunar.",
   },
   {
@@ -4019,7 +4038,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: a159Image,
     story: "Resident Evil Village, karanlık atmosferi, gerilimli anları ve hayatta kalma baskısıyla korku türünü seven oyunculara güçlü bir deneyim sunar.",
   },
   {
@@ -4042,7 +4061,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: a160Image,
     story: "Alan Wake 2, karanlık atmosferi, gerilimli anları ve hayatta kalma baskısıyla korku türünü seven oyunculara güçlü bir deneyim sunar.",
   },
   {
@@ -4065,7 +4084,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: a161Image,
     story: "The Outlast Trials, karanlık atmosferi, gerilimli anları ve hayatta kalma baskısıyla korku türünü seven oyunculara güçlü bir deneyim sunar.",
   },
   {
@@ -4088,7 +4107,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Karanlık", "Gerçekçi"],
-
+    image: a162Image,
     story: "Lethal Company, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -4111,7 +4130,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a163Image,
     story: "Gran Turismo 7, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4134,7 +4153,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a164Image,
     story: "Forza Motorsport, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4157,7 +4176,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a165Image,
     story: "Assetto Corsa Competizione, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4180,7 +4199,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a166Image,
     story: "DiRT Rally 2.0, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4203,7 +4222,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a167Image,
     story: "EA Sports WRC, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
