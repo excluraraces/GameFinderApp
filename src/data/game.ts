@@ -165,6 +165,23 @@ const a164Image = require("../../assets/images/a164.jpeg");
 const a165Image = require("../../assets/images/a165.jpeg");
 const a166Image = require("../../assets/images/a166.jpeg");
 const a167Image = require("../../assets/images/a167.jpeg");
+const a168Image = require("../../assets/images/a168.jpeg");
+const a169Image = require("../../assets/images/a169.jpeg");
+const a170Image = require("../../assets/images/a170.jpeg");
+const a171Image = require("../../assets/images/a171.jpeg");
+const a172Image = require("../../assets/images/a172.jpeg");
+const a173Image = require("../../assets/images/a173.jpeg");
+const a174Image = require("../../assets/images/a174.jpeg");
+const a175Image = require("../../assets/images/a175.jpeg");
+const a176Image = require("../../assets/images/a176.jpeg");
+const a177Image = require("../../assets/images/a177.jpeg");
+const a178Image = require("../../assets/images/a178.jpeg");
+const a179Image = require("../../assets/images/a179.jpeg");
+const a180Image = require("../../assets/images/a180.jpeg");
+const a181Image = require("../../assets/images/a181.jpeg");
+const a182Image = require("../../assets/images/a182.jpeg");
+const a183Image = require("../../assets/images/a183.jpeg");
+const a184Image = require("../../assets/images/a184.jpeg");
 export type Platform =
   | "PC"
   | "PlayStation"
@@ -4245,7 +4262,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a168Image,
     story: "The Crew Motorfest, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4268,7 +4285,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a169Image,
     story: "Wreckfest, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4291,7 +4308,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a170Image,
     story: "Trackmania, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4314,7 +4331,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a171Image,
     story: "GRID Legends, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4337,7 +4354,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a172Image,
     story: "Mario Kart 8 Deluxe, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -4360,7 +4377,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a173Image,
     story: "Real Racing 3, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4383,7 +4400,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a174Image,
     story: "Need for Speed No Limits, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4406,7 +4423,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a175Image,
     story: "CSR Racing 2, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4429,7 +4446,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a176Image,
     story: "EA Sports FC 26, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4452,7 +4469,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a177Image,
     story: "NBA 2K26, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4475,7 +4492,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a178Image,
     story: "WWE 2K26, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4498,7 +4515,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+     image: a179Image,
     story: "PGA Tour 2K25, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4521,7 +4538,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a180Image,
     story: "TopSpin 2K25, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4544,7 +4561,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a181Image,
     story: "UFC 5, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4567,7 +4584,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a182Image,
     story: "Madden NFL 26, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4590,7 +4607,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a183Image,
     story: "NHL 26, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4613,7 +4630,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a184Image,
     story: "MLB The Show 26, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
