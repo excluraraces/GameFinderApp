@@ -138,7 +138,7 @@ const stellarisImage = require("../../assets/images/stellaris.jpeg");
 const satisfactoryImage = require("../../assets/images/satisfactory.jpeg");
 const tropica6Image = require("../../assets/images/tropica6.jpeg");
 const oxygennotincludedImage = require("../../assets/images/oxygennotincluded.jpeg");
-const companyofheroes3Image = require("../../assets/images/companyofheroes3.jpeg");
+const companyofheroesImage = require("../../assets/images/companyofheroes.jpeg");
 const manorlordsImage = require("../../assets/images/manorlords.jpeg");
 const cocoonImage = require("../../assets/images/cocoon.jpeg");
 const babaisyouImage = require("../../assets/images/babaisyou.jpeg");
@@ -182,6 +182,22 @@ const a181Image = require("../../assets/images/a181.jpeg");
 const a182Image = require("../../assets/images/a182.jpeg");
 const a183Image = require("../../assets/images/a183.jpeg");
 const a184Image = require("../../assets/images/a184.jpeg");
+const a185Image = require("../../assets/images/a185.jpeg");
+const a186Image = require("../../assets/images/a186.jpeg");
+const a187Image = require("../../assets/images/a187.jpeg");
+const a188Image = require("../../assets/images/a188.jpeg");
+const a189Image = require("../../assets/images/a189.jpeg");
+const a190Image = require("../../assets/images/a190.jpeg");
+const a191Image = require("../../assets/images/a191.jpeg");
+const a192Image = require("../../assets/images/a192.jpeg");
+const a193Image = require("../../assets/images/a193.jpeg");
+const a194Image = require("../../assets/images/a194.jpeg");
+const a195Image = require("../../assets/images/a195.jpeg");
+const a196Image = require("../../assets/images/a196.jpeg");
+const a197Image = require("../../assets/images/a197.jpeg");
+const a198Image = require("../../assets/images/a198.jpeg");
+const a199Image = require("../../assets/images/a199.jpeg");
+const a200Image = require("../../assets/images/a200.jpeg");
 export type Platform =
   | "PC"
   | "PlayStation"
@@ -3687,7 +3703,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik"],
-    image: companyofheroes3Image,
+    image: companyofheroesImage,
     story: "Company of Heroes 3, kategorisinin temel mekaniklerini güçlü bir oynanış yapısıyla birleştiren ve farklı oyuncu tercihlerine hitap eden bir deneyim sunar.",
   },
   {
@@ -4653,7 +4669,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a185Image,
     story: "Nintendo Switch Sports, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -4676,7 +4692,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+     image: a186Image,
     story: "Mario Strikers: Battle League, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -4699,7 +4715,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a187Image,
     story: "Dream League Soccer, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4722,7 +4738,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a188Image,
     story: "EA Sports FC Mobile, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4745,7 +4761,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a189Image,
     story: "Football Manager 26, kaynakları planlayıp sistemler kurduğun, uzun vadeli büyüme ve yönetim kararlarının öne çıktığı derin bir yönetim deneyimi sunar.",
   },
   {
@@ -4768,7 +4784,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: a190Image,
     story: "Omega Strikers, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -4791,7 +4807,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: a191Image,
     story: "Awesomenauts, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -4814,7 +4830,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: a192Image,
     story: "Gigantic: Rampage Edition, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -4837,7 +4853,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Fantastik", "Cartoon"],
-
+    image: a193Image,
     story: "Catalyst Black, farklı yeteneklere sahip karakterlerle takım koordinasyonu, harita kontrolü ve rekabetçi karşılaşmalar üzerine kurulu bir deneyim sunar.",
   },
   {
@@ -4860,7 +4876,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu"],
-
+    image: a194Image,
     story: "Halo Infinite, silahlı çatışma, refleks ve pozisyon alma üzerine kurulu; tek kişilik veya takım odaklı modlarıyla farklı oynama stillerine hitap eder.",
   },
   {
@@ -4883,7 +4899,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
     atmosphere: ["Bilim kurgu"],
-
+    image: a195Image,
     story: "Destiny 2, silahlı çatışma, refleks ve pozisyon alma üzerine kurulu; tek kişilik veya takım odaklı modlarıyla farklı oynama stillerine hitap eder.",
   },
   {
@@ -4906,7 +4922,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a196Image,
     story: "PlateUp!, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -4929,7 +4945,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+    image: a197Image,
     story: "Super Mario Party Jamboree, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
   {
@@ -4952,7 +4968,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a198Image,
     story: "eFootball, sporun rekabetini oyun sistemleriyle birleştirerek tek kişilik ve desteklenen çevrimiçi modlarda uzun süre oynanabilir bir deneyim sunar.",
   },
   {
@@ -4975,7 +4991,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Gerçekçi"],
-
+    image: a199Image,
     story: "F1 25, sürüş hissi, araç kontrolü ve farklı yarış biçimleriyle hız ve rekabet arayan oyunculara odaklanır.",
   },
   {
@@ -4998,7 +5014,7 @@ image: grandtheftautovImage,
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
     atmosphere: ["Fantastik"],
-
+     image: a200Image,
     story: "Rubber Bandits, arkadaşlarla kısa oturumlarda eğlenmeye, birlikte çözüm üretmeye veya birbirinizle rekabet etmeye odaklanan sosyal bir oyun deneyimi sunar.",
   },
 ];
