@@ -79,7 +79,7 @@ const questionText: Record<string, string> = {
   "common-graphics": "What visual style do you prefer?",
 };
 
-const valueLabel: Record<string, string> = {
+export const valueLabel: Record<string, string> = {
   PC: "PC",
   PlayStation: "PlayStation",
   Xbox: "Xbox",
