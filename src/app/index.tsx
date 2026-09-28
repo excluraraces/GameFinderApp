@@ -1,3 +1,8 @@
+import PlayerProfileCard from "../components/player-profile-card";
+import RecoveryOptions from "../components/recovery-options";
+import { applyRecoveryOption, getRecoveryOptions, type RecoveryOption } from "../domain/recommendation-recovery";
+import { useBackgroundReady } from "../components/app-background";
+import { useAppAudio } from "../audio/use-app-audio";
 import GameDescription from "../components/game-description";
 import { resultAd } from "../ads/result-ad";
 import { styles } from "../styles/home";
@@ -9,7 +14,6 @@ import {
   ActivityIndicator,
   Easing,
   Image,
-  ImageBackground,
   ScrollView,
   Switch,
   Text,
@@ -39,10 +43,17 @@ import {
 
 type Language = "tr" | "en";
 
+const matchColors = {
+  unavailable: "#CBD5E1", filtersOnly: "#CBD5E1", limited: "#FBBF24",
+  partial: "#FCD34D", good: "#93C5FD", strong: "#6EE7B7",
+};
+
 export default function HomeScreen() {
   const [showSplash, setShowSplash] = useState(true);
+  const backgroundReady = useBackgroundReady();
   const [language, setLanguage] = useState<Language | null>(null);
   const [started, setStarted] = useState(false);
+  const [tieBreakSeed, setTieBreakSeed] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [finished, setFinished] = useState(false);
@@ -155,6 +166,16 @@ export default function HomeScreen() {
   const [settingsReady, setSettingsReady] = useState(false);
   const [settingsLoaded, setSettingsLoaded] = useState(false);
   const favoriteBusy = useRef(new Set<number>());
+  const audio = useAppAudio(
+    { ...appSettings, volume: volumePreview ?? appSettings.volume },
+    settingsReady,
+    showSplash || !backgroundReady || preparingResults,
+  );
+  useEffect(() => {
+    if (finished) void audio.play(getRecommendation().length ? "result" : "navigate");
+    // Play once on completion, not again when a favorite or setting changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finished, audio]);
 
   async function loadFavorites() {
     try {
@@ -175,10 +196,14 @@ export default function HomeScreen() {
 
   async function handleSettingChange<K extends keyof AppSettings>(key: K, value: AppSettings[K]) {
     if (!settingsReady || settingsBusy.current) return;
+    audio.interact();
     settingsBusy.current = true;
     setSavingSettings(true);
     try {
-      setAppSettings(await updateSetting(key, value));
+      const saved = await updateSetting(key, value);
+      setAppSettings(saved);
+      audio.configure(saved);
+      if (key !== "musicEnabled") void audio.play("select");
     } catch { setStorageError("save"); }
     finally {
       settingsBusy.current = false;
@@ -188,9 +213,11 @@ export default function HomeScreen() {
 
   async function handleFavorite(gameId: number) {
     if (!favoritesReady || favoriteBusy.current.has(gameId)) return;
+    audio.interact();
     favoriteBusy.current.add(gameId);
     try {
       const enabled = await toggleFavorite(gameId);
+      void audio.play(enabled ? "favorite" : "unfavorite");
       setFavoriteIds(current => enabled
         ? [...new Set([...current, gameId])]
         : current.filter(id => id !== gameId));
@@ -230,8 +257,8 @@ export default function HomeScreen() {
     return () => clearTimeout(timer);
   }, []);
 
-  const { getSelectedPlatform, getSelectedCategory, getSelectedPlayMode, getRecommendation, getMatchPercent, getPlayerProfile } = createRecommendations({
-    answers, activeGames, maxPreferenceScore, t, translateGameTag,
+  const { getSelectedPlatform, getSelectedCategory, getSelectedPlayMode, getRecommendation, getMatchSummary, getPlayerProfileDetails } = createRecommendations({
+    answers, activeGames, maxPreferenceScore, t, translateGameTag, tieBreakSeed,
   });
 
   async function selectLanguage(languageCode: Language) {
@@ -239,6 +266,7 @@ export default function HomeScreen() {
       return;
     }
     settingsBusy.current = true;
+    audio.interact("navigate");
     setSelectedLanguage(languageCode);
     try {
       const saved = await updateSetting("language", languageCode);
@@ -256,6 +284,7 @@ export default function HomeScreen() {
       return;
     }
 
+    audio.interact("select");
     transitionBusy.current = true;
     setSelectedOption(option.value);
 
@@ -318,6 +347,7 @@ export default function HomeScreen() {
       return;
     }
 
+    audio.interact("back");
     if (questionIndex === 0) {
       resultAd.discard();
       setStarted(false);
@@ -337,6 +367,7 @@ export default function HomeScreen() {
   }
 
   function restartApp() {
+    audio.interact("back");
     questionTranslateX.stopAnimation();
     transitionBusy.current = false;
     enteringQuestion.current = false;
@@ -346,6 +377,20 @@ export default function HomeScreen() {
     setFinished(false);
     setSelectedOption(null);
     questionTranslateX.setValue(0);
+  }
+
+  function selectRecovery(option: RecoveryOption) {
+    audio.interact("navigate");
+    setAnswers(applyRecoveryOption(answers, option, translateGameTag));
+    if (option.categoryChanged) {
+      questionTranslateX.stopAnimation();
+      transitionBusy.current = false;
+      enteringQuestion.current = false;
+      questionTranslateX.setValue(0);
+      setSelectedOption(null);
+      setQuestionIndex(questionData.hardFilters.length);
+      setFinished(false);
+    }
   }
 
   const isCategoryQuestion = currentQuestion?.id === "category";
@@ -361,11 +406,9 @@ export default function HomeScreen() {
     );
   }
 
-  if (showSplash || !settingsLoaded) {
+  if (showSplash || !settingsLoaded || !backgroundReady) {
     return (
-      <ImageBackground
-        source={require("../../assets/images/game-background.png")}
-        resizeMode="cover"
+      <View
         style={styles.splashContainer}
       >
         <View style={styles.splashOverlay}>
@@ -386,15 +429,13 @@ export default function HomeScreen() {
           </View>
         </View>
       {storageNotice}
-      </ImageBackground>
+      </View>
     );
   }
 
   if (language === null) {
     return (
-      <ImageBackground
-        source={require("../../assets/images/game-background.png")}
-        resizeMode="cover"
+      <View
         style={styles.container}
       >
         <View style={styles.languageOverlay}>
@@ -448,7 +489,7 @@ export default function HomeScreen() {
 
         </View>
       {storageNotice}
-      </ImageBackground>
+      </View>
     );
   }
 
@@ -458,9 +499,7 @@ export default function HomeScreen() {
     );
 
     return (
-      <ImageBackground
-        source={require("../../assets/images/game-background.png")}
-        resizeMode="cover"
+      <View
         style={styles.resultBackground}
       >
         <ScrollView nestedScrollEnabled contentContainerStyle={styles.resultContainer}>
@@ -530,7 +569,7 @@ export default function HomeScreen() {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => setShowFavorites(false)}
+            onPress={() => { audio.interact("back"); setShowFavorites(false); }}
           >
             <Text style={styles.buttonText}>
               {language === "tr" ? "Geri" : "Back"}
@@ -538,15 +577,13 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </ScrollView>
       {storageNotice}
-      </ImageBackground>
+      </View>
     );
   }
 
   if (showSettings) {
     return (
-      <ImageBackground
-        source={require("../../assets/images/game-background.png")}
-        resizeMode="cover"
+      <View
         style={styles.resultBackground}
       >
         <ScrollView contentContainerStyle={styles.settingsContainer}>
@@ -625,7 +662,7 @@ export default function HomeScreen() {
               value={appSettings.volume}
               disabled={!settingsReady || savingSettings}
               label={language === "tr" ? "Ses Seviyesi" : "Volume"}
-              onPreview={setVolumePreview}
+              onPreview={value => { audio.interact(); setVolumePreview(value); }}
               onCommit={value => handleSettingChange("volume", value)}
             />
           </View>
@@ -638,7 +675,7 @@ export default function HomeScreen() {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => setShowSettings(false)}
+            onPress={() => { audio.interact("back"); setShowSettings(false); }}
           >
             <Text style={styles.buttonText}>
               {language === "tr" ? "Geri" : "Back"}
@@ -646,15 +683,13 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </ScrollView>
       {storageNotice}
-      </ImageBackground>
+      </View>
     );
   }
 
   if (!started) {
     return (
-      <ImageBackground
-        source={require("../../assets/images/game-background.png")}
-        resizeMode="cover"
+      <View
         style={styles.container}
       >
         <Text style={styles.title}>{t.appTitle}</Text>
@@ -665,14 +700,18 @@ export default function HomeScreen() {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => setStarted(true)}
+          onPress={() => {
+            audio.interact("start");
+            setTieBreakSeed(previous => (previous + 1 + Math.floor(Math.random() * 0xffffffff)) >>> 0);
+            setStarted(true);
+          }}
         >
           <Text style={styles.buttonText}>{t.start}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => setShowFavorites(true)}
+          onPress={() => { audio.interact("navigate"); setShowFavorites(true); }}
         >
           <Text style={styles.buttonText}>
             {language === "tr" ? "Favoriler" : "Favorites"}
@@ -681,7 +720,7 @@ export default function HomeScreen() {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => setShowSettings(true)}
+          onPress={() => { audio.interact("navigate"); setShowSettings(true); }}
         >
           <Text style={styles.buttonText}>
             {language === "tr" ? "Ayarlar" : "Settings"}
@@ -690,12 +729,12 @@ export default function HomeScreen() {
 
         <TouchableOpacity
           style={styles.changeLanguageButton}
-          onPress={() => setLanguage(null)}
+          onPress={() => { audio.interact("back"); setLanguage(null); }}
         >
           <Text style={styles.changeLanguageText}>{t.changeLanguage}</Text>
         </TouchableOpacity>
       {storageNotice}
-      </ImageBackground>
+      </View>
     );
   }
 
@@ -704,26 +743,16 @@ export default function HomeScreen() {
     const selectedPlatform = getSelectedPlatform();
     const selectedCategory = getSelectedCategory();
     const selectedPlayMode = getSelectedPlayMode();
-    const playerProfile = getPlayerProfile();
+    const playerProfile = getPlayerProfileDetails();
 
     return (
-      <ImageBackground
-        source={require("../../assets/images/game-background.png")}
-        resizeMode="cover"
+      <View
         style={styles.resultBackground}
       >
         <ScrollView nestedScrollEnabled contentContainerStyle={styles.resultContainer}>
           <Text style={styles.title}>{t.resultReady}</Text>
 
-          <View style={styles.profileCard}>
-            <Text style={styles.profileTitle}>{t.playerProfile}</Text>
-
-            {playerProfile.map((item) => (
-              <Text key={item} style={styles.profileText}>
-                {item}
-              </Text>
-            ))}
-          </View>
+          <PlayerProfileCard profile={playerProfile} language={language} labels={t.profiles} />
 
           <Text style={styles.resultSubtitle}>{t.resultTitle}</Text>
 
@@ -752,11 +781,17 @@ export default function HomeScreen() {
               <Text style={styles.emptyTitle}>{t.noResult}</Text>
 
               <Text style={styles.emptyText}>{t.noResultDescription}</Text>
+              <RecoveryOptions options={getRecoveryOptions(answers, activeGames)} language={language}
+                translate={translateGameTag} onSelect={selectRecovery} />
             </View>
           )}
 
+        {recommendedGames.length > 0 && (
+          <Text style={[styles.emptyText, { marginBottom: 20 }]}>{t.matchExplanation}</Text>
+        )}
         {recommendedGames.map((game, index) => {
-          const matchPercent = getMatchPercent(game.score);
+          const { percent: matchPercent, level: matchLevel } = getMatchSummary(game.score);
+          const matchColor = matchColors[matchLevel];
           const visibleReasons = game.reasons.slice(0, 3);
 
           return (
@@ -786,15 +821,21 @@ export default function HomeScreen() {
                     </Text>
                   </TouchableOpacity>
 
-                  <View style={styles.matchBadge}>
-                    <Text style={styles.matchBadgeText}>
-                      {language === "en" ? `${matchPercent}%` : `%${matchPercent}`}
+                  <View style={[styles.matchBadge, { backgroundColor: "#172131", borderColor: matchColor }]}>
+                    <Text accessibilityLabel={`${t.matchLevels[matchLevel]}${matchPercent === null ? "" : `, ${matchPercent}%`}`}
+                      style={[styles.matchBadgeText, { color: matchColor }]}>
+                      {matchPercent === null ? "—" : language === "en" ? `${matchPercent}%` : `%${matchPercent}`}
                     </Text>
                   </View>
                 </View>
               </View>
 
-              <Text style={styles.matchText}>{t.compatibility}</Text>
+              <Text style={[styles.matchText, { color: matchColor }]}>{t.matchLevels[matchLevel]}</Text>
+              {matchPercent !== null && (
+                <Text style={[styles.matchText, { color: "#CBD5E1", fontWeight: "400" }]}>
+                  {t.matchPoints(game.score, maxPreferenceScore)}
+                </Text>
+              )}
 
               <View style={styles.tagContainer}>
                 {game.categories.slice(0, 2).map((category) => (
@@ -847,14 +888,12 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </ScrollView>
     {storageNotice}
-      </ImageBackground>
+      </View>
     );
   }
 
   return (
-    <ImageBackground
-      source={require("../../assets/images/game-background.png")}
-      resizeMode="cover"
+    <View
       style={styles.container}
     >
       <ScrollView
@@ -931,7 +970,7 @@ export default function HomeScreen() {
         </Animated.View>
       </ScrollView>
     {storageNotice}
-      </ImageBackground>
+      </View>
   );
 
 }

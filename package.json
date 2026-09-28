@@ -6,6 +6,8 @@
     "@expo/ui": "~56.0.15",
     "@react-native-async-storage/async-storage": "2.2.0",
     "expo": "~56.0.8",
+    "expo-asset": "^56.0.15",
+    "expo-audio": "~56.0.11",
     "expo-constants": "~56.0.16",
     "expo-device": "~56.0.4",
     "expo-font": "~56.0.5",
@@ -34,6 +36,9 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
+    "test:profiles": "node scripts/test-player-profile.cjs",
+    "audio:generate": "node scripts/synthesize-audio.cjs",
+    "test:audio": "node scripts/test-audio.cjs",
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",

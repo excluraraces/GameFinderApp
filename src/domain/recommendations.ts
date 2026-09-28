@@ -1,3 +1,4 @@
+import { buildPlayerProfile } from "./player-profile";
 import type { Category, Game, Platform, PlayMode } from "../data/game";
 import type { HardFilterField, ScoreField } from "../data/questions";
 import type { translations } from "../data/translations";
@@ -20,6 +21,7 @@ type ScoredGame = Game & {
 
 
 type RecommendationContext = {
+  tieBreakSeed?: number;
   answers: Answer[];
   activeGames: Game[];
   maxPreferenceScore: number;
@@ -27,7 +29,7 @@ type RecommendationContext = {
   translateGameTag: (value: string) => string;
 };
 
-export function createRecommendations({ answers, activeGames, maxPreferenceScore, t, translateGameTag }: RecommendationContext) {
+export function createRecommendations({ answers, activeGames, maxPreferenceScore, t, translateGameTag, tieBreakSeed = 0 }: RecommendationContext) {
   function getAnswerValue(questionId: string) {
     return answers.find((answer) => answer.questionId === questionId)?.value;
   }
@@ -68,39 +70,12 @@ export function createRecommendations({ answers, activeGames, maxPreferenceScore
     return true;
   }
 
-  function getReasonForMatch(scoreField: ScoreField, value: string) {
-    switch (scoreField) {
-      case "storyImportance":
-        return t.reasons.story;
-      case "tempo":
-        return t.reasons.tempo;
-      case "worldType":
-        return t.reasons.worldType;
-      case "difficulty":
-        return t.reasons.difficulty;
-      case "graphics":
-        return t.reasons.graphics;
-      case "characterProgression":
-        return t.reasons.progression;
-      case "length":
-        return t.reasons.length;
-      case "challengeStyle":
-        return t.reasons.challenge;
-      case "atmosphere":
-        return t.reasons.atmosphere;
-      case "features":
-        return t.reasons.preference(translateGameTag(value));
-      default:
-        return t.reasons.preference(translateGameTag(value));
-    }
-  }
-
   function getRecommendation() {
     const scoredGames: ScoredGame[] = activeGames
       .filter((game) => passesHardFilters(game))
       .map((game) => {
         let score = 0;
-        const reasons: string[] = [];
+        const evidence: { text: string; weight: number }[] = [];
 
         answers
           .filter((answer) => answer.kind === "preference" && answer.scoreField)
@@ -112,16 +87,26 @@ export function createRecommendations({ answers, activeGames, maxPreferenceScore
                 ? answer.matchValues
                 : [answer.value];
 
-            const matches = wantedValues.some((value) =>
+            const matchedValue = wantedValues.find((value) =>
               gameValues.includes(value)
             );
 
-            if (matches) {
+            if (matchedValue !== undefined) {
               score += answer.weight ?? 1;
-              reasons.push(getReasonForMatch(scoreField, answer.value));
+              if ((answer.weight ?? 1) > 0) {
+                evidence.push({
+                  weight: answer.weight ?? 1,
+                  text: t.reasons.matched(t.reasons.fields[scoreField],
+                    translateGameTag(answer.value), translateGameTag(matchedValue)),
+                });
+              }
             }
           });
 
+        const reasons = evidence.sort((a, b) => b.weight - a.weight).map(item => item.text);
+        if (!reasons.length) reasons.push(t.reasons.filtersOnly);
+        const platform = getSelectedPlatform();
+        if (platform) reasons.push(t.reasons.platform(translateGameTag(platform)));
         const category = getSelectedCategory();
         const playMode = getSelectedPlayMode();
 
@@ -130,7 +115,7 @@ export function createRecommendations({ answers, activeGames, maxPreferenceScore
         }
 
         if (playMode && playMode !== "Fark etmez") {
-          reasons.push(t.reasons.playMode(playMode));
+          reasons.push(t.reasons.playMode(translateGameTag(playMode)));
         }
 
         return {
@@ -140,209 +125,54 @@ export function createRecommendations({ answers, activeGames, maxPreferenceScore
         };
       });
 
+    // Canonical IDs keep a quiz's order stable across languages and catalog order.
+    // Shuffle before the stable score sort so ties at the top-ten cutoff are fair too.
+    scoredGames.sort((a, b) => a.id - b.id);
+    let randomState = tieBreakSeed >>> 0;
+    for (let i = scoredGames.length - 1; i > 0; i--) {
+      // Mulberry32: deterministic randomness for this quiz, never inside a comparator.
+      randomState = (randomState + 0x6d2b79f5) >>> 0;
+      let value = Math.imul(randomState ^ (randomState >>> 15), randomState | 1);
+      value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+      const random = ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+      const j = Math.floor(random * (i + 1));
+      [scoredGames[i], scoredGames[j]] = [scoredGames[j], scoredGames[i]];
+    }
+
     return scoredGames
       .sort((a, b) => b.score - a.score)
       .slice(0, 10);
   }
 
   function getMatchPercent(score: number) {
-    if (maxPreferenceScore <= 0) {
-      return 100;
+    if (!Number.isFinite(maxPreferenceScore) || maxPreferenceScore <= 0 || !Number.isFinite(score)) {
+      return null;
     }
 
     return Math.min(
       100,
-      Math.round((score / maxPreferenceScore) * 100)
+      Math.max(0, Math.round((score / maxPreferenceScore) * 100))
     );
   }
 
-
-  function getPlayerProfile() {
-    const values = answers.map((answer) => answer.value);
-
-    const profileScores: Record<string, number> = {
-      story: 0,
-      explorer: 0,
-      challenger: 0,
-      strategist: 0,
-      competitor: 0,
-      social: 0,
-      collector: 0,
-      creator: 0,
-      relaxed: 0,
-      horror: 0,
-      speed: 0,
-    };
-
-    const add = (profile: keyof typeof profileScores, amount = 1) => {
-      profileScores[profile] += amount;
-    };
-
-    values.forEach((value) => {
-      if (
-        [
-          "RPG",
-          "Çok önemli",
-          "Seçim odaklı hikâye",
-          "Yoğun hikâye",
-          "Yoğun diyalog",
-          "Hikâye kampanyası",
-          "Hikâye odaklı",
-        ].includes(value)
-      ) {
-        add("story", 2);
-      }
-
-      if (
-        [
-          "Açık dünya",
-          "Sandbox / Yaratıcılık",
-          "Sandbox",
-          "Keşif",
-          "Açık dünya sürüş",
-        ].includes(value)
-      ) {
-        add("explorer", 2);
-      }
-
-      if (
-        [
-          "Zor",
-          "Çok zor",
-          "Zorlamalı",
-          "Yüksek risk",
-          "Boss savaşları",
-          "Ranked",
-        ].includes(value)
-      ) {
-        add("challenger", 2);
-      }
-
-      if (
-        [
-          "Strateji",
-          "Taktiksel çatışma",
-          "Taktiksel savaş",
-          "Grand strategy",
-          "Diplomasi",
-          "Taktik",
-        ].includes(value)
-      ) {
-        add("strategist", 2);
-      }
-
-      if (
-        [
-          "FPS / Nişancı",
-          "Online rekabetçi",
-          "PvP",
-          "Ranked",
-          "MOBA",
-        ].includes(value)
-      ) {
-        add("competitor", 2);
-      }
-
-      if (
-        [
-          "Arkadaşlarla",
-          "Takım koordinasyonu",
-          "PvE co-op",
-          "Co-op bulmaca",
-          "Parti / Sosyal",
-        ].includes(value)
-      ) {
-        add("social", 2);
-      }
-
-      if (
-        [
-          "Loot",
-          "Karakter oluşturma",
-          "Evet çok isterim",
-          "Araç koleksiyonu",
-        ].includes(value)
-      ) {
-        add("collector", 2);
-      }
-
-      if (
-        [
-          "Yönetim / Kurma",
-          "Sandbox / Yaratıcılık",
-          "Şehir kurma",
-          "Base building",
-          "Yaratıcılık / özgürlük",
-        ].includes(value)
-      ) {
-        add("creator", 2);
-      }
-
-      if (
-        [
-          "Rahatlatıcı",
-          "Rahatlatmalı",
-          "Rahat sürüş",
-          "Rahatlatıcı görevler",
-        ].includes(value)
-      ) {
-        add("relaxed", 2);
-      }
-
-      if (
-        [
-          "Korku",
-          "Psikolojik korku",
-          "Survival horror",
-          "Gerilim",
-          "Kaçış / saklanma",
-        ].includes(value)
-      ) {
-        add("horror", 2);
-      }
-
-      if (
-        [
-          "Yarış",
-          "Arcade sürüş",
-          "Drift",
-          "Online yarış",
-          "Hızlı ve aksiyonlu",
-        ].includes(value)
-      ) {
-        add("speed", 2);
-      }
-    });
-
-    const profileLabels: Record<string, string> = {
-      story: t.profiles.story,
-      explorer: t.profiles.explorer,
-      challenger: t.profiles.challenger,
-      strategist: t.profiles.strategist,
-      competitor: t.profiles.competitor,
-      social: t.profiles.social,
-      collector: t.profiles.collector,
-      creator: t.profiles.creator,
-      relaxed: t.profiles.relaxed,
-      horror: t.profiles.horror,
-      speed: t.profiles.speed,
-    };
-
-    const topProfiles = Object.entries(profileScores)
-      .filter(([, score]) => score > 0)
-      .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
-      .slice(0, 3)
-      .map(([profile]) => profileLabels[profile]);
-
-    return topProfiles.length > 0
-      ? topProfiles
-      : [
-        t.profiles.versatile,
-        t.profiles.openToNewExperiences,
-        t.profiles.gameExplorer,
-      ];
+  function getMatchSummary(score: number) {
+    const percent = getMatchPercent(score);
+    const level = percent === null ? "unavailable" : percent === 0 ? "filtersOnly"
+      : percent < 40 ? "limited" : percent < 70 ? "partial" : percent < 90 ? "good" : "strong";
+    return { percent, level } as const;
   }
 
 
-  return { getSelectedPlatform, getSelectedCategory, getSelectedPlayMode, getRecommendation, getMatchPercent, getPlayerProfile };
+  function getPlayerProfileDetails() {
+    return buildPlayerProfile(answers);
+  }
+
+  function getPlayerProfile() {
+    const profile = getPlayerProfileDetails();
+    return profile.traits.length
+      ? profile.traits.slice(0, 3).map(trait => t.profiles[trait.id])
+      : [t.profiles.versatile, t.profiles.openToNewExperiences, t.profiles.gameExplorer];
+  }
+
+  return { getSelectedPlatform, getSelectedCategory, getSelectedPlayMode, getRecommendation, getMatchPercent, getMatchSummary, getPlayerProfile, getPlayerProfileDetails };
 }

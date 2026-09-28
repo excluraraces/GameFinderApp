@@ -22,6 +22,9 @@ export const translations = {
     categoryFilter: "Kategori",
     playModeFilter: "Oynama biçimi",
     compatibility: "Tercihlerine uyumlu",
+    matchExplanation: "Uyum yüzdesi, cevaplarının önem ağırlıklarına göre eşleşen tercih payıdır. Oyun kalitesini veya oyunu sevme olasılığını göstermez. Platform, kategori ve oynama biçimi bu yüzdeye puan eklemez.",
+    matchPoints: (score: number, total: number) => `Eşleşen tercih puanı: ${score} / ${total}`,
+    matchLevels: { unavailable: "Uyum hesaplanamadı", filtersOnly: "Yalnızca temel filtreler uyuyor", limited: "Sınırlı tercih uyumu", partial: "Kısmi tercih uyumu", good: "İyi tercih uyumu", strong: "Güçlü tercih uyumu" },
     recommendationReason: "Neden önerildi?",
     restart: "Tekrar Başla",
 
@@ -42,12 +45,28 @@ export const translations = {
       relaxed: "🌿 Sakin Oyun Arayıcısı",
       horror: "👻 Gerilim Avcısı",
       speed: "🏎️ Hız Tutkunu",
+      solver: "🧩 Bulmaca Çözücü",
+      survivor: "🔥 Hayatta Kalma Uzmanı",
+      simulator: "🛠️ Simülasyon Meraklısı",
+      manager: "📊 Sistem Yöneticisi",
+      quickplay: "⏱️ Kısa Seans Oyuncusu",
+      sports: "⚽ Saha Tutkunu",
       versatile: "🎮 Çok Yönlü Oyuncu",
       openToNewExperiences: "✨ Yeni Deneyimlere Açık",
       gameExplorer: "🚀 Oyun Kaşifi",
     },
 
     reasons: {
+      matched: (field: string, selected: string, actual: string) => selected === actual
+        ? `${field}: “${selected}” tercihinle eşleşiyor.`
+        : `${field}: “${selected}” seçimine uygun “${actual}” özelliği var.`,
+      filtersOnly: "Özel tercihlerinle eşleşme yok; bu oyun yalnızca temel filtrelerine uyuyor.",
+      fields: {
+        storyImportance: "Hikâye", tempo: "Tempo", worldType: "Dünya yapısı",
+        difficulty: "Zorluk", graphics: "Görsel tarz", characterProgression: "Karakter gelişimi",
+        length: "Oyun süresi", challengeStyle: "Meydan okuma", atmosphere: "Atmosfer",
+        features: "Oynanış", vehicleInterest: "Araçlar", horrorInterest: "Korku", strategyInterest: "Strateji",
+      },
       platform: (value: string) => `${value} platformunda oynanabiliyor`,
       category: (value: string) => `${value} kategorisiyle eşleşiyor`,
       playMode: (value: string) =>
@@ -123,6 +142,9 @@ export const translations = {
     categoryFilter: "Category",
     playModeFilter: "Play mode",
     compatibility: "Matches your preferences",
+    matchExplanation: "Match percentage is the share of preference points matched, weighted by each question’s importance. It is not a game rating or the probability you will enjoy it. Platform, category and play mode add no points to this percentage.",
+    matchPoints: (score: number, total: number) => `Matched preference points: ${score} / ${total}`,
+    matchLevels: { unavailable: "Match unavailable", filtersOnly: "Only basic filters match", limited: "Limited preference match", partial: "Partial preference match", good: "Good preference match", strong: "Strong preference match" },
     recommendationReason: "Why was it recommended?",
     restart: "Start Again",
 
@@ -143,12 +165,28 @@ export const translations = {
       relaxed: "🌿 Relaxed Gamer",
       horror: "👻 Thrill Seeker",
       speed: "🏎️ Speed Enthusiast",
+      solver: "🧩 Puzzle Solver",
+      survivor: "🔥 Survival Specialist",
+      simulator: "🛠️ Simulation Enthusiast",
+      manager: "📊 Systems Manager",
+      quickplay: "⏱️ Quick Session Player",
+      sports: "⚽ Sports Fan",
       versatile: "🎮 Versatile Gamer",
       openToNewExperiences: "✨ Open to New Experiences",
       gameExplorer: "🚀 Game Explorer",
     },
 
     reasons: {
+      matched: (field: string, selected: string, actual: string) => selected === actual
+        ? `${field}: matches your “${selected}” preference.`
+        : `${field}: its “${actual}” feature matches your “${selected}” selection.`,
+      filtersOnly: "No specific preference matches; this game meets only your basic filters.",
+      fields: {
+        storyImportance: "Story", tempo: "Pace", worldType: "World structure",
+        difficulty: "Difficulty", graphics: "Visual style", characterProgression: "Character progression",
+        length: "Game length", challengeStyle: "Challenge", atmosphere: "Atmosphere",
+        features: "Gameplay", vehicleInterest: "Vehicles", horrorInterest: "Horror", strategyInterest: "Strategy",
+      },
       platform: (value: string) => `Available on ${value}`,
       category: (value: string) => `Matches the ${value} category`,
       playMode: (value: string) =>
