@@ -1,6 +1,7 @@
 import type { Category, Game, Platform, PlayMode } from "../data/game";
 import { hardFilterQuestions } from "../data/questions";
 import type { Answer } from "./recommendations";
+import { passesRequiredPreferences } from "./preference-matching";
 
 export type RecoveryOption = {
   category: Category;
@@ -19,6 +20,7 @@ export function getRecoveryOptions(answers: Answer[], games: Game[]): RecoveryOp
   const available = games.filter(game => game.platforms.includes(platform));
   const countMatches = (nextCategory: Category, nextMode: string) => available.filter(game =>
     game.categories.includes(nextCategory) &&
+    (nextCategory !== category || passesRequiredPreferences(game, answers)) &&
     (nextMode === "Fark etmez" || game.playModes.includes(nextMode as PlayMode))
   ).length;
   if (countMatches(category as Category, mode)) return [];

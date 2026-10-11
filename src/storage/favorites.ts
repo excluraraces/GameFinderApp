@@ -1,4 +1,4 @@
-﻿import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FAVORITES_KEY = "@gamefinder_favorites";
 let pending: Promise<unknown> = Promise.resolve();

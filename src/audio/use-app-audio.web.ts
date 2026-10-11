@@ -16,6 +16,7 @@ const sources = {
 // Expo's web player constructs HTMLAudioElement immediately. Create it in an
 // effect so static HTML and its wallpaper can render without a browser Audio API.
 export function useAppAudio(settings: AudioPreferences, ready: boolean, blocked: boolean) {
+  const { musicEnabled, soundEnabled, volume } = settings;
   const live = useRef<Controller | null>(null);
   const options = useRef<Parameters<Controller['configure']>[0]>({});
   const api = useMemo(() => ({
@@ -30,8 +31,8 @@ export function useAppAudio(settings: AudioPreferences, ready: boolean, blocked:
   }), []);
 
   useLayoutEffect(() => {
-    api.configure({ ...settings, ready, blocked });
-  }, [api, settings.musicEnabled, settings.soundEnabled, settings.volume, ready, blocked]);
+    api.configure({ musicEnabled, soundEnabled, volume, ready, blocked });
+  }, [api, musicEnabled, soundEnabled, volume, ready, blocked]);
 
   useEffect(() => {
     const players: ReturnType<typeof createAudioPlayer>[] = [];

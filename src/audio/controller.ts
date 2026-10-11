@@ -18,13 +18,15 @@ export function createAudioController(music: Player, cues: Record<SoundCue, Play
   let sequence = 0;
   let fade: ReturnType<typeof setInterval> | undefined;
   let lastCueAt = -Infinity;
+  let activeCue: Player | undefined;
   const attempt = (action: () => void) => { try { action(); } catch { /* Audio is optional feedback. */ } };
   const level = () => Math.max(0, Math.min(100, options.volume)) / 100;
   const available = () => unlocked && options.ready && options.foreground && !options.blocked;
   function clearFade() { if (fade !== undefined) clearInterval(fade); fade = undefined; }
   function stopEffects() {
     sequence++;
-    Object.values(cues).forEach(player => attempt(() => player.pause()));
+    if (activeCue) attempt(() => activeCue!.pause());
+    activeCue = undefined;
   }
   function refreshMusic() {
     clearFade();
@@ -47,12 +49,18 @@ export function createAudioController(music: Player, cues: Record<SoundCue, Play
     });
   }
   function configure(next: Partial<Options>) {
+    if (Object.entries(next).every(([key, value]) => options[key as keyof Options] === value)) return;
+    const previous = options;
     options = { ...options, ...next };
     if (!available() || !options.soundEnabled || level() === 0) stopEffects();
-    Object.values(cues).forEach(player => attempt(() => { player.volume = level() * 0.65; }));
-    refreshMusic();
+    if (previous.volume !== options.volume) {
+      Object.values(cues).forEach(player => attempt(() => { player.volume = level() * 0.65; }));
+    }
+    if (previous.musicEnabled !== options.musicEnabled || previous.volume !== options.volume ||
+        previous.ready !== options.ready || previous.blocked !== options.blocked ||
+        previous.foreground !== options.foreground) refreshMusic();
   }
-  function activate() { unlocked = true; refreshMusic(); }
+  function activate() { if (unlocked) return; unlocked = true; refreshMusic(); }
   async function play(cue: SoundCue) {
     if (!available() || !options.soundEnabled || level() === 0) return;
     const now = Date.now();
@@ -66,6 +74,7 @@ export function createAudioController(music: Player, cues: Record<SoundCue, Play
       await player.seekTo(0);
       if (current !== sequence || !available() || !options.soundEnabled || level() === 0) return;
       player.volume = level() * 0.65;
+      activeCue = player;
       player.play();
     } catch { /* Missing/blocked audio never breaks the app. */ }
   }

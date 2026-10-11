@@ -1,4 +1,4 @@
-﻿const assert = require('node:assert/strict');
+const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
@@ -14,7 +14,7 @@ function load(file) {
   cache.set(file, exports);
   vm.runInNewContext(compile(fs.readFileSync(file, 'utf8')), {
     exports,
-    require: name => /\.(jpeg|png)$/.test(name) ? name : load(path.resolve(path.dirname(file), name + '.ts')),
+    require: name => /\.(jpeg|png|webp)$/.test(name) ? name : load(path.resolve(path.dirname(file), name + '.ts')),
   });
   return exports;
 }
@@ -37,11 +37,11 @@ for (const language of ['tr', 'en']) {
   for (const platform of questions.hardFilterQuestions[0].options) {
     for (const category of questions.hardFilterQuestions[1].options) {
       for (const mode of questions.hardFilterQuestions[2].options) {
-        for (const last of [false, true]) {
-          const preferences = [...questions.categoryQuestionBooks[category.value], ...questions.commonPreferenceQuestions];
+        for (const last of [0, 1, 2]) {
+          const preferences = [...questions.categoryQuestionBooks[category.value], ...questions.getCommonPreferencesForCategory(category.value)];
           const answers = [{ questionId: 'platform', value: platform.value }, { questionId: 'category', value: category.value }, { questionId: 'playMode', value: mode.value },
-            ...preferences.map(q => ({ questionId: q.id, kind: q.kind, scoreField: q.scoreField, weight: q.weight, ...q.options[last ? q.options.length - 1 : 0] }))];
-          const maxPreferenceScore = preferences.reduce((sum, q) => sum + (q.weight ?? 1), 0);
+            ...preferences.map(q => ({ questionId: q.id, kind: q.kind, scoreField: q.scoreField, weight: q.weight, requiredMatch: q.requiredMatch, ...q.options[last === 2 ? q.options.length - 1 : last ? q.options.length - 2 : 0] }))];
+          const maxPreferenceScore = preferences.reduce((sum, q) => sum + (q.options[last === 2 ? q.options.length - 1 : last ? q.options.length - 2 : 0].noPreference ? 0 : q.weight ?? 1), 0);
           const context = { answers, activeGames: games, maxPreferenceScore, t, translateGameTag };
           const engine = createRecommendations(context);
           const result = engine.getRecommendation();
@@ -50,12 +50,20 @@ for (const language of ['tr', 'en']) {
             assert(game.platforms.includes(platform.value));
             assert(game.categories.includes(category.value));
             assert(mode.value === 'Fark etmez' || game.playModes.includes(mode.value));
-            const expected = answers.filter(a => a.kind === 'preference').reduce((sum, a) =>
+            const expected = answers.filter(a => a.kind === 'preference' && !a.noPreference).reduce((sum, a) =>
               sum + ((a.matchValues?.length ? a.matchValues : [a.value]).some(v => game[a.scoreField].includes(v)) ? a.weight ?? 1 : 0), 0);
             assert.equal(game.score, expected);
-            assert.equal(engine.getMatchPercent(game.score), Math.round(expected / maxPreferenceScore * 100));
+            assert.equal(engine.getMatchPercent(game.score), maxPreferenceScore > 0 ? Math.round(expected / maxPreferenceScore * 100) : null);
           }
-          for (let i = 1; i < result.length; i++) assert(result[i - 1].score >= result[i].score);
+          for (let i = 0; i < result.length; i++) {
+            for (let j = i + 1; j < result.length; j++) {
+              assert(result[j].score - result[i].score <= Math.floor(maxPreferenceScore * 0.1), 'Clearly better matches stay ahead');
+              assert(result[i].score > 0 || result[j].score === 0, 'Zero matches never displace positive matches');
+            }
+            for (const answer of answers.filter(a => a.requiredMatch && !a.noPreference)) {
+              assert((answer.matchValues || [answer.value]).some(value => result[i][answer.scoreField].includes(value)), 'Core experience is required');
+            }
+          }
           if (baseline) {
             const original = vm.createContext({ ...context });
             vm.runInContext(baseline, original);
@@ -211,3 +219,115 @@ for (const maxPreferenceScore of [0, -1, NaN, Infinity]) {
 assert.equal(createRecommendations({ ...tieContext, maxPreferenceScore: 25 }).getMatchPercent(18), 72);
 assert.equal(createRecommendations({ ...tieContext, maxPreferenceScore: 3 }).getMatchPercent(2), 67);
 console.log('PASS: match percentage boundaries, weighted calculation, rounding, 0–100 bounds and missing-data display');
+
+// Reproduce the reported PC / simulation / driving / calm session with real questions.
+const simBook = [...questions.categoryQuestionBooks['Simülasyon'], ...questions.getCommonPreferencesForCategory('Simülasyon')];
+const simAnswers = [
+  { questionId: 'platform', kind: 'hardFilter', value: 'PC' },
+  { questionId: 'category', kind: 'hardFilter', value: 'Simülasyon' },
+  { questionId: 'playMode', kind: 'hardFilter', value: 'Tek kişilik' },
+  ...simBook.map(q => ({ questionId: q.id, kind: q.kind, scoreField: q.scoreField,
+    weight: q.weight, requiredMatch: q.requiredMatch, ...q.options[0] })),
+];
+const simContext = { ...tieContext, activeGames: games, answers: simAnswers,
+  maxPreferenceScore: simBook.reduce((sum, q) => sum + q.weight, 0) };
+const drivingIds = games.filter(g => g.platforms.includes('PC') && g.categories.includes('Simülasyon') &&
+  g.playModes.includes('Tek kişilik') && g.features.some(f => ['Simülasyon sürüş', 'Araç simülasyonu'].includes(f))).map(g => g.id).sort((a,b) => a-b);
+let previous = [];
+const simOrders = new Set();
+for (let seed = 1; seed <= 30; seed++) {
+  const context = { ...simContext, previousRecommendationIds: previous };
+  const result = recommend(context, seed);
+  assert.deepEqual(ids(result).sort((a,b) => a-b), plain(drivingIds), 'Do not pad driving recommendations with unrelated games');
+  assert.equal(result[0].title, 'Euro Truck Simulator 2', 'Calm driving match outranks racing-only matches');
+  assert(result[0].reasons.some(reason => reason.includes('Rahat sürüş')));
+  assert.deepEqual(ids(result), ids(recommend(context, seed)), 'Same quiz stays stable after re-render');
+  const translated = recommend({ ...context, t: translations.en, activeGames: [...games].reverse() }, seed);
+  assert.deepEqual(ids(result), ids(translated), 'Language/catalog order never change recommendations');
+  simOrders.add(ids(result).join(','));
+  previous = ids(result);
+}
+assert(simOrders.size > 15, 'Repeated real simulation quizzes should vary similar matches');
+// Spreading an option without aliases must clear aliases of the prior answer.
+const sandboxAnswers = simAnswers.map(a => a.questionId === 'sim-mood'
+  ? { ...a, matchValues: undefined, ...questions.categoryQuestionBooks['Simülasyon'][2].options[3] } : a);
+assert.equal(recommend({ ...simContext, answers: sandboxAnswers }, 1)[0].title, 'BeamNG.drive', 'Sandbox driving should prefer BeamNG');
+
+const noDriving = { ...simContext, activeGames: games.filter(g => !drivingIds.includes(g.id)) };
+assert.equal(recommend(noDriving, 1).length, 0, 'No driving candidates must produce an honest empty result');
+const recovery = getRecoveryOptions(simAnswers, noDriving.activeGames);
+assert(recovery.length > 0);
+for (const option of recovery) {
+  const answers = applyRecoveryOption(simAnswers, option, value => value);
+  const result = recommend({ ...noDriving, answers }, 1);
+  assert(result.length > 0, 'Every advertised recovery must actually produce recommendations');
+  if (!option.categoryChanged) assert(result.every(g => g.features.some(f => ['Simülasyon sürüş', 'Araç simülasyonu'].includes(f))));
+}
+
+// Close scores may move; large gaps and zero-match candidates may not.
+const diverseContext = { ...tieContext, maxPreferenceScore: 20,
+  activeGames: games.slice(0, 4).map((g, i) => ({ ...g, features: [['a','b'],['a'],['c'],[]][i] })),
+  answers: [ ['a',8], ['b',2], ['c',4] ].map(([value,weight]) =>
+    ({ questionId: value, kind:'preference', scoreField:'features', value, weight })) };
+const first = recommend(diverseContext, 3);
+const second = recommend({ ...diverseContext, previousRecommendationIds: ids(first) }, 3);
+assert.notEqual(first[0].id, second[0].id, 'An equally/closely matched alternative should lead next time');
+assert.deepEqual(ids(first.slice(0,2)).sort(), ids(second.slice(0,2)).sort(), 'Only the close top band may change');
+assert(second[2].score === 4 && second[3].score === 0);
+const fresh = recommend({ ...tieContext, previousRecommendationIds: ids(recommend(tieContext, 1)) }, 1);
+assert(fresh.every(g => !ids(recommend(tieContext, 1)).includes(g.id)), 'Unseen tied games get discovery slots');
+const pair = { ...tieContext, activeGames: tiedGames.slice(0,2) };
+const pairFirst = recommend(pair, 1);
+assert.notEqual(recommend({ ...pair, previousRecommendationIds: ids(pairFirst) }, 1)[0].id, pairFirst[0].id);
+console.log('PASS: driving-only results, calm/sandbox relevance, honest empty/recovery, close-score discovery and repeated quiz history');
+
+// Audit regressions: core sport, corrected catalog facts, neutral preferences,
+// duplicate answers and the actual UI denominator.
+const quiz = (category, choices, platform = 'PC') => {
+  const book = questions.getQuestionsForCategory(category);
+  const answers = book.map(q => {
+    const value = ({ platform, category, playMode: 'Fark etmez', ...choices })[q.id];
+    const option = q.options.find(o => o.value === value) ?? q.options.find(o => o.noPreference);
+    assert(option, q.id + ': missing test choice');
+    return { questionId: q.id, kind: q.kind, scoreField: q.scoreField, weight: q.weight,
+      requiredMatch: q.requiredMatch, ...option };
+  });
+  const context = { ...tieContext, activeGames: games, answers,
+    maxPreferenceScore: questions.getPreferenceScoreBudget(book, answers) };
+  return { ...context, engine: createRecommendations(context) };
+};
+const football = quiz('Spor', { 'sports-type': 'Futbol' }, 'PlayStation');
+assert.equal(football.maxPreferenceScore, 5);
+assert(football.engine.getRecommendation().length > 0);
+assert(football.engine.getRecommendation().every(g => g.features.includes('Futbol')));
+assert(!football.engine.getRecommendation().some(g => g.id === 181), 'UFC cannot satisfy football');
+assert(football.engine.getRecommendation().every(g => football.engine.getMatchPercent(g.score) === 100), 'Neutral preferences must not lower the denominator');
+const combat = quiz('Spor', { 'sports-type': 'Dövüş sporu' }, 'PlayStation');
+assert(combat.engine.getRecommendation().some(g => g.id === 181), 'UFC must remain discoverable as a combat sport');
+const city = quiz('Yönetim / Kurma', { 'management-type': 'Şehir kurma' });
+assert(city.engine.getRecommendation().every(g => g.features.includes('Şehir kurma')));
+assert(city.engine.getRecommendation().some(g => g.id === 134), 'Anno belongs among city builders');
+const neutral = quiz('Spor', {});
+assert.equal(neutral.maxPreferenceScore, 0);
+assert(neutral.engine.getRecommendation().every(g => g.score === 0));
+assert.equal(neutral.engine.getMatchPercent(0), null);
+assert.equal(neutral.engine.getPlayerProfileDetails().traits.length, 0);
+const repeated = [...football.answers, { ...football.answers.find(a => a.questionId === 'sports-type'), value: 'Dövüş sporu' }];
+assert.deepEqual(ids(createRecommendations({ ...football, answers: repeated }).getRecommendation()), ids(combat.engine.getRecommendation()), 'Last answer replaces earlier answer instead of scoring/filtering twice');
+const cartoonRacing = quiz('Yarış', { 'common-graphics': 'Cartoon' }, 'Nintendo Switch');
+assert(cartoonRacing.engine.getRecommendation().find(g => g.id === 172)?.score === 2, 'Mario Kart must match stylized visuals');
+const sciFi = quiz('Hayatta Kalma', { 'common-atmosphere': 'Bilim kurgu' });
+assert(sciFi.engine.getRecommendation().find(g => g.id === 116)?.score === 3, 'No Mans Sky must match science fiction');
+const byId = id => games.find(g => g.id === id);
+for (const id of [99,165,166,196]) assert(!byId(id).challengeStyle.includes('Rahatlatmalı'), byId(id).title + ': no blanket relaxing tag');
+for (const id of [146,148,149]) assert(!byId(id).features.includes('Hızlı çatışma'), byId(id).title + ': puzzle gameplay is not fast shooting');
+for (const category of Object.keys(questions.categoryQuestionBooks)) {
+  const book = questions.getQuestionsForCategory(category);
+  for (const field of ['length','graphics','challengeStyle']) assert(book.filter(q => q.scoreField === field).length <= 1, category + ': duplicate preference dimension ' + field);
+  const englishBook = load('src/data/question.en.ts').getQuestionsForCategoryEn(category);
+  assert.deepEqual(plain(book.map(q=>q.id)), plain(englishBook.map(q=>q.id)));
+  for (const q of book.filter(q=>q.requiredMatch)) for (const option of q.options.filter(o=>!o.noPreference)) {
+    assert(games.some(g=>g.categories.includes(category) && (option.matchValues ?? [option.value]).some(v=>g[q.scoreField].includes(v))), category + ': unreachable core option '+option.value);
+  }
+}
+console.log('PASS: sport/city relevance, 100% neutral denominator, no invented profile, last-answer wins, corrected game tags, unique question dimensions, TR/EN flow and reachable core options');

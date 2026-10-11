@@ -9,7 +9,7 @@ const cyberpunk2077Image = require("../../assets/images/cyberpunk2077.jpeg");
 const eldenringImage = require("../../assets/images/eldenring.jpeg");
 const godofwar2018Image = require("../../assets/images/godofwar2018.jpeg");
 const thelastofuspart1Image = require("../../assets/images/thelastofuspart1.jpeg");
-const hogwartslegacyImage = require("../../assets/images/hogwartslegacy.jpeg");
+const hogwartslegacyImage = require("../../assets/images/hogwartslegacy.webp");
 const ghostoftsushimaImage = require("../../assets/images/ghostoftsushima.jpeg");
 const grandtheftautovImage = require("../../assets/images/grandtheftautov.jpeg");
 const needforspeedheatImage = require("../../assets/images/needforspeedheat.jpeg");
@@ -26,13 +26,13 @@ const codmobileImage = require("../../assets/images/codmobile.jpeg");
 const genshinimpactImage = require("../../assets/images/genshinimpact.jpeg");
 const hadesImage = require("../../assets/images/hades.jpeg");
 const pubgmobileImage = require("../../assets/images/pubgmobile.jpeg");
-const totalwarwarhammer3Image = require("../../assets/images/totalwarwarhammer3.jpeg");
+const totalwarwarhammer3Image = require("../../assets/images/totalwarwarhammer3.png");
 const stardewvalleyImage = require("../../assets/images/stardewvalley.jpeg");
 const minecraftImage = require("../../assets/images/minecraft.jpeg");
 const clashroyaleImage = require("../../assets/images/clashroyale.jpeg");
 const brawlstarsImage = require("../../assets/images/brawlstars.jpeg");
-const cs2Image = require("../../assets/images/cs2.jpeg");
-const battlefield1Image = require("../../assets/images/battlefield1.jpeg");
+const cs2Image = require("../../assets/images/cs2.webp");
+const battlefield1Image = require("../../assets/images/battlefield1.webp");
 const battlefield5Image = require("../../assets/images/battlefield5.jpeg");
 const rainbowsixsiegeImage = require("../../assets/images/rainbowsixsiege.jpeg");
 const escapefromtarkovImage = require("../../assets/images/escapefromtarkov.jpeg");
@@ -41,40 +41,40 @@ const rocketleagueImage = require("../../assets/images/rocketleague.jpeg");
 const warthunderImage = require("../../assets/images/warthunder.jpeg");
 const worldoftanksImage = require("../../assets/images/worldoftanks.jpeg");
 const overwatch2Image = require("../../assets/images/overwatch2.jpeg");
-const odysesImage = require("../../assets/images/odyses.jpeg");
+const odysesImage = require("../../assets/images/odyses.webp");
 const spidermanremasteredImage = require("../../assets/images/spidermanremastered.jpeg");
-const uncharted4Image = require("../../assets/images/uncharted4.jpeg");
-const controlImage = require("../../assets/images/control.jpeg");
+const uncharted4Image = require("../../assets/images/uncharted4.webp");
+const controlImage = require("../../assets/images/control.webp");
 const fallout4Image = require("../../assets/images/fallout4.jpeg");
-const devilmaycry5Image = require("../../assets/images/devilmaycry5.jpeg");
+const devilmaycry5Image = require("../../assets/images/devilmaycry5.webp");
 const alienisolationImage = require("../../assets/images/alienisolation.jpeg");
-const citiesskylineImage = require("../../assets/images/citiesskyline.jpeg");
-const crusaderkings3Image = require("../../assets/images/crusaderkings3.jpeg");
+const citiesskylineImage = require("../../assets/images/citiesskyline.webp");
+const crusaderkings3Image = require("../../assets/images/crusaderkings3.webp");
 const deadspaceImage = require("../../assets/images/deadspace.jpeg");
 const doometernalImage = require("../../assets/images/doometernal.jpeg");
-const ets2Image = require("../../assets/images/ets2.jpeg");
-const fm2024Image = require("../../assets/images/fm2024.jpeg");
-const fortniteImage = require("../../assets/images/fortnite.jpeg");
+const ets2Image = require("../../assets/images/ets2.webp");
+const fm2024Image = require("../../assets/images/fm2024.png");
+const fortniteImage = require("../../assets/images/fortnite.png");
 const littlenightmares2Image = require("../../assets/images/littlenightmares2.jpeg");
 const rimworldImage = require("../../assets/images/rimworld.jpeg");
 const silenthill2Image = require("../../assets/images/silenthill2.jpeg");
 const sims4Image = require("../../assets/images/sims4.jpeg");
 const somaImage = require("../../assets/images/soma.jpeg");
-const xcom2Image = require("../../assets/images/xcom2.jpeg");
+const xcom2Image = require("../../assets/images/xcom2.webp");
 const amongusImage = require("../../assets/images/amongus.jpeg");
 const asphalt9legendsImage = require("../../assets/images/asphalt9legends.jpeg");
 const carxstreetImage = require("../../assets/images/carxstreet.jpeg");
 const deadcellsImage = require("../../assets/images/deadcells.jpeg");
 const discoelysiumImage = require("../../assets/images/discoelysium.jpeg");
 const efootballmobileImage = require("../../assets/images/efootballmobile.jpeg");
-const masseffectImage = require("../../assets/images/masseffect.jpeg");
+const masseffectImage = require("../../assets/images/masseffect.png");
 const middleearthImage = require("../../assets/images/middleearth.jpeg");
 const mlbbImage = require("../../assets/images/mlbb.jpeg");
 const monumentvalleyImage = require("../../assets/images/monumentvalley.jpeg");
 const personaroyal5Image = require("../../assets/images/personaroyal5.jpeg");
 const potal2Image = require("../../assets/images/potal2.jpeg");
 const pokemonuniteImage = require("../../assets/images/pokemonunite.jpeg");
-const powerwashImage = require("../../assets/images/powerwash.jpeg");
+const powerwashImage = require("../../assets/images/powerwash.webp");
 const robloxImage = require("../../assets/images/roblox.jpeg");
 const terrariaImage = require("../../assets/images/terraria.jpeg");
 const ittakestwoImage = require("../../assets/images/ittakestwo.jpeg");
@@ -86,10 +86,10 @@ const honorofkingsImage = require("../../assets/images/honorofkings.jpeg");
 const smite2Image = require("../../assets/images/smite2.jpeg");
 const predecessorImage = require("../../assets/images/predecessor.jpeg");
 const deadlockImage = require("../../assets/images/deadlock.jpeg");
-const heroesofstormImage = require("../../assets/images/heroesofstorm.jpeg");
-const heroesevolvedImage = require("../../assets/images/heroesevolved.jpeg");
+const heroesofstormImage = require("../../assets/images/heroesofstorm.webp");
+const heroesevolvedImage = require("../../assets/images/heroesevolved.webp");
 const eternalreturnImage = require("../../assets/images/eternalreturn.jpeg");
-const battleriteImage = require("../../assets/images/battlerite.jpeg");
+const battleriteImage = require("../../assets/images/battlerite.webp");
 const arenaofvalorImage = require("../../assets/images/arenaofvalor.jpeg");
 const onmyojiarenaImage = require("../../assets/images/onmyojiarena.jpeg");
 const legendofaceImage = require("../../assets/images/legendoface.jpeg");
@@ -124,27 +124,27 @@ const palworldImage = require("../../assets/images/palworld.jpeg");
 const dayzImage = require("../../assets/images/dayz.jpeg");
 const arksurvivalImage = require("../../assets/images/arksurvival.jpeg");
 const frostpunkImage = require("../../assets/images/frostpunk.jpeg");
-const frostpunk2Image = require("../../assets/images/frostpunk2.jpeg");
-const twopointhospitalImage = require("../../assets/images/twopointhospital.jpeg");
+const frostpunk2Image = require("../../assets/images/frostpunk2.webp");
+const twopointhospitalImage = require("../../assets/images/twopointhospital.webp");
 const twopointmuseumImage = require("../../assets/images/twopointmuseum.jpeg");
 const planetzooImage = require("../../assets/images/planetzoo.jpeg");
 const prisonarchitectImage = require("../../assets/images/prisonarchitect.jpeg");
 const againstthestormImage = require("../../assets/images/againstthestorm.jpeg");
 const anno1800Image = require("../../assets/images/anno1800.jpeg");
-const europauniversalis4Image = require("../../assets/images/europauniversalis4.jpeg");
+const europauniversalis4Image = require("../../assets/images/europauniversalis4.webp");
 const factorioImage = require("../../assets/images/factorio.jpeg");
-const heartsofironImage = require("../../assets/images/heartsofiron.jpeg");
+const heartsofironImage = require("../../assets/images/heartsofiron.webp");
 const stellarisImage = require("../../assets/images/stellaris.jpeg");
 const satisfactoryImage = require("../../assets/images/satisfactory.jpeg");
-const tropica6Image = require("../../assets/images/tropica6.jpeg");
-const oxygennotincludedImage = require("../../assets/images/oxygennotincluded.jpeg");
+const tropica6Image = require("../../assets/images/tropica6.webp");
+const oxygennotincludedImage = require("../../assets/images/oxygennotincluded.webp");
 const companyofheroesImage = require("../../assets/images/companyofheroes.jpeg");
-const manorlordsImage = require("../../assets/images/manorlords.jpeg");
+const manorlordsImage = require("../../assets/images/manorlords.webp");
 const cocoonImage = require("../../assets/images/cocoon.jpeg");
-const babaisyouImage = require("../../assets/images/babaisyou.jpeg");
+const babaisyouImage = require("../../assets/images/babaisyou.png");
 const northgardImage = require("../../assets/images/northgard.jpeg");
 const thetalosprincipleImage = require("../../assets/images/thetalosprinciple.jpeg");
-const thewitnessImage = require("../../assets/images/thewitness.jpeg");
+const thewitnessImage = require("../../assets/images/thewitness.webp");
 const portalImage = require("../../assets/images/portal.jpeg");
 const thecaseImage = require("../../assets/images/thecase.jpeg");
 const insideImage = require("../../assets/images/inside.jpeg");
@@ -169,35 +169,35 @@ const a168Image = require("../../assets/images/a168.jpeg");
 const a169Image = require("../../assets/images/a169.jpeg");
 const a170Image = require("../../assets/images/a170.jpeg");
 const a171Image = require("../../assets/images/a171.jpeg");
-const a172Image = require("../../assets/images/a172.jpeg");
-const a173Image = require("../../assets/images/a173.jpeg");
+const a172Image = require("../../assets/images/a172.webp");
+const a173Image = require("../../assets/images/a173.webp");
 const a174Image = require("../../assets/images/a174.jpeg");
 const a175Image = require("../../assets/images/a175.jpeg");
-const a176Image = require("../../assets/images/a176.jpeg");
-const a177Image = require("../../assets/images/a177.jpeg");
+const a176Image = require("../../assets/images/a176.webp");
+const a177Image = require("../../assets/images/a177.webp");
 const a178Image = require("../../assets/images/a178.jpeg");
-const a179Image = require("../../assets/images/a179.jpeg");
-const a180Image = require("../../assets/images/a180.jpeg");
+const a179Image = require("../../assets/images/a179.webp");
+const a180Image = require("../../assets/images/a180.webp");
 const a181Image = require("../../assets/images/a181.jpeg");
-const a182Image = require("../../assets/images/a182.jpeg");
-const a183Image = require("../../assets/images/a183.jpeg");
+const a182Image = require("../../assets/images/a182.webp");
+const a183Image = require("../../assets/images/a183.webp");
 const a184Image = require("../../assets/images/a184.jpeg");
-const a185Image = require("../../assets/images/a185.jpeg");
-const a186Image = require("../../assets/images/a186.jpeg");
+const a185Image = require("../../assets/images/a185.webp");
+const a186Image = require("../../assets/images/a186.png");
 const a187Image = require("../../assets/images/a187.jpeg");
 const a188Image = require("../../assets/images/a188.jpeg");
 const a189Image = require("../../assets/images/a189.jpeg");
-const a190Image = require("../../assets/images/a190.jpeg");
+const a190Image = require("../../assets/images/a190.webp");
 const a191Image = require("../../assets/images/a191.jpeg");
 const a192Image = require("../../assets/images/a192.jpeg");
 const a193Image = require("../../assets/images/a193.jpeg");
 const a194Image = require("../../assets/images/a194.jpeg");
-const a195Image = require("../../assets/images/a195.jpeg");
-const a196Image = require("../../assets/images/a196.jpeg");
+const a195Image = require("../../assets/images/a195.webp");
+const a196Image = require("../../assets/images/a196.webp");
 const a197Image = require("../../assets/images/a197.jpeg");
 const a198Image = require("../../assets/images/a198.jpeg");
 const a199Image = require("../../assets/images/a199.jpeg");
-const a200Image = require("../../assets/images/a200.jpeg");
+const a200Image = require("../../assets/images/a200.webp");
 export type Platform =
   | "PC"
   | "PlayStation"
@@ -365,7 +365,7 @@ export const games: Game[] = [
     storyImportance: ["Önemli değil", "Biraz önemli"],
     tempo: ["Hızlı ve aksiyonlu", "Rahatlatıcı"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["Arcade sürüş", "Açık dünya sürüş", "Araç modifiye", "Koleksiyon", "Online yarış", "Rahat sürüş"],
+    features: ["Arcade sürüş","Açık dünya sürüş","Araç modifiye","Koleksiyon","Online yarış","Rahat sürüş","Araç koleksiyonu"],
     worldType: ["Açık dünya", "Sandbox"],
     difficulty: ["Kolay", "Orta"],
     graphics: ["Gerçekçi"],
@@ -2680,7 +2680,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Arkadaşlarla", "Tek kişilik"],
-    features: ["İş simülasyonu", "Rahatlatıcı görevler", "Mini oyunlar", "Kısa maçlar"],
+    features: ["İş simülasyonu","Mini oyunlar","Kısa maçlar"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Cartoon"],
@@ -2689,7 +2689,7 @@ image: grandtheftautovImage,
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
-    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    challengeStyle: ["İkisi dengeli olmalı","Zorlamalı"],
     atmosphere: ["Gerçekçi"],
     image: overcooked2Image,
     story: "Overcooked! 2'de bir siparişi yetiştirmek, malzemeyi doğramaktan çok mutfaktaki herkesin aynı planı izlemesine bağlıdır. Hareketli ve tuhaf mutfaklarda görev paylaşır, tabak taşır, yemek pişirir ve gerektiğinde malzemeyi arkadaşına fırlatırsın. Sayaç ilerledikçe yükselen telaş, iyi bir koordinasyonu küçük bir zafere; anlaşılmayan bir cümleyi ise yanmış akşam yemeğine dönüştürebilir.",
@@ -2897,7 +2897,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    atmosphere: ["Bilim kurgu","Karanlık"],
     image: subnauticaImage,
     story: "Subnautica'da yabancı bir okyanusun yüzeyi güvenli bir başlangıç gibi görünse de asıl dünya aşağıda saklıdır. Oksijenini hesaplayarak dalar, yeni canlıları inceler ve topladığın malzemelerle daha derine ulaşmanı sağlayacak araçlar üretirsin. Kendi sualtı üssüne dönmenin huzuruyla bilinmeyen bir derinliğe ilk kez inmenin tedirginliği, keşfe çıkma isteğini sürekli canlı tutar.",
   },
@@ -2920,7 +2920,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    atmosphere: ["Bilim kurgu","Karanlık"],
     image: subnautica2Image,
     story: "Subnautica 2, yeni bir yabancı okyanusta merakını hayatta kalma ihtiyacıyla aynı derinliğe taşır. Tek başına ya da arkadaşlarınla çevreyi araştırırken kaynak toplar, ekipman üretir ve sualtında kendine bir yaşam alanı kurarsın. Her yeni bölge, güzel görünen bir manzaranın ardında ne saklandığını öğrenme isteğiyle geri dönebilecek kadar hazırlıklı olma gereğini karşı karşıya getirir.",
   },
@@ -2943,7 +2943,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    atmosphere: ["Fantastik"],
     image: valheimImage,
     story: "Valheim'da küçük bir barınakla başlayan Viking yolculuğun, yeni topraklara açıldıkça daha büyük hazırlıklar ister. Ormanlardan ve kıyılardan topladığın kaynaklarla üssünü geliştirir, yiyeceklerini hazırlar ve güçlü düşmanlarla karşılaşmak için yola çıkarsın. Birlikte kurulan bir salonun sıcaklığı ya da uzun bir deniz yolculuğundan dönüş, zorlu mücadeleler kadar hatırlanan anlara dönüşebilir.",
   },
@@ -3048,17 +3048,17 @@ image: grandtheftautovImage,
     storyImportance: ["Biraz önemli"],
     tempo: ["Yavaş ve taktiksel", "Gerilimli"],
     playModes: ["Tek kişilik", "Arkadaşlarla"],
-    features: ["Crafting", "Base building", "Kaynak yönetimi", "Keşif", "Hayatta kalma", "Hızlı çatışma"],
+    features: ["Crafting","Base building","Kaynak yönetimi","Keşif","Hayatta kalma"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Evet çok isterim", "Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    atmosphere: ["Fantastik"],
     image: groundedImage,
     story: "Grounded'da küçücük bir bedene sahip olduğunda sıradan bir arka bahçe, dev otların ve tehlikeli böceklerin dünyasına dönüşür. Çevredeki malzemelerle araçlar ve sığınaklar yaparken günlük hayatta fark etmediğin ayrıntılar keşif rotanı belirler. Bir su damlasına ulaşmak ya da bir böceğin bölgesinden geçmek, bu ölçekte küçük bir iş değil gerçek bir maceradır.",
   },
@@ -3069,7 +3069,7 @@ image: grandtheftautovImage,
     platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
     categories: ["Hayatta Kalma", "Sandbox / Yaratıcılık", "Aksiyon / Macera"],
     storyImportance: ["Biraz önemli"],
-    tempo: ["Yavaş ve taktiksel", "Gerilimli"],
+    tempo: ["Rahatlatıcı","Yavaş ve taktiksel"],
     playModes: ["Tek kişilik", "Arkadaşlarla"],
     features: ["Yaratıcılık / özgürlük", "Crafting", "Keşif", "Base building", "Sandbox özgürlüğü", "Kaynak yönetimi", "Hayatta kalma", "Açık dünya"],
     worldType: ["Sandbox", "Açık dünya"],
@@ -3080,8 +3080,8 @@ image: grandtheftautovImage,
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Biraz"],
-    challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    challengeStyle: ["Rahatlatmalı","İkisi dengeli olmalı"],
+    atmosphere: ["Bilim kurgu"],
     image: nomansskyImage,
     story: "No Man's Sky'da bir gezegenin ufkunu keşfederken gökyüzünde seni bekleyen başka dünyalar olduğunu bilirsin. Gemini ve ekipmanını geliştirir, kaynak toplar, üs kurar ve yolculuğunun yönünü merakına göre belirlersin. Yabancı canlılarla karşılaşmak, farklı manzaralarda mola vermek ve yeni bir sisteme geçmek, oyunun ilerlemesini kendi keşif alışkanlıklarınla şekillendirir.",
   },
@@ -3097,14 +3097,14 @@ image: grandtheftautovImage,
     features: ["Yaratıcılık / özgürlük", "Crafting", "Keşif", "Base building", "Sandbox özgürlüğü", "Kaynak yönetimi", "Hayatta kalma"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Evet çok isterim", "Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    atmosphere: ["Fantastik","Karanlık"],
     image: dontstarveImage,
     story: "Don't Starve Together'da arkadaşlarınla kurduğun kamp, açlık ve karanlık karşısında ancak iyi bir hazırlıkla ayakta kalır. Kaynak toplama işini paylaşırken değişen koşullara, mevsimlere ve karakterlerinizin farklı özelliklerine uyum sağlarsınız. Çizgi kitap gibi görünen bu tuhaf dünyada bir akşamı daha atlatmak, çoğu zaman bir sonraki günün planını birlikte kurmak demektir.",
   },
@@ -3189,14 +3189,14 @@ image: grandtheftautovImage,
     features: ["Yaratıcılık / özgürlük", "Crafting", "Keşif", "Base building", "Sandbox özgürlüğü", "Kaynak yönetimi", "Hayatta kalma", "Loot", "Karakter oluşturma"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Evet çok isterim", "Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    atmosphere: ["Fantastik"],
     image: palworldImage,
     story: "Palworld'de tanıştığın Pal'lar yalnızca yanında savaşan yaratıklar değil, kurduğun üssün günlük işlerine de katılan yol arkadaşlarıdır. Yeni bölgeleri araştırır, farklı yeteneklere sahip canlıları toplar ve üretim düzenini büyütürsün. Keşif, çatışma ve üs yönetimi birbirine bağlandıkça, iyi bir ekibin ne demek olduğunu yalnızca savaş gücüyle ölçmemeye başlarsın.",
   },
@@ -3219,7 +3219,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    atmosphere: ["Fantastik","Karanlık"],
     image: corekeeperImage,
     story: "Core Keeper'da yeraltının karanlığını kazmayla açtığın her tünel biraz daha geriye iter. Maden çıkarır, ekipman üretir ve kendi üssünü kurarken mağaraların farklı bölgelerinde yeni kaynaklar ve tehditlerle karşılaşırsın. Tarımın sakin ritmiyle keşfin belirsizliği yan yana ilerler; eve döndüğünde bulduklarını yeni bir hazırlığa dönüştürmek istersin.",
   },
@@ -3371,9 +3371,9 @@ image: grandtheftautovImage,
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
     features: ["İş simülasyonu", "Ekonomi yönetimi", "Kariyer modu", "Uzun vadeli büyüme", "Sandbox özgürlüğü"],
-    worldType: ["Sandbox", "Açık dünya"],
+    worldType: ["Bölüm bölüm ilerleyen","Sandbox"],
     difficulty: ["Kolay", "Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Evet çok isterim", "Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
@@ -3394,9 +3394,9 @@ image: grandtheftautovImage,
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
     features: ["İş simülasyonu", "Ekonomi yönetimi", "Kariyer modu", "Uzun vadeli büyüme", "Sandbox özgürlüğü"],
-    worldType: ["Sandbox", "Açık dünya"],
+    worldType: ["Bölüm bölüm ilerleyen","Sandbox"],
     difficulty: ["Kolay", "Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Evet çok isterim", "Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
@@ -3417,9 +3417,9 @@ image: grandtheftautovImage,
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
     features: ["İş simülasyonu", "Ekonomi yönetimi", "Kariyer modu", "Uzun vadeli büyüme", "Sandbox özgürlüğü"],
-    worldType: ["Sandbox", "Açık dünya"],
+    worldType: ["Sandbox"],
     difficulty: ["Kolay", "Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Evet çok isterim", "Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
@@ -3449,7 +3449,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Bilim kurgu"],
     image: factorioImage,
     story: "Factorio'da elle topladığın birkaç kaynak, zamanla birbirini besleyen üretim hatlarının başlangıcı olur. Taşıma bantlarını, makineleri ve enerji sistemini düzenlerken bir yerdeki darboğazın bütün fabrikanı nasıl etkilediğini görürsün. Yeni bir çözümün kusursuz çalışmasını izlemek tatmin edicidir; ta ki büyüyen üretimin sana çözmek isteyeceğin bir sonraki problemi sunmasına kadar.",
   },
@@ -3472,7 +3472,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
-    atmosphere: ["Gerçekçi"],
+    atmosphere: ["Bilim kurgu"],
     image: satisfactoryImage,
     story: "Satisfactory'de fabrikanı tepeden izlemek yerine, boruların ve taşıma bantlarının arasında bizzat dolaşırsın. Yabancı bir gezegeni araştırırken bulduğun kaynakları üretime bağlar, makinelerin ve ulaşım yollarının yerini planlarsın. Bir tepenin ardından gördüğün manzara yeni bir keşif çağrısı olabilir; aynı anda oraya kurulacak hattın hesabını yapmaya başlaman da mümkündür.",
   },
@@ -3485,7 +3485,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
-    features: ["Ekonomi yönetimi", "Kaynak yönetimi", "Uzun kampanya", "Uzun vadeli büyüme", "Sandbox özgürlüğü"],
+    features: ["Ekonomi yönetimi","Kaynak yönetimi","Uzun kampanya","Uzun vadeli büyüme","Sandbox özgürlüğü","Şehir kurma"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor", "Çok zor"],
     graphics: ["Gerçekçi"],
@@ -3495,7 +3495,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Gerçekçi"],
     image: anno1800Image,
     story: "Anno 1800'de gelişen şehrinin ihtiyaçları arttıkça, tek bir ürünün ardında birbirine bağlı birçok üretim adımı olduğunu görürsün. Fabrikaları, yerleşimleri ve adalar arasındaki ticaret rotalarını düzenleyerek büyümenin yükünü dengelersin. Sanayileşmenin hareketli atmosferi içinde en tatmin edici an, karmaşık görünen bir tedarik zincirinin sonunda düzenli çalışmaya başlaması olabilir.",
   },
@@ -3508,7 +3508,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["Grand strategy", "Diplomasi", "Uzun kampanya", "Kaynak yönetimi", "Uzun vadeli büyüme", "Taktik"],
+    features: ["Grand strategy","Diplomasi","Uzun kampanya","Kaynak yönetimi","Uzun vadeli büyüme","Taktik","Ordu yönetimi","Ekonomi yönetimi"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor", "Çok zor"],
     graphics: ["Gerçekçi"],
@@ -3518,7 +3518,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Bilim kurgu"],
     image: stellarisImage,
     story: "Stellaris'te yıldızlara açılan toplumunun nasıl bir uygarlık olacağını sen belirlersin. Bilim gemileriyle bilinmeyeni araştırırken koloniler kurar, başka güçlerle ilişki geliştirir ve galaksideki yerini savunursun. Yeni bir karşılaşma yalnızca haritada başka bir sınır değildir; bazen inançlarını, stratejini ve geleceğe dair planını yeniden düşünmene neden olur.",
   },
@@ -3531,7 +3531,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["Grand strategy", "Diplomasi", "Uzun kampanya", "Kaynak yönetimi", "Uzun vadeli büyüme", "Taktik"],
+    features: ["Grand strategy","Diplomasi","Uzun kampanya","Kaynak yönetimi","Uzun vadeli büyüme","Taktik","Ordu yönetimi"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor", "Çok zor"],
     graphics: ["Gerçekçi"],
@@ -3541,7 +3541,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Gerçekçi"],
     image: heartsofironImage,
     story: "Hearts of Iron IV'te cephedeki bir ordunun başarısı, çok gerideki fabrikalarda ve ulaşım hatlarında verilen kararlara dayanır. Ülkenin sanayisini yönlendirir, araştırmaları seçer ve birliklerini geniş bir savaş planının parçaları olarak kullanırsın. Diplomasi, üretim ve lojistik birbirine bağlandığında, haritadaki her ilerlemenin hazırlık gerektiren bir bedeli olduğunu görürsün.",
   },
@@ -3554,7 +3554,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["Grand strategy", "Diplomasi", "Uzun kampanya", "Kaynak yönetimi", "Uzun vadeli büyüme", "Taktik"],
+    features: ["Grand strategy","Diplomasi","Uzun kampanya","Kaynak yönetimi","Uzun vadeli büyüme","Taktik","Ordu yönetimi","Ekonomi yönetimi"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor", "Çok zor"],
     graphics: ["Gerçekçi"],
@@ -3564,7 +3564,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Gerçekçi"],
     image: europauniversalis4Image,
     story: "Europa Universalis IV'te bir ülkenin kaderini tek bir hükümdarın ömründen çok daha uzun bir zaman diliminde şekillendirirsin. İttifaklar kurar, ticareti yönlendirir ve genişlemenin getirdiği fırsatlarla iç düzenin ihtiyaçlarını dengelersin. Savaş kazanmak güçlü bir başlangıç olabilir, fakat elde ettiğin toprakları kalıcı bir güce dönüştürmek daha uzun vadeli düşünmeni ister.",
   },
@@ -3577,7 +3577,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
-    features: ["Ekonomi yönetimi", "Kaynak yönetimi", "Uzun kampanya", "İş simülasyonu", "Kariyer modu", "Uzun vadeli büyüme", "Sandbox özgürlüğü"],
+    features: ["Ekonomi yönetimi","Kaynak yönetimi","Uzun kampanya","İş simülasyonu","Kariyer modu","Uzun vadeli büyüme","Sandbox özgürlüğü","Şehir kurma"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor", "Çok zor"],
     graphics: ["Gerçekçi"],
@@ -3600,17 +3600,17 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
-    features: ["İş simülasyonu", "Sandbox özgürlüğü", "Kaynak yönetimi", "Uzun vadeli büyüme", "Taktik", "Crafting", "Base building", "Keşif", "Hayatta kalma"],
+    features: ["İş simülasyonu","Sandbox özgürlüğü","Kaynak yönetimi","Uzun vadeli büyüme","Taktik","Crafting","Base building","Keşif","Hayatta kalma","Koloni yönetimi"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Evet çok isterim", "Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Bazen oynarım", "Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Gerçekçi", "Karanlık"],
+    atmosphere: ["Bilim kurgu"],
     image: oxygennotincludedImage,
     story: "Oxygen Not Included'da yeraltındaki koloninin en temel ihtiyacı, adının da hatırlattığı gibi nefes alacak ortamı sürdürebilmektir. Su, enerji, sıcaklık ve atıklar arasında sistemler kurarken bir soruna bulduğun çözümün başka bir yerde sorun çıkarabildiğini görürsün. Kolonistlerinin gündelik yaşamı, giderek karmaşıklaşan bu düzenin içinden güvenli bir yol açmana bağlıdır.",
   },
@@ -3623,7 +3623,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
-    features: ["Ekonomi yönetimi", "Kaynak yönetimi", "Uzun kampanya", "Uzun vadeli büyüme", "Taktik"],
+    features: ["Ekonomi yönetimi","Kaynak yönetimi","Uzun kampanya","Uzun vadeli büyüme","Taktik","Şehir kurma"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor", "Çok zor"],
     graphics: ["Gerçekçi"],
@@ -3646,7 +3646,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
-    features: ["Ekonomi yönetimi", "Kaynak yönetimi", "Uzun kampanya", "Uzun vadeli büyüme", "Sandbox özgürlüğü"],
+    features: ["Ekonomi yönetimi","Kaynak yönetimi","Uzun kampanya","Uzun vadeli büyüme","Sandbox özgürlüğü","Şehir kurma"],
     worldType: ["Sandbox", "Açık dünya"],
     difficulty: ["Orta", "Zor", "Çok zor"],
     graphics: ["Gerçekçi"],
@@ -3656,7 +3656,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Gerçekçi"],
     image: manorlordsImage,
     story: "Manor Lords'ta küçük bir Orta Çağ yerleşimini büyütürken evlerin yeri kadar tarlaların ve iş gücünün düzeni de önemlidir. Mevsimlere hazırlanır, üretimi kurar ve bölgenin kaynaklarını halkının ihtiyaçlarına göre değerlendirirsin. Savaş gerektiğinde ise savunmaya ayırdığın insanların aynı zamanda günlük hayatı sürdüren kişiler olması, her askeri kararın yerleşimde de hissedilmesini sağlar.",
   },
@@ -3702,7 +3702,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Evet", "Biraz"],
     challengeStyle: ["Zorlamalı", "İkisi dengeli olmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Gerçekçi"],
     image: companyofheroesImage,
     story: "Company of Heroes 3'te birliklerini yalnızca hedefe göndermek yetmez; hangi siperden ilerleyeceklerini ve birbirlerini nasıl destekleyeceklerini de düşünürsün. Piyade ile araçları birlikte kullanarak cephedeki fırsatları değerlendirir, baskı artınca planını hızla değiştirirsin. Gerçek zamanlı savaşın temposu, geniş bir harita planıyla birkaç askerin konumunu aynı anda takip etmeyi gerektirir.",
   },
@@ -3725,7 +3725,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Bilim kurgu"],
     image: portalImage,
     story: "Portal'da duvara açtığın iki geçit, ilk bakışta ulaşılamaz görünen bir çıkışı mümkün kılar. Test odalarını çözerken mesafeden çok hareketin yönünü ve hızını düşünmeyi öğrenirsin. Sana rehberlik eden sesin tuhaf yorumları eşliğinde, temiz ve düzenli görünen bu tesisin arkasında başka bir şeyler olduğu hissi giderek güçlenir.",
   },
@@ -3758,10 +3758,10 @@ image: grandtheftautovImage,
 
     platforms: ["PC", "PlayStation", "Xbox"],
     categories: ["Bulmaca", "Aksiyon / Macera"],
-    storyImportance: ["Biraz önemli"],
+    storyImportance: ["Çok önemli","Biraz önemli"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
-    features: ["Çevresel bulmaca", "Keşif", "Hızlı çatışma"],
+    features: ["Çevresel bulmaca","Keşif"],
     worldType: ["Açık dünya"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -3771,7 +3771,7 @@ image: grandtheftautovImage,
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
-    atmosphere: ["Fantastik"],
+    atmosphere: ["Bilim kurgu"],
     image: thetalosprincipleImage,
     story: "The Talos Principle 2'de gelişmiş bir uygarlığın izleri arasında çözdüğün bulmacalar, insanlığın mirasına dair sorularla yan yana ilerler. Çevredeki araçları ve düzenekleri kullanarak yeni yollar açarken keşiflerin seni daha büyük yapıların sırlarına yaklaştırır. Mantıksal bir problemi çözmenin tatmini, yaratmak, ilerlemek ve sorumluluk almak üzerine düşüncelerle daha geniş bir yolculuğa dönüşür.",
   },
@@ -3807,7 +3807,7 @@ image: grandtheftautovImage,
     storyImportance: ["Biraz önemli"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
-    features: ["Çevresel bulmaca", "Keşif", "Hızlı çatışma"],
+    features: ["Çevresel bulmaca","Keşif"],
     worldType: ["Açık dünya"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -3830,8 +3830,8 @@ image: grandtheftautovImage,
     storyImportance: ["Biraz önemli"],
     tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik"],
-    features: ["Psikolojik korku", "Gerilim", "Çevresel bulmaca", "Keşif", "Hızlı çatışma"],
-    worldType: ["Açık dünya"],
+    features: ["Psikolojik korku","Gerilim","Çevresel bulmaca","Keşif"],
+    worldType: ["Lineer hikaye","Bölüm bölüm ilerleyen"],
     difficulty: ["Orta", "Zor"],
     graphics: ["Gerçekçi"],
     characterProgression: ["Gerek yok", "Biraz olsun"],
@@ -4152,7 +4152,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Online rekabetçi"],
-    features: ["Online yarış", "Kısa yarışlar", "Simülasyon sürüş"],
+    features: ["Online yarış","Kısa yarışlar","Simülasyon sürüş","Araç koleksiyonu","Araç modifiye","Kariyer modu"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4161,7 +4161,7 @@ image: grandtheftautovImage,
     vehicleInterest: ["Evet"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
-    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    challengeStyle: ["İkisi dengeli olmalı","Zorlamalı"],
     atmosphere: ["Gerçekçi"],
     image: a163Image,
     story: "Gran Turismo 7'de bir otomobili tanımak, garajına eklemekle bitmez; pistte ağırlığını ve tepkilerini öğrenmekle devam eder. Farklı araçları dener, ayarlarını geliştirir ve virajlara daha temiz girerek tur sürelerini iyileştirmeye çalışırsın. Otomobil kültürüne duyulan ilgiyle sürüşte ustalaşma isteği birleştiğinde, küçük bir teknik gelişme bile yeni bir zafer kadar tatmin edici olabilir.",
@@ -4175,7 +4175,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Online rekabetçi"],
-    features: ["Online yarış", "Kısa yarışlar", "Simülasyon sürüş"],
+    features: ["Online yarış","Kısa yarışlar","Simülasyon sürüş","Araç koleksiyonu","Araç modifiye","Kariyer modu"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4184,7 +4184,7 @@ image: grandtheftautovImage,
     vehicleInterest: ["Evet"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
-    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    challengeStyle: ["İkisi dengeli olmalı","Zorlamalı"],
     atmosphere: ["Gerçekçi"],
     image: a164Image,
     story: "Forza Motorsport'ta aynı virajı daha iyi dönmek, yalnızca daha geç fren yapmak değil otomobilinin sınırlarını doğru okumaktır. Pist yarışlarında çizgini, araç ayarlarını ve rakiplerin arasındaki konumunu geliştirerek daha tutarlı turlar atmaya çalışırsın. Birkaç saniyelik heyecandan çok bütün yarış boyunca kontrolü korumak, damalı bayrağa ulaşmanın asıl mücadelesini oluşturur.",
@@ -4198,16 +4198,16 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Online rekabetçi"],
-    features: ["Online yarış", "Kısa yarışlar", "Simülasyon sürüş"],
+    features: ["Online yarış","Kısa yarışlar","Simülasyon sürüş","Gerçekçi fizik","Kariyer modu"],
     worldType: ["Bölüm bölüm ilerleyen"],
-    difficulty: ["Kolay", "Orta", "Zor"],
+    difficulty: ["Orta","Zor","Çok zor"],
     graphics: ["Gerçekçi"],
     characterProgression: ["Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Evet"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
-    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    challengeStyle: ["Zorlamalı","İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
     image: a165Image,
     story: "Assetto Corsa Competizione'de GT yarışlarının temposu, otomobilin tutunmasını ve fren noktalarını dikkatle hissetmeni gerektirir. Lastiklerin durumunu, pist koşullarını ve rakiplerinin çizgisini hesaba katarak hızlı olduğu kadar sürdürülebilir bir sürüş kurarsın. Bir virajı kusursuz dönmenin hazzı, aynı hassasiyeti yarış boyunca koruyabildiğinde daha büyük bir başarıya dönüşür.",
@@ -4221,16 +4221,16 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Online rekabetçi"],
-    features: ["Online yarış", "Kısa yarışlar", "Simülasyon sürüş"],
+    features: ["Online yarış","Kısa yarışlar","Simülasyon sürüş","Gerçekçi fizik","Kariyer modu"],
     worldType: ["Bölüm bölüm ilerleyen"],
-    difficulty: ["Kolay", "Orta", "Zor"],
+    difficulty: ["Orta","Zor","Çok zor"],
     graphics: ["Gerçekçi"],
     characterProgression: ["Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Evet"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
-    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    challengeStyle: ["Zorlamalı","İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
     image: a166Image,
     story: "DiRT Rally 2.0'da dar bir yolda hızlanırken önündeki virajı çoğu zaman yardımcı pilotunun notlarından öğrenirsin. Zeminin tutuşuna, yolun eğimine ve otomobilin ağırlık aktarımına uyum sağlayarak etabı mümkün olduğunca temiz tamamlamaya çalışırsın. Bir hatanın sonraki kilometreleri etkileyebilmesi, gaz pedalına basmak kadar ne zaman kendini tutacağını bilmeni de değerli kılar.",
@@ -4244,7 +4244,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Online rekabetçi"],
-    features: ["Online yarış", "Kısa yarışlar", "Simülasyon sürüş"],
+    features: ["Online yarış","Kısa yarışlar","Simülasyon sürüş","Kariyer modu"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4253,7 +4253,7 @@ image: grandtheftautovImage,
     vehicleInterest: ["Evet"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
-    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    challengeStyle: ["Zorlamalı","İkisi dengeli olmalı"],
     atmosphere: ["Gerçekçi"],
     image: a167Image,
     story: "EA Sports WRC'de bir ralli etabı, peş peşe gelen virajlardan çok sürekli değişen koşullara karşı kurduğun ritimdir. Yardımcı pilotunun notlarını dinler, farklı zeminlerde otomobilini dengeler ve yol daraldığında hızını ne kadar koruyabileceğine karar verirsin. Her kilometrede aynı dikkati sürdürmek, bitiş çizgisini yalnızca hızlı değil sağlam bir sürüşün ödülüne dönüştürür.",
@@ -4268,7 +4268,7 @@ image: grandtheftautovImage,
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
     features: ["Online yarış", "Kısa yarışlar", "Arcade sürüş", "Araç modifiye", "Açık dünya sürüş"],
-    worldType: ["Bölüm bölüm ilerleyen"],
+    worldType: ["Açık dünya","Sandbox"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
     characterProgression: ["Biraz olsun"],
@@ -4362,14 +4362,14 @@ image: grandtheftautovImage,
     features: ["Online yarış", "Kısa yarışlar", "Arcade sürüş", "Mini oyunlar", "Kısa maçlar"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Evet"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
-    atmosphere: ["Gerçekçi"],
+    atmosphere: ["Fantastik","Cartoon"],
     image: a172Image,
     story: "Mario Kart 8 Deluxe'te kusursuz aldığın bir viraj avantaj kazandırır, fakat arkadan gelen bir eşya yarışın hesabını hemen değiştirebilir. Renkli pistlerde kayarak hız toplar, kısayolları öğrenir ve elindeki eşyayı saldırı ya da savunma için ne zaman kullanacağını seçersin. Son düzlüğe kadar süren belirsizlik, arkadaşlarınla yaptığın her yarışı anlatacak yeni bir anıyla bitirebilir.",
   },
@@ -4474,7 +4474,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["PvP","Takım kurma","Kısa maçlar","Basketbol"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4497,7 +4497,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["PvP","Kısa maçlar","Dövüş sporu"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4518,9 +4518,9 @@ image: grandtheftautovImage,
     platforms: ["PC", "PlayStation", "Xbox"],
     categories: ["Spor"],
     storyImportance: ["Önemli değil"],
-    tempo: ["Hızlı ve aksiyonlu"],
+    tempo: ["Yavaş ve taktiksel"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["PvP","Kısa maçlar","Raket / golf"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4543,7 +4543,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["PvP","Kısa maçlar","Raket / golf"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4566,7 +4566,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["Futbol", "PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["PvP","Kısa maçlar","Dövüş sporu"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4589,7 +4589,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["PvP","Takım kurma","Kısa maçlar","Diğer takım sporları"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4612,7 +4612,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["PvP","Takım kurma","Kısa maçlar","Diğer takım sporları"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4635,7 +4635,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["PvP","Takım kurma","Kısa maçlar","Diğer takım sporları"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4658,17 +4658,17 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla", "Online rekabetçi"],
-    features: ["PvP", "Takım kurma", "Kısa maçlar", "Mini oyunlar"],
+    features: ["PvP","Takım kurma","Kısa maçlar","Mini oyunlar","Futbol","Basketbol","Raket / golf"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
-    atmosphere: ["Gerçekçi"],
+    atmosphere: ["Cartoon"],
     image: a185Image,
     story: "Nintendo Switch Sports'ta bir bowling atışı ya da file önündeki karşılaşma, hareketin zamanlamasını elinde hissettiğin kısa bir mücadeleye dönüşür. Farklı sporların ritmini öğrenir, yön ve güç ayarını geliştirir ve rakibinin hamlesine karşılık verirsin. Kuralları çabuk kavranan bu karşılaşmalar, aynı odada başlayan küçük bir rekabeti peş peşe rövanş istemeye kadar götürebilir.",
   },
@@ -4684,14 +4684,14 @@ image: grandtheftautovImage,
     features: ["Futbol", "PvP", "Takım kurma", "Kısa maçlar", "Mini oyunlar"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
-    graphics: ["Gerçekçi"],
+    graphics: ["Cartoon"],
     characterProgression: ["Biraz olsun"],
     length: ["Sonsuz oynanabilir", "Çok uzun"],
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
     challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
-    atmosphere: ["Gerçekçi"],
+    atmosphere: ["Fantastik","Cartoon"],
      image: a186Image,
     story: "Mario Strikers: Battle League'de futbol sahası, sert müdahalelerin ve beklenmedik eşyaların oyunun akışını değiştirdiği hareketli bir arenadır. Paslarla alan açar, şut için konumlanır ve rakibin düzenini bozan fırsatları değerlendirirsin. Kurallara sıkı sıkıya bağlı bir maç beklemek yerine kaosa uyum sağladığında, her gol takımın birlikte yarattığı gösterişli bir hamleye dönüşebilir.",
   },
@@ -4773,7 +4773,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Online rekabetçi", "Arkadaşlarla"],
-    features: ["MOBA", "Takım koordinasyonu", "Karakter yetenekleri", "PvP", "Ranked", "Kısa maçlar", "Futbol", "Takım kurma"],
+    features: ["MOBA","Takım koordinasyonu","Karakter yetenekleri","PvP","Ranked","Kısa maçlar","Takım kurma","Diğer takım sporları"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Orta", "Zor", "Çok zor"],
     graphics: ["Cartoon"],
@@ -4911,7 +4911,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Arkadaşlarla"],
-    features: ["İş simülasyonu", "Rahatlatıcı görevler", "Mini oyunlar", "Kısa maçlar"],
+    features: ["İş simülasyonu","Mini oyunlar","Kısa maçlar"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Cartoon"],
@@ -4920,7 +4920,7 @@ image: grandtheftautovImage,
     vehicleInterest: ["Hayır"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
-    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    challengeStyle: ["İkisi dengeli olmalı","Zorlamalı"],
     atmosphere: ["Gerçekçi"],
     image: a196Image,
     story: "PlateUp!'ta restoranın kapıları açıldığında hazırladığın mutfak düzeninin gerçekten işe yarayıp yaramadığını hemen anlarsın. Yemek pişirir, siparişleri yetiştirir ve servis aralarında ekipmanını yeniden yerleştirerek ertesi günün yoğunluğuna hazırlanırsın. Bir tabağın yanlış yerde beklemesi bütün akışı bozabildiği için, iyi bir akşam servisi hızlı eller kadar birlikte kurulmuş iyi bir plan ister.",
@@ -4980,7 +4980,7 @@ image: grandtheftautovImage,
     storyImportance: ["Önemli değil"],
     tempo: ["Hızlı ve aksiyonlu"],
     playModes: ["Tek kişilik", "Online rekabetçi", "Arkadaşlarla"],
-    features: ["Online yarış", "Kısa yarışlar", "Simülasyon sürüş", "Araç sporu", "PvP", "Takım kurma", "Kısa maçlar"],
+    features: ["Online yarış","Kısa yarışlar","Simülasyon sürüş","Araç sporu","PvP","Takım kurma","Kısa maçlar","Kariyer modu","Uzun kariyer"],
     worldType: ["Bölüm bölüm ilerleyen"],
     difficulty: ["Kolay", "Orta", "Zor"],
     graphics: ["Gerçekçi"],
@@ -4989,7 +4989,7 @@ image: grandtheftautovImage,
     vehicleInterest: ["Evet"],
     horrorInterest: ["Sevmem"],
     strategyInterest: ["Hayır", "Biraz"],
-    challengeStyle: ["İkisi dengeli olmalı", "Rahatlatmalı"],
+    challengeStyle: ["İkisi dengeli olmalı","Zorlamalı"],
     atmosphere: ["Gerçekçi"],
     image: a199Image,
     story: "F1 25'te bir turu hızlı tamamlamakla bütün yarış boyunca güçlü kalmak aynı hazırlığı gerektirmez. Fren noktalarını ve çizgini geliştirirken lastik kullanımını, pit zamanlamasını ve önündeki trafikle nasıl baş edeceğini de düşünürsün. Direksiyon başındaki hassasiyetle yarış stratejisi bir araya geldiğinde, doğru anda verilen bir karar birkaç viraj sonra önemli bir avantaja dönüşebilir.",

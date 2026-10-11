@@ -1,14 +1,21 @@
 import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
 import { AppBackground } from '../components/app-background';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 const theme = { ...DarkTheme, colors: { ...DarkTheme.colors, background: 'transparent' } };
 
 export default function RootLayout() {
   return (
-    <AppBackground>
-      <ThemeProvider value={theme}>
-        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent' } }} />
-      </ThemeProvider>
-    </AppBackground>
+    <SafeAreaProvider>
+      <AppBackground>
+        <ThemeProvider value={theme}>
+          <StatusBar style="light" />
+          <SafeAreaView style={{ flex: 1 }}>
+            <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent' } }} />
+          </SafeAreaView>
+        </ThemeProvider>
+      </AppBackground>
+    </SafeAreaProvider>
   );
 }

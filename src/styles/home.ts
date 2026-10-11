@@ -299,15 +299,17 @@ export const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: "#22C55E",
+    backgroundColor: "rgba(17, 29, 51, 0.96)",
+    minWidth: 240,
+    alignItems: "center",
     paddingVertical: 16,
     paddingHorizontal: 44,
     borderRadius: 16,
     marginTop: 10,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.24)",
-    shadowColor: "#22C55E",
-    shadowOpacity: 0.35,
+    shadowColor: "#3B82F6",
+    shadowOpacity: 0.15,
     shadowRadius: 14,
     shadowOffset: {
       width: 0,
@@ -316,6 +318,8 @@ export const styles = StyleSheet.create({
     elevation: 8,
   },
 
+  primaryButton: { backgroundColor: "#A7F3D0", borderColor: "#6EE7B7", marginBottom: 8 },
+  primaryButtonText: { color: "#082B29", fontWeight: "800", letterSpacing: 0.5 },
   buttonText: {
     color: "white",
     fontSize: 18,
@@ -390,6 +394,7 @@ export const styles = StyleSheet.create({
   },
 
   gameCard: {
+    flexShrink: 0,
     backgroundColor: "rgba(10, 18, 35, 0.92)",
     padding: 16,
     borderRadius: 22,

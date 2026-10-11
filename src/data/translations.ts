@@ -3,7 +3,7 @@ export const translations = {
     appTitle: "Bugün Ne Oynasam?",
     appSubtitle:
       "Önce oyun havuzunu platform, kategori ve oynama biçimine göre daraltalım; sonra sana özel sorularla en uygun oyunları bulalım.",
-    quizInfo: "Kişiselleştirilmiş test • 2-3 dakika • 10 oyun önerisi",
+    quizInfo: "Kişiselleştirilmiş test • 2-3 dakika • En fazla 10 oyun önerisi",
     start: "Teste Başla",
     changeLanguage: "Dili Değiştir",
 
@@ -22,7 +22,10 @@ export const translations = {
     categoryFilter: "Kategori",
     playModeFilter: "Oynama biçimi",
     compatibility: "Tercihlerine uyumlu",
-    matchExplanation: "Uyum yüzdesi, cevaplarının önem ağırlıklarına göre eşleşen tercih payıdır. Oyun kalitesini veya oyunu sevme olasılığını göstermez. Platform, kategori ve oynama biçimi bu yüzdeye puan eklemez.",
+    experienceFilter: "Aradığın deneyim",
+    recommendationOrderNote: "Yakın uyumdaki oyunların sırası değişebilir. Bu oturumda önceki testte daha az öne çıkan oyunlara öncelik veriyoruz.",
+    recommendationCount: (count: number) => `${count} oyun bulundu. Listeyi doldurmak için temel deneyim tercihine uymayan oyunlar eklemiyoruz.`,
+    matchExplanation: "Uyum yüzdesi, cevaplarının önem ağırlıklarına göre eşleşen tercih payıdır. Oyun kalitesini veya oyunu sevme olasılığını göstermez. Platform, kategori ve oynama biçimi bu yüzdeye puan eklemez. Fark etmez dediğin tercihler hesaplamaya katılmaz.",
     matchPoints: (score: number, total: number) => `Eşleşen tercih puanı: ${score} / ${total}`,
     matchLevels: { unavailable: "Uyum hesaplanamadı", filtersOnly: "Yalnızca temel filtreler uyuyor", limited: "Sınırlı tercih uyumu", partial: "Kısmi tercih uyumu", good: "İyi tercih uyumu", strong: "Güçlü tercih uyumu" },
     recommendationReason: "Neden önerildi?",
@@ -30,7 +33,7 @@ export const translations = {
 
     noResult: "Bu filtrelerle uygun oyun bulunamadı",
     noResultDescription:
-      "Seçtiğin platform, kategori ve oynama biçiminin üçünü birden karşılayan bir oyun şu an havuzda yok. Oyun havuzunu büyüttükçe bu kombinasyonlar güçlenecek.",
+      "Seçtiğin platform, kategori, oynama biçimi ve varsa temel deneyim tercihini birlikte karşılayan oyun bulunamadı. Aşağıdaki alternatiflerden birini seçebilir veya testi yeniden başlatabilirsin.",
     defaultGameStory: "Bu oyun cevaplarına göre önerildi.",
 
     profiles: {
@@ -45,6 +48,7 @@ export const translations = {
       relaxed: "🌿 Sakin Oyun Arayıcısı",
       horror: "👻 Gerilim Avcısı",
       speed: "🏎️ Hız Tutkunu",
+      driver: "🚘 Sürüş Tutkunu",
       solver: "🧩 Bulmaca Çözücü",
       survivor: "🔥 Hayatta Kalma Uzmanı",
       simulator: "🛠️ Simülasyon Meraklısı",
@@ -123,7 +127,7 @@ export const translations = {
     appTitle: "What Should I Play Today?",
     appSubtitle:
       "First we'll narrow the game pool by platform, category and play mode, then use tailored questions to find your best matches.",
-    quizInfo: "Personalized quiz • 2-3 minutes • 10 game recommendations",
+    quizInfo: "Personalized quiz • 2-3 minutes • Up to 10 game recommendations",
     start: "Start Quiz",
     changeLanguage: "Change Language",
 
@@ -142,7 +146,10 @@ export const translations = {
     categoryFilter: "Category",
     playModeFilter: "Play mode",
     compatibility: "Matches your preferences",
-    matchExplanation: "Match percentage is the share of preference points matched, weighted by each question’s importance. It is not a game rating or the probability you will enjoy it. Platform, category and play mode add no points to this percentage.",
+    experienceFilter: "Your chosen experience",
+    recommendationOrderNote: "Similarly matched games may appear in a different order. In this session, games featured less prominently in your previous quiz get priority.",
+    recommendationCount: (count: number) => `${count} games found. We do not add games that miss your core experience just to fill the list.`,
+    matchExplanation: "Match percentage is the share of preference points matched, weighted by each question’s importance. It is not a game rating or the probability you will enjoy it. Platform, category and play mode add no points to this percentage. Preferences you leave open are excluded from the calculation.",
     matchPoints: (score: number, total: number) => `Matched preference points: ${score} / ${total}`,
     matchLevels: { unavailable: "Match unavailable", filtersOnly: "Only basic filters match", limited: "Limited preference match", partial: "Partial preference match", good: "Good preference match", strong: "Strong preference match" },
     recommendationReason: "Why was it recommended?",
@@ -150,7 +157,7 @@ export const translations = {
 
     noResult: "No games match these filters",
     noResultDescription:
-      "There is currently no game in the pool that matches your selected platform, category and play mode at the same time. These combinations will improve as the game library grows.",
+      "No game matches your platform, category, play mode and any core experience choice together. Choose an alternative below or start the quiz again.",
     defaultGameStory: "This game was recommended based on your answers.",
 
     profiles: {
@@ -165,6 +172,7 @@ export const translations = {
       relaxed: "🌿 Relaxed Gamer",
       horror: "👻 Thrill Seeker",
       speed: "🏎️ Speed Enthusiast",
+      driver: "🚘 Driving Enthusiast",
       solver: "🧩 Puzzle Solver",
       survivor: "🔥 Survival Specialist",
       simulator: "🛠️ Simulation Enthusiast",

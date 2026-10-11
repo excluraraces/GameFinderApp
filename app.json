@@ -1,27 +1,26 @@
 {
   "expo": {
-    "name": "GameFinderApp",
+    "name": "Bugün Ne Oynasam",
     "slug": "GameFinderApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/gamefinder-logo.jpg",
     "scheme": "gamefinderapp",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/gamefinder-logo.jpg"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/gamefinder-logo.jpg",
+        "backgroundColor": "#04243B"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.exclurastudio.gamefinder"
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/gamefinder-logo.jpg"
     },
     "plugins": [
       [
@@ -31,14 +30,6 @@
           "recordAudioAndroid": false,
           "enableBackgroundPlayback": false,
           "enableBackgroundRecording": false
-        }
-      ],
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
-          "iosAppId": "ca-app-pub-3940256099942544~1458002511",
-          "delayAppMeasurementInit": true
         }
       ],
       "expo-router",
@@ -51,7 +42,11 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      "expo-image",
+      "expo-web-browser",
+      "./scripts/with-android-kotlin.cjs",
+      "./scripts/with-android-build-memory.cjs"
     ],
     "experiments": {
       "typedRoutes": true,

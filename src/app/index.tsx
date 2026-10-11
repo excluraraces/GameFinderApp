@@ -1,3 +1,7 @@
+import ResultsLayout from "../components/results-layout";
+import PrivacySupport from "../components/privacy-support";
+import { getPreferenceScoreBudget } from "../data/questions";
+import { LaunchScreen, ScreenHeading } from "../components/studio-ui";
 import PlayerProfileCard from "../components/player-profile-card";
 import RecoveryOptions from "../components/recovery-options";
 import { applyRecoveryOption, getRecoveryOptions, type RecoveryOption } from "../domain/recommendation-recovery";
@@ -8,9 +12,11 @@ import { resultAd } from "../ads/result-ad";
 import { styles } from "../styles/home";
 import { createRecommendations, type Answer } from "../domain/recommendations";
 import VolumeSlider from "../components/volume-slider";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
+  BackHandler,
+  Platform,
   ActivityIndicator,
   Easing,
   Image,
@@ -54,6 +60,8 @@ export default function HomeScreen() {
   const [language, setLanguage] = useState<Language | null>(null);
   const [started, setStarted] = useState(false);
   const [tieBreakSeed, setTieBreakSeed] = useState(0);
+  const [previousRecommendationIds, setPreviousRecommendationIds] = useState<number[]>([]);
+  const lastRecommendationIds = useRef<number[]>([]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [finished, setFinished] = useState(false);
@@ -105,7 +113,7 @@ export default function HomeScreen() {
       toValue: 0,
       duration: 200,
       easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
+      useNativeDriver: Platform.OS !== "web",
     });
     entrance.start(({ finished: completed }) => {
       if (!completed || !mounted.current) return;
@@ -135,7 +143,7 @@ export default function HomeScreen() {
     ? [
       ...questionData.hardFilters,
       ...questionData.categoryBooks[selectedCategory],
-      ...questionData.commonPreferences,
+      ...questionData.commonPreferences.filter(question => selectedCategory !== "Simülasyon" || question.id !== "common-graphics"),
     ]
     : [...questionData.hardFilters];
 
@@ -149,9 +157,7 @@ export default function HomeScreen() {
     language: null,
   });
 
-  const maxPreferenceScore = activeQuestions
-    .filter((question) => question.kind === "preference")
-    .reduce((total, question) => total + (question.weight ?? 1), 0);
+  const maxPreferenceScore = getPreferenceScoreBudget(activeQuestions, answers);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   useEffect(() => {
     loadFavorites();
@@ -160,7 +166,7 @@ export default function HomeScreen() {
 
   const [storageError, setStorageError] = useState<"load" | "save" | null>(null);
   const settingsBusy = useRef(false);
-  const [savingSettings, setSavingSettings] = useState(false);
+  const settingsRevision = useRef(0);
   const [volumePreview, setVolumePreview] = useState<number | null>(null);
   const [favoritesReady, setFavoritesReady] = useState(false);
   const [settingsReady, setSettingsReady] = useState(false);
@@ -195,19 +201,19 @@ export default function HomeScreen() {
   }
 
   async function handleSettingChange<K extends keyof AppSettings>(key: K, value: AppSettings[K]) {
-    if (!settingsReady || settingsBusy.current) return;
+    if (!settingsReady) return;
+    const revision = ++settingsRevision.current;
     audio.interact();
-    settingsBusy.current = true;
-    setSavingSettings(true);
+    // Reflect taps immediately; storage serializes writes without locking the UI.
+    setAppSettings(current => ({ ...current, [key]: value }));
     try {
-      const saved = await updateSetting(key, value);
-      setAppSettings(saved);
-      audio.configure(saved);
-      if (key !== "musicEnabled") void audio.play("select");
-    } catch { setStorageError("save"); }
-    finally {
-      settingsBusy.current = false;
-      setSavingSettings(false);
+      await updateSetting(key, value);
+    } catch {
+      setStorageError("save");
+      try {
+        const saved = await getSettings();
+        if (mounted.current && revision === settingsRevision.current) setAppSettings(saved);
+      } catch { /* The existing error notice offers a retry. */ }
     }
   }
 
@@ -242,24 +248,21 @@ export default function HomeScreen() {
     </View>
   );
 
-  function translateGameTag(value: string) {
+  const translateGameTag = useCallback((value: string) => {
     const gameTags =
       ("gameTags" in t ? t.gameTags : {}) as Record<string, string>;
 
     return gameTags[value] ?? (language === "en" ? englishValueLabels[value] : undefined) ?? value;
-  }
+  }, [t, language]);
 
+  const { getSelectedPlatform, getSelectedCategory, getSelectedPlayMode, getRecommendation, getMatchSummary, getPlayerProfileDetails } = useMemo(() => createRecommendations({
+    answers, activeGames, maxPreferenceScore, t, translateGameTag, tieBreakSeed, previousRecommendationIds,
+  }), [answers, activeGames, maxPreferenceScore, t, translateGameTag, tieBreakSeed, previousRecommendationIds]);
+
+  // Snapshot for the next quiz only; favorites/settings must not reorder this one.
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const { getSelectedPlatform, getSelectedCategory, getSelectedPlayMode, getRecommendation, getMatchSummary, getPlayerProfileDetails } = createRecommendations({
-    answers, activeGames, maxPreferenceScore, t, translateGameTag, tieBreakSeed,
-  });
+    if (finished) lastRecommendationIds.current = getRecommendation().map(game => game.id);
+  }, [finished, getRecommendation]);
 
   async function selectLanguage(languageCode: Language) {
     if (!settingsReady || settingsBusy.current) {
@@ -296,14 +299,16 @@ export default function HomeScreen() {
       filterField: currentQuestion.filterField,
       scoreField: currentQuestion.scoreField,
       weight: currentQuestion.weight,
+      requiredMatch: currentQuestion.requiredMatch,
       matchValues: option.matchValues,
+      noPreference: option.noPreference,
     };
 
       Animated.timing(questionTranslateX, {
         toValue: -28,
         duration: 140,
         easing: Easing.in(Easing.quad),
-        useNativeDriver: true,
+        useNativeDriver: Platform.OS !== "web",
       }).start(({ finished: completed }) => {
         if (!completed || !mounted.current) return;
         const nextAnswers = [
@@ -326,7 +331,7 @@ export default function HomeScreen() {
           ? [
             ...questionData.hardFilters,
             ...questionData.categoryBooks[categoryAfterAnswer],
-            ...questionData.commonPreferences,
+            ...questionData.commonPreferences.filter(question => categoryAfterAnswer !== "Simülasyon" || question.id !== "common-graphics"),
           ]
           : [...questionData.hardFilters];
 
@@ -336,7 +341,7 @@ export default function HomeScreen() {
           setQuestionIndex((previousIndex) => previousIndex + 1);
         } else {
           transitionBusy.current = false;
-          questionTranslateX.setValue(0);
+          // Keep the outgoing question hidden until the results replace it.
           void finishQuiz();
         }
       });
@@ -395,6 +400,29 @@ export default function HomeScreen() {
 
   const isCategoryQuestion = currentQuestion?.id === "category";
 
+  // These screens share one route, so Android's default back action exits the
+  // app. Subscribe with the current screen state on every render instead.
+  useEffect(() => {
+    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
+      if (preparingResults || completingQuiz.current || transitionBusy.current) return true;
+      if (showFavorites) {
+        audio.interact("back");
+        setShowFavorites(false);
+        return true;
+      }
+      if (showSettings) {
+        audio.interact("back");
+        setVolumePreview(null);
+        setShowSettings(false);
+        return true;
+      }
+      if (finished) { restartApp(); return true; }
+      if (started) { goBack(); return true; }
+      return false;
+    });
+    return () => subscription.remove();
+  });
+
   if (preparingResults) {
     return (
       <View style={[styles.splashContainer, { backgroundColor: "#121826", justifyContent: "center", alignItems: "center" }]}>
@@ -411,23 +439,7 @@ export default function HomeScreen() {
       <View
         style={styles.splashContainer}
       >
-        <View style={styles.splashOverlay}>
-          <View style={styles.splashBadge}>
-            <Text style={styles.splashBadgeText}>Exclura Studio</Text>
-          </View>
-
-          <Text style={styles.splashTitle}>{language === "en" ? "Find Your Game" : "Oyununu Bul"}</Text>
-
-          <Text style={styles.splashSubtitle}>
-            {language === "en" ? "Preparing recommendations for your gaming taste." : "Oyun zevkine en uygun önerileri hazırlıyoruz."}
-          </Text>
-
-          <View style={styles.loadingDotsContainer}>
-            <View style={styles.loadingDot} />
-            <View style={styles.loadingDot} />
-            <View style={styles.loadingDot} />
-          </View>
-        </View>
+        <LaunchScreen ready={settingsLoaded && backgroundReady} language={language} onComplete={() => setShowSplash(false)} />
       {storageNotice}
       </View>
     );
@@ -439,7 +451,7 @@ export default function HomeScreen() {
         style={styles.container}
       >
         <View style={styles.languageOverlay}>
-          <Text style={styles.languageTitle}>Dilini Seç</Text>
+          <ScreenHeading>Dilini Seç</ScreenHeading>
           <Text style={styles.languageSubtitle}>Choose Your Language</Text>
 
           <View style={styles.languageButtonContainer}>
@@ -502,10 +514,10 @@ export default function HomeScreen() {
       <View
         style={styles.resultBackground}
       >
-        <ScrollView nestedScrollEnabled contentContainerStyle={styles.resultContainer}>
-          <Text style={styles.title}>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.resultContainer} removeClippedSubviews={false}>
+          <ScreenHeading>
             {language === "tr" ? "Favoriler" : "Favorites"}
-          </Text>
+          </ScreenHeading>
 
           {favoriteGames.length === 0 ? (
             <View style={styles.emptyBox}>
@@ -587,9 +599,9 @@ export default function HomeScreen() {
         style={styles.resultBackground}
       >
         <ScrollView contentContainerStyle={styles.settingsContainer}>
-          <Text style={styles.title}>
+          <ScreenHeading>
             {language === "tr" ? "Ayarlar" : "Settings"}
-          </Text>
+          </ScreenHeading>
 
           <Text style={styles.settingsSubtitle}>
             {language === "tr"
@@ -610,7 +622,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <Switch
-                disabled={!settingsReady || savingSettings}
+                disabled={!settingsReady}
                 value={appSettings.musicEnabled}
                 onValueChange={(value) =>
                   handleSettingChange("musicEnabled", value)
@@ -634,7 +646,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <Switch
-                disabled={!settingsReady || savingSettings}
+                disabled={!settingsReady}
                 value={appSettings.soundEnabled}
                 onValueChange={(value) =>
                   handleSettingChange("soundEnabled", value)
@@ -660,13 +672,14 @@ export default function HomeScreen() {
 
             <VolumeSlider
               value={appSettings.volume}
-              disabled={!settingsReady || savingSettings}
+              disabled={!settingsReady}
               label={language === "tr" ? "Ses Seviyesi" : "Volume"}
               onPreview={value => { audio.interact(); setVolumePreview(value); }}
               onCommit={value => handleSettingChange("volume", value)}
             />
           </View>
 
+          <PrivacySupport language={language} />
           <Text style={styles.settingsSavedText}>
             {language === "tr"
               ? "Ayarlar otomatik kaydedilir."
@@ -692,21 +705,22 @@ export default function HomeScreen() {
       <View
         style={styles.container}
       >
-        <Text style={styles.title}>{t.appTitle}</Text>
+        <ScreenHeading>{t.appTitle}</ScreenHeading>
 
         <Text style={styles.subtitle}>{t.appSubtitle}</Text>
 
         <Text style={styles.infoText}>{t.quizInfo}</Text>
 
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, styles.primaryButton]} accessibilityRole="button"
           onPress={() => {
             audio.interact("start");
             setTieBreakSeed(previous => (previous + 1 + Math.floor(Math.random() * 0xffffffff)) >>> 0);
+            setPreviousRecommendationIds([...lastRecommendationIds.current]);
             setStarted(true);
           }}
         >
-          <Text style={styles.buttonText}>{t.start}</Text>
+          <Text style={[styles.buttonText, styles.primaryButtonText]}>{t.start}  →</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -744,19 +758,25 @@ export default function HomeScreen() {
     const selectedCategory = getSelectedCategory();
     const selectedPlayMode = getSelectedPlayMode();
     const playerProfile = getPlayerProfileDetails();
+    const requiredPreferences = answers.filter(answer => answer.requiredMatch && !answer.noPreference);
 
     return (
       <View
         style={styles.resultBackground}
       >
-        <ScrollView nestedScrollEnabled contentContainerStyle={styles.resultContainer}>
-          <Text style={styles.title}>{t.resultReady}</Text>
+        <ResultsLayout key="results" language={language} onRestart={restartApp}>
+          <ScreenHeading>{t.resultReady}</ScreenHeading>
 
           <PlayerProfileCard profile={playerProfile} language={language} labels={t.profiles} />
 
           <Text style={styles.resultSubtitle}>{t.resultTitle}</Text>
 
           <View style={styles.filterSummary}>
+            {requiredPreferences.map(answer => (
+              <Text key={answer.questionId} style={styles.platformFilterText}>
+                {t.experienceFilter}: {translateGameTag(answer.value)}
+              </Text>
+            ))}
             {selectedPlatform && (
               <Text style={styles.platformFilterText}>
                 {t.platformFilter}: {translateGameTag(selectedPlatform)}
@@ -787,12 +807,16 @@ export default function HomeScreen() {
           )}
 
         {recommendedGames.length > 0 && (
-          <Text style={[styles.emptyText, { marginBottom: 20 }]}>{t.matchExplanation}</Text>
+          <View style={{ marginBottom: 20 }}>
+            <Text style={styles.emptyText}>{t.matchExplanation}</Text>
+            {recommendedGames.length > 1 && <Text style={styles.emptyText}>{t.recommendationOrderNote}</Text>}
+            {requiredPreferences.length > 0 && <Text style={styles.emptyText}>{t.recommendationCount(recommendedGames.length)}</Text>}
+          </View>
         )}
         {recommendedGames.map((game, index) => {
           const { percent: matchPercent, level: matchLevel } = getMatchSummary(game.score);
           const matchColor = matchColors[matchLevel];
-          const visibleReasons = game.reasons.slice(0, 3);
+          const visibleReasons = game.reasons;
 
           return (
             <View key={game.id} style={styles.gameCard}>
@@ -863,12 +887,17 @@ export default function HomeScreen() {
 
               <GameDescription text={game.story || t.defaultGameStory} language={language} title={game.title} />
 
-              {visibleReasons.length > 0 && (
+              {(
                 <View style={styles.reasonBox}>
                   <Text style={styles.reasonTitle}>
                     {t.recommendationReason}
                   </Text>
 
+                  {visibleReasons.length === 0 && (
+                    <Text style={styles.reasonText}>{language === "en"
+                      ? "This game passes your selected filters, but no additional preference match was found."
+                      : "Bu oyun seçtiğin filtrelerden geçti; ek bir tercih eşleşmesi bulunamadı."}</Text>
+                  )}
                   {visibleReasons.map((reason) => (
                     <Text key={reason} style={styles.reasonText}>
                       • {reason}
@@ -883,10 +912,7 @@ export default function HomeScreen() {
 
             
 
-        <TouchableOpacity style={styles.button} onPress={restartApp}>
-          <Text style={styles.buttonText}>{t.restart}</Text>
-        </TouchableOpacity>
-      </ScrollView>
+      </ResultsLayout>
     {storageNotice}
       </View>
     );

@@ -5,9 +5,11 @@ const path = require('node:path');
 const ts = require('typescript');
 const root = path.resolve(__dirname, '..');
 const exportsObject = {};
+let fadeStarts = 0;
+const trackedInterval = (...args) => { fadeStarts++; return setInterval(...args); };
 vm.runInNewContext(ts.transpileModule(fs.readFileSync(path.join(root, 'src/audio/controller.ts'), 'utf8'), {
   compilerOptions: { module: ts.ModuleKind.CommonJS },
-}).outputText, { exports: exportsObject, setInterval, clearInterval, Date });
+}).outputText, { exports: exportsObject, setInterval: trackedInterval, clearInterval, Date });
 function player() { return { isLoaded: true, playing: false, loop: false, volume: 0, count: 0,
   play() { this.playing = true; this.count++; }, pause() { this.playing = false; }, async seekTo() {} }; }
 const cueNames = ['select', 'navigate', 'back', 'start', 'favorite', 'unfavorite', 'result'];
@@ -19,10 +21,15 @@ const tick = () => new Promise(resolve => setTimeout(resolve, 70));
   assert.equal(music.playing, false, 'No autoplay before a gesture');
   c.interact(); await c.play('select');
   assert.equal(music.playing, true); assert.equal(cues.select.count, 1);
+  const initialFades = fadeStarts;
+  for (let i = 0; i < 30; i++) c.interact();
+  c.configure({ musicEnabled: true, soundEnabled: true, volume: 80, ready: true });
+  assert.equal(fadeStarts, initialFades, 'Repeated taps and unchanged settings must not restart music fades');
   await c.play('select'); assert.equal(cues.select.count, 1, 'Rapid taps are throttled');
   c.configure({ soundEnabled: false }); assert.equal(cues.select.playing, false);
   await tick(); await c.play('favorite'); assert.equal(cues.favorite.count, 0);
   assert.equal(music.playing, true, 'Effects toggle is independent');
+  assert.equal(fadeStarts, initialFades, 'Effects toggle must not restart background music');
   c.configure({ musicEnabled: false, soundEnabled: true }); assert.equal(music.playing, false);
   await c.play('favorite'); assert.equal(cues.favorite.count, 1);
   c.configure({ musicEnabled: true, blocked: true });

@@ -1,6 +1,6 @@
 import type { Answer } from './recommendations';
 
-export const PROFILE_IDS = ['story', 'explorer', 'challenger', 'strategist', 'competitor', 'social', 'collector', 'creator', 'relaxed', 'horror', 'speed', 'solver', 'survivor', 'simulator', 'manager', 'quickplay', 'sports'] as const;
+export const PROFILE_IDS = ['story', 'explorer', 'challenger', 'strategist', 'competitor', 'social', 'collector', 'creator', 'relaxed', 'horror', 'speed', 'driver', 'solver', 'survivor', 'simulator', 'manager', 'quickplay', 'sports'] as const;
 export type ProfileId = typeof PROFILE_IDS[number];
 type Signal = Partial<Record<ProfileId, number>>;
 type Signals = Record<string, Signal>;
@@ -19,12 +19,13 @@ const features: Signals = {
   'Battle Royale': { competitor: .65, survivor: .35 }, 'PvE co-op': { social: 1 },
   'Yakın dövüş': { challenger: .65, speed: .35 }, 'Silahlı çatışma': { speed: .7, challenger: .3 },
   'Stealth': { strategist: .7, explorer: .3 },
-  'Arcade sürüş': { speed: 1 }, 'Simülasyon sürüş': { simulator: .8, speed: .2 },
-  'Açık dünya sürüş': { explorer: .75, speed: .25 },
+  'Arcade sürüş': { speed: .6, driver: .4 }, 'Simülasyon sürüş': { driver: .7, simulator: .3 },
+  'Araç simülasyonu': { driver: .7, simulator: .3 },
+  'Açık dünya sürüş': { driver: .6, explorer: .4 },
   'Araç modifiye': { creator: .6, collector: .4 }, 'Araç koleksiyonu': { collector: 1 },
   'Kısa yarışlar': { quickplay: .8, speed: .2 }, 'Online yarış': { competitor: .7, speed: .3 },
   'Drift': { speed: .7, challenger: .3 }, 'Kariyer modu': { collector: .7, simulator: .3 },
-  'Rahat sürüş': { relaxed: 1 },
+  'Rahat sürüş': { relaxed: .6, driver: .4 },
   'Gerçek zamanlı strateji': { strategist: 1 }, 'Sıra tabanlı strateji': { strategist: 1 },
   'Grand strategy': { strategist: .7, manager: .3 }, 'Taktiksel savaş': { strategist: 1 },
   'Ekonomi yönetimi': { manager: .8, strategist: .2 }, 'Diplomasi': { strategist: 1 },
@@ -41,6 +42,7 @@ const features: Signals = {
   'Yaratıcılık / özgürlük': { creator: 1 }, 'Crafting': { creator: .6, survivor: .4 },
   'Hayatta kalma': { survivor: 1 }, 'Kullanıcı içerikleri': { creator: .7, social: .3 },
   'Base building': { creator: .75, survivor: .25 }, 'Yüksek risk': { survivor: .6, challenger: .4 },
+  'Basketbol': { sports: 1 }, 'Dövüş sporu': { sports: 1 }, 'Raket / golf': { sports: 1 }, 'Diğer takım sporları': { sports: 1 },
   'Futbol': { sports: 1 }, 'Araç sporu': { sports: .6, speed: .4 },
   'Takım kurma': { manager: .6, sports: .4 }, 'Uzun kariyer': { collector: .6, sports: .4 },
   'Kısa maçlar': { quickplay: 1 }, 'Karakter yetenekleri': { collector: .6, strategist: .4 },
@@ -59,10 +61,15 @@ const fields: Record<string, Signals> = {
   length: { 'Kısa': { quickplay: 1 } },
 };
 
-// Context matters: realistic graphics alone do not make someone a simulation
-// player; this explicit realism question does. Style and atmosphere stay neutral.
+// Visual style stays neutral; the intended activity provides profile evidence.
 const questionSignals: Record<string, Signals> = {
-  'sim-realism': { 'Gerçekçi': { simulator: 1 }, 'Cartoon': {} },
+  'sim-realism': {},
+  'sim-mood': {
+    'Rahatlatıcı görevler': { relaxed: 1 },
+    'Kariyer modu': { simulator: .7, challenger: .3 },
+    'Ekonomi yönetimi': { manager: .8, strategist: .2 },
+    'Sandbox özgürlüğü': { creator: .6, explorer: .4 },
+  },
 };
 
 export type ProfileEvidence = { questionId: string; label: string; points: number };
@@ -76,6 +83,7 @@ export function buildPlayerProfile(answers: Answer[]): PlayerProfile {
   // recommendation alternatives, not independent evidence for a personality.
   const unique = new Map(answers.map(answer => [answer.questionId, answer]));
   for (const answer of unique.values()) {
+    if (answer.noPreference) continue;
     let signal: Signal | undefined;
     let weight = 1;
     if (answer.questionId === 'playMode') {
@@ -83,6 +91,7 @@ export function buildPlayerProfile(answers: Answer[]): PlayerProfile {
         : answer.value === 'Online rekabetçi' ? { competitor: 1 } : undefined;
     } else if (answer.kind === 'preference') {
       signal = (questionSignals[answer.questionId] ?? fields[answer.scoreField ?? ''])?.[answer.value];
+
       const rawWeight = answer.weight ?? 1;
       if (!Number.isFinite(rawWeight) || rawWeight <= 0) continue;
       weight = Math.min(5, rawWeight);

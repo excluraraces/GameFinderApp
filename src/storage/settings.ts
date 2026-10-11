@@ -1,4 +1,4 @@
-﻿import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SETTINGS_KEY = "@gamefinder_settings";
 export type AppSettings = { musicEnabled: boolean; soundEnabled: boolean; volume: number; language: "tr" | "en" | null };

@@ -23,6 +23,7 @@ export type QuestionOption = {
   label: string;
   value: string;
   matchValues?: string[];
+  noPreference?: boolean;
 };
 
 export type Question = {
@@ -33,6 +34,7 @@ export type Question = {
   filterField?: HardFilterField;
   scoreField?: ScoreField;
   weight?: number;
+  requiredMatch?: boolean;
 };
 
 export const hardFilterQuestions: Question[] = [
@@ -95,7 +97,7 @@ const rpgQuestions: Question[] = [
     options: [
       { label: "Oyunun kalbi hikâye olmalı", value: "Çok önemli" },
       { label: "Güçlü olursa büyük artı", value: "Biraz önemli" },
-      { label: "Oynanış daha önemli", value: "Önemli değil" },
+      { label: "Oynanış daha önemli", value: "Önemli değil", noPreference: true },
     ],
   },
   {
@@ -132,7 +134,7 @@ const rpgQuestions: Question[] = [
     options: [
       { label: "Build, yetenek ve ekipmanla sürekli gelişeyim", value: "Evet çok isterim" },
       { label: "Bir miktar gelişim yeterli", value: "Biraz olsun" },
-      { label: "Gelişim şart değil", value: "Gerek yok" },
+      { label: "Gelişim şart değil", value: "Gerek yok", noPreference: true },
     ],
   },
   {
@@ -213,7 +215,7 @@ const actionQuestions: Question[] = [
     options: [
       { label: "Sinematik ve güçlü bir hikâye istiyorum", value: "Çok önemli" },
       { label: "Oynanışla dengeli olsun", value: "Biraz önemli" },
-      { label: "Aksiyon iyi olsun yeter", value: "Önemli değil" },
+      { label: "Aksiyon iyi olsun yeter", value: "Önemli değil", noPreference: true },
     ],
   },
   {
@@ -278,7 +280,7 @@ const racingQuestions: Question[] = [
     question: "Araçlarla ne kadar uğraşmak istiyorsun?",
     options: [
       { label: "Modifiye benim için önemli", value: "Araç modifiye" },
-      { label: "Araç toplamayı seviyorum", value: "Araç koleksiyonu" },
+      { label: "Araç toplamayı seviyorum", value: "Araç koleksiyonu", matchValues: ["Araç koleksiyonu", "Koleksiyon"] },
       { label: "Sadece sürmek ve yarışmak istiyorum", value: "Kısa yarışlar" },
     ],
   },
@@ -408,7 +410,7 @@ const horrorQuestions: Question[] = [
     options: [
       { label: "Çok önemli", value: "Çok önemli" },
       { label: "Biraz önemli", value: "Biraz önemli" },
-      { label: "Atmosfer yeterli", value: "Önemli değil" },
+      { label: "Atmosfer yeterli", value: "Önemli değil", noPreference: true },
     ],
   },
 ];
@@ -417,6 +419,7 @@ const simulationQuestions: Question[] = [
   {
     id: "sim-type",
     kind: "preference",
+    requiredMatch: true,
     scoreField: "features",
     weight: 5,
     question: "Ne simüle etmek istiyorsun?",
@@ -424,7 +427,7 @@ const simulationQuestions: Question[] = [
       { label: "Araç kullanmak", value: "Simülasyon sürüş", matchValues: ["Simülasyon sürüş", "Araç simülasyonu"] },
       { label: "Bir iş/meslek yapmak", value: "İş simülasyonu" },
       { label: "Günlük yaşamı yönetmek", value: "Yaşam simülasyonu" },
-      { label: "Şehir/koloni/organizasyon yönetmek", value: "Ekonomi yönetimi" },
+      { label: "Şehir/koloni/organizasyon yönetmek", value: "Ekonomi yönetimi", matchValues: ["Ekonomi yönetimi", "Şehir kurma", "Koloni yönetimi", "Kaynak yönetimi"] },
     ],
   },
   {
@@ -432,9 +435,9 @@ const simulationQuestions: Question[] = [
     kind: "preference",
     scoreField: "graphics",
     weight: 3,
-    question: "Gerçekçilik ne kadar önemli?",
+    question: "Simülasyonda görsel tarz nasıl olsun?",
     options: [
-      { label: "Mümkün olduğunca gerçekçi", value: "Gerçekçi" },
+      { label: "Gerçekçi görseller", value: "Gerçekçi" },
       { label: "Stilize olması sorun değil", value: "Cartoon", matchValues: ["Cartoon", "Pixel", "Anime", "Minimal"] },
     ],
   },
@@ -445,8 +448,8 @@ const simulationQuestions: Question[] = [
     weight: 4,
     question: "Simülasyon sana nasıl hissettirsin?",
     options: [
-      { label: "Rahatlatıcı ve sakin", value: "Rahatlatıcı görevler" },
-      { label: "Sistemleri öğrenip ustalaşayım", value: "Kariyer modu" },
+      { label: "Rahatlatıcı ve sakin", value: "Rahatlatıcı görevler", matchValues: ["Rahatlatıcı görevler", "Rahat sürüş"] },
+      { label: "Sistemleri öğrenip ustalaşayım", value: "Kariyer modu", matchValues: ["Kariyer modu", "Gerçekçi fizik", "Simülasyon sürüş", "Araç simülasyonu"] },
       { label: "Ekonomi ve büyüme yöneteyim", value: "Ekonomi yönetimi" },
       { label: "Özgürce deneme yapayım", value: "Sandbox özgürlüğü" },
     ],
@@ -456,6 +459,7 @@ const simulationQuestions: Question[] = [
 const managementQuestions: Question[] = [
   {
     id: "management-type",
+    requiredMatch: true,
     kind: "preference",
     scoreField: "features",
     weight: 5,
@@ -521,18 +525,7 @@ const sandboxQuestions: Question[] = [
       { label: "Şart değil; keşif daha önemli", value: "Keşif" },
     ],
   },
-  {
-    id: "sandbox-challenge",
-    kind: "preference",
-    scoreField: "challengeStyle",
-    weight: 3,
-    question: "Sandbox seni zorlasın mı?",
-    options: [
-      { label: "Rahatlatmalı", value: "Rahatlatmalı" },
-      { label: "Dengeli olsun", value: "İkisi dengeli olmalı" },
-      { label: "Zorlamalı", value: "Zorlamalı" },
-    ],
-  },
+
 ];
 
 const survivalQuestions: Question[] = [
@@ -598,32 +591,26 @@ const puzzleQuestions: Question[] = [
     options: [
       { label: "Evet, güçlü hikâye olsun", value: "Çok önemli" },
       { label: "Biraz olsun", value: "Biraz önemli" },
-      { label: "Bulmacalar yeterli", value: "Önemli değil" },
+      { label: "Bulmacalar yeterli", value: "Önemli değil", noPreference: true },
     ],
   },
-  {
-    id: "puzzle-length",
-    kind: "preference",
-    scoreField: "length",
-    weight: 2,
-    question: "Ne kadar uzun bir bulmaca oyunu arıyorsun?",
-    options: [
-      { label: "Kısa", value: "Kısa" },
-      { label: "Orta uzunlukta", value: "Orta uzunlukta" },
-      { label: "Uzun süre oynayayım", value: "Çok uzun", matchValues: ["Çok uzun", "Sonsuz oynanabilir"] },
-    ],
-  },
+
 ];
 
 const sportsQuestions: Question[] = [
   {
     id: "sports-type",
+    requiredMatch: true,
     kind: "preference",
     scoreField: "features",
     weight: 5,
     question: "Nasıl bir spor deneyimi istiyorsun?",
     options: [
       { label: "Futbol", value: "Futbol" },
+      { label: "Basketbol", value: "Basketbol" },
+      { label: "Dövüş / güreş", value: "Dövüş sporu" },
+      { label: "Tenis / golf", value: "Raket / golf" },
+      { label: "Amerikan futbolu / buz hokeyi / beyzbol", value: "Diğer takım sporları" },
       { label: "Araçlarla rekabet", value: "Araç sporu" },
       { label: "Takımı saha dışından yönetmek", value: "Spor yönetimi" },
     ],
@@ -783,14 +770,29 @@ export const commonPreferenceQuestions: Question[] = [
   },
 ];
 
+for (const question of [...Object.values(categoryQuestionBooks).flat(), ...commonPreferenceQuestions]) {
+  if (!question.options.some(option => option.noPreference)) question.options.push({ label: "Fark etmez", value: "Fark etmez", noPreference: true });
+}
+
+export function getCommonPreferencesForCategory(category?: Category): Question[] {
+  return commonPreferenceQuestions.filter(question => category !== "Simülasyon" || question.id !== "common-graphics");
+}
+
 export function getQuestionsForCategory(category: Category): Question[] {
   return [
     ...hardFilterQuestions,
     ...categoryQuestionBooks[category],
-    ...commonPreferenceQuestions,
+    ...getCommonPreferencesForCategory(category),
   ];
 }
 
 // Geçiş sürecinde eski importların tamamen kırılmaması için.
 // Dinamik akışta index.tsx hardFilterQuestions ve categoryQuestionBooks kullanacak.
 export const questions = hardFilterQuestions;
+
+// Shared by the UI and score checks: neutral answers earn no points and lower no percentage.
+export function getPreferenceScoreBudget(questions: Question[], answers: { questionId: string; noPreference?: boolean }[]): number {
+  const latest = new Map(answers.map(answer => [answer.questionId, answer]));
+  return questions.filter(question => question.kind === "preference" && !latest.get(question.id)?.noPreference)
+    .reduce((total, question) => total + (question.weight ?? 1), 0);
+}

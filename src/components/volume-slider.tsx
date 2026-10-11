@@ -14,14 +14,21 @@ export default function VolumeSlider({ value, disabled, label, onPreview, onComm
   const [saving, setSaving] = useState(false);
   const width = useRef(0);
   const current = useRef(value);
+  const gesture = useRef({ left: 0, identifier: "" });
   const active = useRef(false);
   const busy = useRef(false);
   const shown = draft ?? value;
 
   function update(event: GestureResponderEvent) {
     if (!active.current || width.current <= 0) return;
+    const touch = event.nativeEvent;
+    // Lock the coordinate origin at touch-down. Android locationX can change
+    // during a drag as the touch target moves; pageX remains stable.
+    // Once started on the bar, keep tracking horizontal motion at any height.
+    if (touch.identifier !== gesture.current.identifier) return;
     const next = Math.round(Math.max(0, Math.min(1,
-      (event.nativeEvent.locationX - 12) / Math.max(1, width.current - 24))) * 100);
+      (touch.pageX - gesture.current.left - 12) / Math.max(1, width.current - 24))) * 100);
+    if (next === current.current) return;
     current.current = next;
     setDraft(next);
     onPreview(next);
@@ -46,6 +53,9 @@ export default function VolumeSlider({ value, disabled, label, onPreview, onComm
       accessibilityRole="adjustable"
       accessibilityLabel={label}
       accessibilityValue={{ min: 0, max: 100, now: shown }}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={shown}
       accessibilityState={{ disabled: disabled || saving }}
       accessibilityActions={[{ name: "increment" }, { name: "decrement" }]}
       onAccessibilityAction={({ nativeEvent }) => {
@@ -56,8 +66,14 @@ export default function VolumeSlider({ value, disabled, label, onPreview, onComm
       style={[styles.touchArea, (disabled || saving) && styles.disabled]}
       onLayout={event => { width.current = event.nativeEvent.layout.width; }}
       onStartShouldSetResponder={() => !disabled && !busy.current}
-      onMoveShouldSetResponder={() => !disabled && !busy.current}
-      onResponderGrant={event => { active.current = true; current.current = value; update(event); }}
+      onMoveShouldSetResponder={() => false}
+      onResponderGrant={event => {
+        const touch = event.nativeEvent;
+        gesture.current = { left: touch.pageX - touch.locationX, identifier: touch.identifier };
+        active.current = true;
+        current.current = value;
+        update(event);
+      }}
       onResponderMove={update}
       onResponderRelease={event => {
         update(event);

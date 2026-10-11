@@ -1,9 +1,10 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { AppState, Platform } from 'react-native';
-import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
+import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 import { createAudioController, type AudioPreferences } from './controller';
 
 export function useAppAudio(settings: AudioPreferences, ready: boolean, blocked: boolean) {
+  const { musicEnabled, soundEnabled, volume } = settings;
   const music = useAudioPlayer(require('../../assets/audio/ambient.wav'));
   const select = useAudioPlayer(require('../../assets/audio/select.wav'));
   const navigate = useAudioPlayer(require('../../assets/audio/navigate.wav'));
@@ -12,7 +13,6 @@ export function useAppAudio(settings: AudioPreferences, ready: boolean, blocked:
   const favorite = useAudioPlayer(require('../../assets/audio/favorite.wav'));
   const unfavorite = useAudioPlayer(require('../../assets/audio/unfavorite.wav'));
   const result = useAudioPlayer(require('../../assets/audio/result.wav'));
-  const musicStatus = useAudioPlayerStatus(music);
   const [modeReady, setModeReady] = useState(false);
   const controller = useMemo(() => createAudioController(music, {
     select, navigate, back, start, favorite, unfavorite, result,
@@ -30,12 +30,18 @@ export function useAppAudio(settings: AudioPreferences, ready: boolean, blocked:
   }, []);
 
   useLayoutEffect(() => {
-    controller.configure({ ...settings, ready: ready && modeReady, blocked });
-  }, [controller, settings.musicEnabled, settings.soundEnabled, settings.volume, ready, modeReady, blocked]);
+    controller.configure({ musicEnabled, soundEnabled, volume, ready: ready && modeReady, blocked });
+  }, [controller, musicEnabled, soundEnabled, volume, ready, modeReady, blocked]);
 
   useEffect(() => {
-    if (musicStatus.isLoaded) controller.refreshMusic();
-  }, [controller, musicStatus.isLoaded]);
+    let loaded = music.isLoaded;
+    if (loaded) controller.refreshMusic();
+    const subscription = music.addListener("playbackStatusUpdate", status => {
+      if (status.isLoaded && !loaded) controller.refreshMusic();
+      loaded = status.isLoaded;
+    });
+    return () => subscription.remove();
+  }, [controller, music]);
 
   useEffect(() => {
     const foreground = () => AppState.currentState === 'active' &&

@@ -44,7 +44,7 @@ const questionText: Record<string, string> = {
   "horror-story": "How important is the story?",
 
   "sim-type": "What would you like to simulate?",
-  "sim-realism": "How important is realism?",
+  "sim-realism": "Which visual style do you prefer in a simulation?",
   "sim-mood": "How should the simulation make you feel?",
 
   "management-type": "What sounds most fun to manage?",
@@ -219,6 +219,10 @@ export const valueLabel: Record<string, string> = {
   "Co-op bulmaca": "Co-op puzzles",
 
   Futbol: "Football",
+  Basketbol: "Basketball",
+  "Dövüş sporu": "Combat sports / wrestling",
+  "Raket / golf": "Tennis / golf",
+  "Diğer takım sporları": "American football / ice hockey / baseball",
   "Araç sporu": "Vehicle sports",
   "Takım kurma": "Building and improving a team",
   "Uzun kariyer": "A long career",
@@ -265,7 +269,7 @@ export function getQuestionsForCategoryEn(category: Category): Question[] {
   return [
     ...hardFilterQuestionsEn,
     ...categoryQuestionBooksEn[category],
-    ...commonPreferenceQuestionsEn,
+    ...commonPreferenceQuestionsEn.filter(question => category !== "Simülasyon" || question.id !== "common-graphics"),
   ];
 }
 
